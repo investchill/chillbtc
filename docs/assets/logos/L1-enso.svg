@@ -1,0 +1,9 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ChillBTC logo L1 enso">
+  <title>ChillBTC L1 — Ensō + ₿</title>
+  <path d="M 160.6,135 A 70,70 0 1 0 100,170"
+        stroke="#0B0B0B" stroke-width="9" fill="none"
+        stroke-linecap="round"/>
+  <text x="100" y="125" text-anchor="middle"
+        font-family="Inter, system-ui, -apple-system, sans-serif"
+        font-weight="600" font-size="64" fill="#F7931A">₿</text>
+</svg>

@@ -1,0 +1,38 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ChillBTC social card">
+  <title>ChillBTC — OpenGraph social card</title>
+  <defs>
+    <filter id="ink-og" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="2" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- fond crème U1 -->
+  <rect width="1200" height="630" fill="#FAFAF7"/>
+
+  <!-- logo ChillBTC à gauche (ensō affinée, scale ×2.2 du 200 d'origine) -->
+  <g transform="translate(120, 175) scale(1.4)">
+    <path d="M 160.6,135 A 70,70 0 1 0 100,170"
+          stroke="#241B17" stroke-width="3" fill="none"
+          stroke-linecap="round" opacity="0.95"
+          filter="url(#ink-og)"/>
+    <text x="100" y="116" text-anchor="middle"
+          font-family="Inter, system-ui, -apple-system, sans-serif"
+          font-weight="400" font-size="44" fill="#F7931A" opacity="0.82">₿</text>
+  </g>
+
+  <!-- titre slogan à droite -->
+  <text x="540" y="285" font-family="Inter, system-ui, -apple-system, sans-serif"
+        font-weight="800" font-size="90" fill="#0B0B0B" letter-spacing="-3">BTC posé.</text>
+  <text x="540" y="345" font-family="Inter, system-ui, -apple-system, sans-serif"
+        font-weight="500" font-size="32" fill="#555550">Un coup d'œil par mois.</text>
+  <text x="540" y="385" font-family="Inter, system-ui, -apple-system, sans-serif"
+        font-weight="500" font-size="32" fill="#555550">Tu appliques, tu oublies.</text>
+
+  <!-- wordmark en bas -->
+  <text x="540" y="470" font-family="IBM Plex Mono, ui-monospace, monospace"
+        font-weight="500" font-size="18" fill="#F7931A" letter-spacing="2">CHILLBTC</text>
+
+  <!-- barre orange de séparation subtile -->
+  <rect x="540" y="440" width="40" height="3" fill="#F7931A"/>
+</svg>

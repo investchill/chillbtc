@@ -1,0 +1,24 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ChillBTC logo L1c enso effet pinceau">
+  <title>ChillBTC L1c — Ensō effet pinceau pression variable</title>
+  <defs>
+    <filter id="ink-rough2" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="2" seed="3" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6"/>
+    </filter>
+  </defs>
+  <!-- segment 1 : début du trait, fin (lift initial du pinceau) -->
+  <path d="M 160.6,135 A 70,70 0 0 0 154,40"
+        stroke="#1A1A1A" stroke-width="3.5" fill="none"
+        stroke-linecap="round" filter="url(#ink-rough2)" opacity="0.9"/>
+  <!-- segment 2 : corps épais (pression maximum, haut du cercle) -->
+  <path d="M 154,40 A 70,70 0 0 0 30,100"
+        stroke="#161616" stroke-width="6.5" fill="none"
+        stroke-linecap="round" filter="url(#ink-rough2)" opacity="0.95"/>
+  <!-- segment 3 : pression diminue (descente gauche) -->
+  <path d="M 30,100 A 70,70 0 0 0 100,170"
+        stroke="#1A1A1A" stroke-width="4" fill="none"
+        stroke-linecap="round" filter="url(#ink-rough2)" opacity="0.88"/>
+  <!-- éclaboussure d'encre subtile en bas-droite (signature pinceau) -->
+  <circle cx="158" cy="142" r="2.5" fill="#1A1A1A" opacity="0.7"/>
+  <circle cx="164" cy="138" r="1.5" fill="#1A1A1A" opacity="0.5"/>
+</svg>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ChillBTC — BTC posé. Un coup d'œil par mois.</title>
+  <meta name="description" content="Stratégie d'investissement Bitcoin mécanique et automatique. Un signal mensuel, trois dosages possibles, testée sur 10 ans d'historique.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="assets/brand/favicon-32.png" type="image/png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/brand/apple-touch-icon.png">
+
+  <!-- OpenGraph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ChillBTC — BTC posé.">
+  <meta property="og:description" content="Un coup d'œil par mois. Tu appliques, tu oublies.">
+  <meta property="og:image" content="https://investchill.github.io/chillbtc/assets/brand/og-image.png">
+  <meta property="og:url" content="https://investchill.github.io/chillbtc/">
+  <meta property="og:site_name" content="ChillBTC">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ChillBTC — BTC posé.">
+  <meta name="twitter:description" content="Un coup d'œil par mois. Tu appliques, tu oublies.">
+  <meta name="twitter:image" content="https://investchill.github.io/chillbtc/assets/brand/og-image.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+  <!-- ============== NAV TOP ============== -->
+  <nav class="topnav" aria-label="Navigation principale">
+    <div class="wrap">
+      <a href="#" class="brand" aria-label="ChillBTC accueil">
+        <img src="assets/brand/chillbtc.svg" alt="" class="brand-logo">
+        <span class="brand-name">ChillBTC</span>
+      </a>
+      <div class="topnav-links">
+        <a href="#download">Télécharger</a>
+        <a href="#how">Comment ça marche</a>
+        <a href="https://github.com/investchill/chillbtc">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============== HERO ============== -->
+  <header class="hero">
+    <div class="wrap">
+      <img src="assets/brand/chillbtc.svg" alt="ChillBTC logo" class="hero-logo">
+      <div class="wordmark">CHILLBTC</div>
+      <h1>BTC posé.</h1>
+      <p class="tagline">Un coup d'œil par mois. Tu appliques, tu oublies.</p>
+      <div class="cta">
+        <a href="#download" class="btn btn-primary">Télécharger</a>
+        <a href="#how" class="btn btn-secondary">Comment ça marche</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============== DOWNLOADS ============== -->
+  <section id="download">
+    <div class="wrap">
+      <h2>Installation</h2>
+      <p class="section-lead">Choisis ton OS. Zéro prérequis : tout s'installe automatiquement au premier lancement (30 s à 2 min).</p>
+
+      <div class="dl-grid">
+        <a href="https://github.com/investchill/chillbtc/releases/latest/download/chillbtc-macos.zip" class="dl-card">
+          <img src="assets/brand/os-macos.svg" alt="" class="dl-icon">
+          <div class="dl-label">macOS</div>
+          <div class="dl-hint">11+ · Intel + Apple Silicon</div>
+          <div class="dl-size">.zip — télécharger</div>
+        </a>
+
+        <a href="https://github.com/investchill/chillbtc/releases/latest/download/chillbtc-windows.zip" class="dl-card">
+          <img src="assets/brand/os-windows.svg" alt="" class="dl-icon">
+          <div class="dl-label">Windows</div>
+          <div class="dl-hint">10+ · 64-bit</div>
+          <div class="dl-size">.zip — télécharger</div>
+        </a>
+
+        <a href="https://github.com/investchill/chillbtc/releases/latest/download/chillbtc-linux.zip" class="dl-card">
+          <img src="assets/brand/os-linux.svg" alt="" class="dl-icon">
+          <div class="dl-label">Linux</div>
+          <div class="dl-hint">Ubuntu 20.04+ · glibc 2.31+</div>
+          <div class="dl-size">.zip — télécharger</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== HOW ============== -->
+  <section id="how">
+    <div class="wrap">
+      <h2>Comment ça marche — en 1 minute</h2>
+      <p>Chaque 1<sup>er</sup> du mois, l'outil lit deux signaux sur le prix BTC :</p>
+      <ul>
+        <li><strong>Signal tendance</strong> : BTC a-t-il monté sur les 11 derniers mois ? → ACHAT ou CASH.</li>
+        <li><strong>Signal valeur</strong> : BTC est-il trop cher ou à bon prix par rapport à sa trajectoire long-terme ? → ACHAT ou CASH.</li>
+      </ul>
+      <p>Les 2 signaux combinés te donnent <strong>une seule consigne</strong> : garder 100 %, 50 % ou 0 % de ton capital en BTC. Voici la règle :</p>
+
+      <table class="rule-table">
+        <thead>
+          <tr>
+            <th>Signal tendance</th>
+            <th>Signal valeur</th>
+            <th>Ta position BTC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge badge-achat">ACHAT</span></td>
+            <td><span class="badge badge-achat">ACHAT</span></td>
+            <td>
+              <div class="pos"><strong>100 %</strong> BTC</div>
+              <div class="ctx">climat haussier</div>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-achat">ACHAT</span></td>
+            <td><span class="badge badge-cash">CASH</span></td>
+            <td>
+              <div class="pos"><strong>50 %</strong> BTC + <strong>50 %</strong> stablecoin</div>
+              <div class="ctx">BTC cher</div>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-cash">CASH</span></td>
+            <td><span class="badge badge-achat">ACHAT</span></td>
+            <td>
+              <div class="pos"><strong>50 %</strong> BTC + <strong>50 %</strong> stablecoin</div>
+              <div class="ctx">signaux opposés</div>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-cash">CASH</span></td>
+            <td><span class="badge badge-cash">CASH</span></td>
+            <td>
+              <div class="pos"><strong>0 %</strong> BTC + <strong>100 %</strong> stablecoin</div>
+              <div class="ctx">baisse confirmée</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="muted" style="margin-top: 24px; font-size: 15px;">C'est tout. <strong>Pas d'autre règle, pas d'exception, pas de « oui mais »</strong>. La consigne change en moyenne <strong>~1 fois par an</strong>. Les autres mois, tu n'as rien à faire.</p>
+    </div>
+  </section>
+
+  <!-- ============== PERF ============== -->
+  <section id="perf" class="perf">
+    <div class="wrap">
+      <h2>Performance historique</h2>
+      <p class="section-lead">Simulation sur 10 ans d'historique BTC (2016 → 2026).</p>
+
+      <div class="perf-grid">
+        <div class="stat">
+          <div class="stat-val">+80 %/an</div>
+          <div class="stat-label">Performance annuelle moyenne</div>
+          <div class="stat-vs">vs HODL +64 %/an · +16 points</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">−40 %</div>
+          <div class="stat-label">Pire baisse</div>
+          <div class="stat-vs">vs HODL −75 % · +35 points de gain</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">1</div>
+          <div class="stat-label">Action concrète par an</div>
+          <div class="stat-vs">Les 11 autres mois : rien à faire</div>
+        </div>
+      </div>
+
+      <p class="note-hodl">* <strong>HODL</strong> = stratégie « acheter et garder », le référentiel passif classique (ne rien faire, conserver ses BTC en permanence).</p>
+
+      <p class="perf-footnote">
+        La stratégie <strong>gagne largement quand le marché baisse</strong> (2018, 2022) et <strong>sous-performe quand le marché monte fort</strong> (2017, 2019, 2020, 2023) — c'est mécanique, pas un bug. Les performances passées ne préjugent pas des performances futures.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============== FIT ============== -->
+  <section id="fit">
+    <div class="wrap">
+      <h2>Est-ce pour toi ?</h2>
+      <table class="fit-table">
+        <thead>
+          <tr>
+            <th class="fit-theme"></th>
+            <th class="fit-yes">✅ Oui, si…</th>
+            <th class="fit-no">❌ Non, si…</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" class="fit-theme">Horizon</th>
+            <td class="fit-yes">Tu crois au BTC sur <strong>plusieurs cycles</strong></td>
+            <td class="fit-no">Tu veux <strong>battre le marché sur 3-6 mois</strong></td>
+          </tr>
+          <tr>
+            <th scope="row" class="fit-theme">Temps</th>
+            <td class="fit-yes">Investir dans BTC <strong>sans y passer ta vie</strong></td>
+            <td class="fit-no">Tu <strong>trades activement</strong> (day / swing trading)</td>
+          </tr>
+          <tr>
+            <th scope="row" class="fit-theme">Mental</th>
+            <td class="fit-yes">Une <strong>méthode fixe comme boussole</strong> — tu gardes la main à 100 %</td>
+            <td class="fit-no">Tu veux <strong>réagir immédiatement</strong> à chaque chute</td>
+          </tr>
+          <tr>
+            <th scope="row" class="fit-theme">Volatilité</th>
+            <td class="fit-yes">Tu acceptes <strong>−50 % temporaire</strong> (baisse papier)</td>
+            <td class="fit-no">Tu <strong>ne tolères pas</strong> une baisse &gt; −30 %</td>
+          </tr>
+          <tr>
+            <th scope="row" class="fit-theme">Setup</th>
+            <td class="fit-yes">Tu as <strong>un compte crypto</strong> (Binance, Kraken, Coinbase…)</td>
+            <td class="fit-no">Tu <strong>n'as pas encore</strong> de compte crypto</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============== DISCLAIMER ============== -->
+  <section class="disclaimer">
+    <div class="wrap">
+      <h2>⚠️ Disclaimer</h2>
+      <p>
+        <strong>ChillBTC n'est pas un conseil en investissement.</strong>
+        Les performances passées ne préjugent pas des performances futures. Le Bitcoin est un actif volatil ; tu peux perdre une partie substantielle de ton capital.
+        Tu es seul responsable de tes décisions d'investissement. ChillBTC est un outil éducatif fourni sans garantie au titre de la licence CC BY-NC-SA 4.0.
+        Avant d'investir, consulte un conseiller financier si tu as le moindre doute.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============== DEVS ============== -->
+  <section class="devs">
+    <div class="wrap">
+      <h2>Pour les développeurs</h2>
+      <p>Code source complet, moteur Python <code class="mono">chillbtc</code>, simulation historique reproductible, documentation de la méthodologie. Tu peux auditer, forker, proposer une amélioration.</p>
+      <a href="https://github.com/investchill/chillbtc" class="btn btn-secondary" aria-label="Voir le code source sur GitHub">
+        github.com/investchill/chillbtc →
+      </a>
+    </div>
+  </section>
+
+  <!-- ============== FOOTER ============== -->
+  <footer>
+    <div class="wrap">
+      <p>
+        © 2026 ChillBTC ·
+        <a href="https://github.com/investchill/chillbtc/blob/main/LICENSE">CC BY-NC-SA 4.0</a> ·
+        <a href="mailto:chillbtc@zaclys.net">chillbtc@zaclys.net</a>
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

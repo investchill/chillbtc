@@ -1,0 +1,167 @@
+name: Smoke test chill.sh (Linux)
+
+on:
+  workflow_dispatch: {}
+  push:
+    paths:
+      - 'dist/chillbtc/**'
+      - 'engine/**'
+      - '.github/workflows/test-chill-sh.yml'
+
+jobs:
+  smoke-test-linux:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v5
+
+      - name: Stage code/ from engine/
+        shell: bash
+        run: |
+          mkdir -p dist/chillbtc/code
+          cp -R engine/src dist/chillbtc/code/
+          cp engine/pyproject.toml dist/chillbtc/code/
+          cp engine/uv.lock dist/chillbtc/code/
+          cp engine/.python-version dist/chillbtc/code/ 2>/dev/null || true
+          mkdir -p dist/chillbtc/code/output
+          cp engine/output/cascade_position.csv dist/chillbtc/code/output/
+
+      - name: Show initial machine state
+        shell: bash
+        run: |
+          echo "==== Probing initial environment ===="
+          which uv 2>/dev/null && echo "Note: uv in default PATH (bypassed via env -i below)" || echo "OK: uv not in default PATH"
+          which python3 && python3 --version
+          ls -la dist/chillbtc
+          ls dist/chillbtc/code
+          ls -la dist/chillbtc/linux
+
+      - name: Ensure chill.sh is executable
+        shell: bash
+        run: chmod +x dist/chillbtc/linux/chill.sh
+
+      - name: Run chill.sh (cold start, first-time user scenario via env -i)
+        shell: bash
+        working-directory: dist/chillbtc/linux
+        timeout-minutes: 8
+        run: |
+          mkdir -p /tmp/fake-home-ci
+          rm -rf /tmp/fresh-uv-cache-ci
+          env -i \
+            HOME=/tmp/fake-home-ci \
+            PATH=/usr/bin:/bin:/usr/sbin:/sbin \
+            UV_CACHE_DIR=/tmp/fresh-uv-cache-ci \
+            TERM=xterm-256color \
+            LANG=en_US.UTF-8 \
+            LC_ALL=en_US.UTF-8 \
+            SHELL=/bin/bash \
+            ./chill.sh < /dev/null
+
+      - name: Verify journal was auto-bootstrapped
+        shell: bash
+        working-directory: dist/chillbtc/code
+        run: |
+          test -f output/live_journal.csv || { echo "ERROR: live_journal.csv not created"; exit 1; }
+          echo "OK: journal created"
+          wc -l output/live_journal.csv
+
+      - name: Re-run chill.sh and capture full output
+        shell: bash
+        working-directory: dist/chillbtc/linux
+        run: |
+          env -i \
+            HOME=/tmp/fake-home-ci \
+            PATH=/usr/bin:/bin:/usr/sbin:/sbin \
+            UV_CACHE_DIR=/tmp/fresh-uv-cache-ci \
+            TERM=xterm-256color \
+            LANG=en_US.UTF-8 \
+            LC_ALL=en_US.UTF-8 \
+            SHELL=/bin/bash \
+            ./chill.sh < /dev/null > output.txt 2>&1
+          cat output.txt
+
+      - name: Assert output contains expected markers
+        shell: bash
+        working-directory: dist/chillbtc/linux
+        run: |
+          grep -q "Signal BTC" output.txt && echo "MARKER 1 (Signal BTC): OK" || { echo "MISSING MARKER 1"; exit 1; }
+          grep -q "Récap des 10" output.txt && echo "MARKER 2 (10-month recap): OK" || { echo "MISSING MARKER 2"; exit 1; }
+          grep -q "Perf annualisée" output.txt && echo "MARKER 3 (Perf annualisée): OK" || { echo "MISSING MARKER 3"; exit 1; }
+          grep -q "DD max depuis" output.txt && echo "MARKER 4 (DD max global): OK" || { echo "MISSING MARKER 4"; exit 1; }
+
+      - name: Upload captured output as artifact
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: chill-sh-output
+          path: dist/chillbtc/linux/output.txt
+          if-no-files-found: ignore
+
+      - name: Build Linux distribution zip
+        shell: bash
+        run: |
+          mkdir -p /tmp/stage/chillbtc
+          cp -R dist/chillbtc/code  /tmp/stage/chillbtc/
+          cp -R dist/chillbtc/linux /tmp/stage/chillbtc/
+          cp dist/chillbtc/LICENSE  /tmp/stage/chillbtc/
+          cp dist/chillbtc/VERSION  /tmp/stage/chillbtc/
+          rm -rf /tmp/stage/chillbtc/code/.venv
+          rm -rf /tmp/stage/chillbtc/code/data
+          rm -f /tmp/stage/chillbtc/code/output/live_journal.csv
+          rm -f /tmp/stage/chillbtc/linux/output.txt 2>/dev/null || true
+          chmod +x /tmp/stage/chillbtc/linux/chill.sh
+          cd /tmp/stage && zip -qr /tmp/chillbtc-linux.zip chillbtc/
+          ls -lh /tmp/chillbtc-linux.zip
+
+      - name: Zip integrity test — structure + file list
+        shell: bash
+        run: |
+          rm -rf /tmp/verify && mkdir -p /tmp/verify
+          cd /tmp/verify && unzip -q /tmp/chillbtc-linux.zip
+          test -d chillbtc                   || { echo "FAIL: missing chillbtc/";        exit 1; }
+          test -d chillbtc/code              || { echo "FAIL: missing code/";                 exit 1; }
+          test -d chillbtc/code/src/chillbtc || { echo "FAIL: missing src/chillbtc/"; exit 1; }
+          test -d chillbtc/linux             || { echo "FAIL: missing linux/";                exit 1; }
+          test -f chillbtc/LICENSE           || { echo "FAIL: missing LICENSE";               exit 1; }
+          test -f chillbtc/VERSION           || { echo "FAIL: missing VERSION";               exit 1; }
+          test -f chillbtc/linux/chill.sh      || { echo "FAIL: missing chill.sh";                exit 1; }
+          test -x chillbtc/linux/chill.sh      || { echo "FAIL: chill.sh not executable";         exit 1; }
+          test -f chillbtc/linux/README.md   || { echo "FAIL: missing linux README";          exit 1; }
+          test -f chillbtc/code/pyproject.toml || { echo "FAIL: missing pyproject.toml";      exit 1; }
+          test -f chillbtc/code/uv.lock      || { echo "FAIL: missing uv.lock";               exit 1; }
+          test -f chillbtc/code/output/cascade_position.csv || { echo "FAIL: missing cascade_position.csv"; exit 1; }
+          ! test -e chillbtc/code/.venv      || { echo "FAIL: .venv leaked into zip";         exit 1; }
+          ! test -e chillbtc/code/data       || { echo "FAIL: data/ leaked into zip";         exit 1; }
+          ! test -e chillbtc/code/output/live_journal.csv || { echo "FAIL: live_journal leaked"; exit 1; }
+          ! test -d chillbtc/macos           || { echo "FAIL: macos/ leaked into Linux zip";   exit 1; }
+          ! test -d chillbtc/windows         || { echo "FAIL: windows/ leaked into Linux zip"; exit 1; }
+          n_py=$(find chillbtc/code/src -name "*.py" | wc -l)
+          [ "$n_py" -ge 20 ] || { echo "FAIL: expected >= 20 Python modules, got $n_py"; exit 1; }
+          echo "OK: zip structure verified ($n_py Python modules)"
+          du -h /tmp/chillbtc-linux.zip
+
+      - name: Zip smoke test — run chill.sh from unzipped location
+        shell: bash
+        run: |
+          mkdir -p /tmp/fake-home-ci2
+          rm -rf /tmp/fresh-uv-cache-ci2
+          env -i \
+            HOME=/tmp/fake-home-ci2 \
+            PATH=/usr/bin:/bin:/usr/sbin:/sbin \
+            UV_CACHE_DIR=/tmp/fresh-uv-cache-ci2 \
+            TERM=xterm-256color LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 SHELL=/bin/bash \
+            /tmp/verify/chillbtc/linux/chill.sh < /dev/null > /tmp/zip-smoke.txt 2>&1
+          grep -q "Signal BTC"       /tmp/zip-smoke.txt || { echo "FAIL: no Signal BTC";      cat /tmp/zip-smoke.txt; exit 1; }
+          grep -q "Perf annualisée"  /tmp/zip-smoke.txt || { echo "FAIL: no Perf annualisée"; cat /tmp/zip-smoke.txt; exit 1; }
+          grep -q "DD max depuis"    /tmp/zip-smoke.txt || { echo "FAIL: no DD max";          cat /tmp/zip-smoke.txt; exit 1; }
+          echo "OK: chill.sh runs from unzipped location + produces expected signal"
+
+      - name: Upload distribution zip
+        uses: actions/upload-artifact@v5
+        with:
+          name: chillbtc-linux
+          path: /tmp/chillbtc-linux.zip
+          if-no-files-found: error
+          retention-days: 90

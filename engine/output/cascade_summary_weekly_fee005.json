@@ -1,0 +1,32 @@
+{
+  "cadence": "weekly",
+  "fee_per_switch": 0.005,
+  "window_start": "2015-11-01T00:00:00",
+  "window_end": "2026-04-12T00:00:00",
+  "n_periods": 546,
+  "cagr_pct": 78.51,
+  "max_dd_pct": -36.12,
+  "sharpe": 1.589,
+  "final_equity": 43418.88,
+  "n_switches": 11,
+  "switches_per_year": 1.05,
+  "total_turnover": 7.0,
+  "distribution": {
+    "weeks_100pct": 223,
+    "weeks_50pct": 120,
+    "weeks_0pct": 203,
+    "pct_100pct": 40.8,
+    "pct_50pct": 22.0,
+    "pct_0pct": 37.2
+  },
+  "hodl_cagr_pct": 66.94,
+  "hodl_max_dd_pct": -83.15,
+  "hodl_final_equity": 21504.65,
+  "a_constant_power_law": -16.9307,
+  "params": {
+    "n_tsmom_weeks": 48,
+    "k_low_pl": 0.6,
+    "k_high_pl": 2.5,
+    "n_exponent_pl": 5.8
+  }
+}

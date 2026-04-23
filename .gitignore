@@ -1,0 +1,62 @@
+# Dossier local perso (hors scope du repo)
+perso-legacy/
+
+# Transcripts Claude (conservés local, pas versionnés)
+ai_docs/claude_agents_chat_export/
+
+# Session cards auto-générés depuis les JSONL (conservés local, pas versionnés)
+ai_docs/dev_process_report/
+
+# Python bytecode (globalement, hors engine/ déjà couvert)
+**/__pycache__/
+**/*.py[oc]
+
+# macOS Finder metadata
+.DS_Store
+**/.DS_Store
+
+# Claude Code local permissions (par convention auto-gitignored, sécurité en dur)
+.claude/settings.local.json
+
+# Fichiers portefeuille perso (hors scope strat publique)
+09-transition-portefeuille.md
+09b-transition-checklist.md
+engine/output/transition_journal.csv
+
+# Journaux perso (index de sessions + journal live de la stratégie post-gel)
+ai_docs/SESSIONS.md
+engine/output/live_journal.csv
+
+# Docs méthode privés (chemin critique, guide agent, roadmap, annexes)
+01-charte.md
+02-donnees-source.md
+03-rules-specs.md
+04-optim-protocol.md
+05-backtest-results.md
+06-strategie-finale.md
+07-process-mensuel.md
+08-journal.md
+CLAUDE.md
+ROADMAP.md
+ai_docs/
+
+# Credentials / API keys (prévention)
+.env
+.env.*
+*.key
+*.pem
+*.p12
+secrets.*
+credentials.*
+api_keys.*
+.envrc
+
+# Logs locaux
+*.log
+logs/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo

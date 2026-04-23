@@ -1,0 +1,3 @@
+config,train_months,test_months,step_months,n_windows,theta_median_n,theta_std_n,wfe,wfe_ok,final_cagr_pct,final_max_dd_pct,final_sharpe,final_switches_per_year
+baseline_60_24_12,60,24,12,2,11,3.536,1.0,True,47.84,-66.19,0.896,1.008
+short_48_18_12,48,18,12,3,9,4.041,1.0,True,53.64,-57.98,0.961,1.008

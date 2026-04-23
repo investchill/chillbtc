@@ -1,0 +1,28 @@
+[project]
+name = "chillbtc"
+version = "0.1.0"
+description = "ChillBTC — long-term BTC monthly N-versioning strategy (3 rules x 3 optimisations = 9 strategies)"
+readme = "README.md"
+authors = [
+    { name = "ChillBTC", email = "chillbtc@zaclys.net" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "matplotlib>=3.10.8",
+    "numpy>=2.4.4",
+    "pandas>=3.0.2",
+    "requests>=2.33.1",
+]
+
+[project.scripts]
+chillbtc-fetch = "chillbtc.data:fetch_data_main"
+chillbtc-proto = "chillbtc.dashboard_proto:proto_dashboard_main"
+chillbtc-phase-b = "chillbtc.phase_b_check:main"
+chillbtc-phase-c = "chillbtc.phase_c_check:main"
+chillbtc-backtest = "chillbtc.backtest:main"
+chillbtc-monthly = "chillbtc.monthly_signal:main"
+chillbtc = "chillbtc.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.9.8,<0.12"]
+build-backend = "uv_build"

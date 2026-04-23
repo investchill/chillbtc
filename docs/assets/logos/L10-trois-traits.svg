@@ -1,0 +1,9 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ChillBTC logo L10 trois traits horizontaux">
+  <title>ChillBTC L10 — Trois traits (horizon / kanji 三)</title>
+  <!-- soleil/lune levant -->
+  <circle cx="155" cy="55" r="14" fill="#F7931A"/>
+  <!-- 3 traits horizontaux d'épaisseur égale, longueurs croissantes -->
+  <line x1="55" y1="100" x2="115" y2="100" stroke="#0B0B0B" stroke-width="9" stroke-linecap="round"/>
+  <line x1="40" y1="125" x2="140" y2="125" stroke="#0B0B0B" stroke-width="9" stroke-linecap="round"/>
+  <line x1="25" y1="150" x2="165" y2="150" stroke="#0B0B0B" stroke-width="9" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,5 @@
+mode,label,cagr_pct,max_dd_pct,sharpe,switches_per_year
+HODL,HODL,63.82,-75.41,1.011,0.0
+Mode A,S8 (cellule),97.92,-42.13,1.383,0.403
+Mode B,ensemble_K4,96.15,-42.13,1.317,0.706
+Mode C,cascade R1+R3 (100/50/0),80.11,-40.32,1.303,1.008

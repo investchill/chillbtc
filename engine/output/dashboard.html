@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BTC dashboard — prototype</title>
+<style>
+  :root {
+    --bg: #1a1a1a; --panel: #242424; --text: #e8e8e8; --muted: #888;
+    --orange: #f7931a; --red: #e74c3c; --green: #27ae60; --border: #333;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text);
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+          margin: 0; padding: 2rem 1.5rem; max-width: 1200px; margin: 0 auto; line-height: 1.5; }
+  h1 { color: var(--orange); font-weight: 500; border-bottom: 1px solid var(--border);
+        padding-bottom: 0.5rem; margin-top: 0; }
+  h2 { color: var(--orange); font-weight: 500; margin-top: 2.5rem; }
+  .meta { color: var(--muted); font-size: 0.85rem; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 0.8rem; margin: 1.5rem 0; }
+  .stat { background: var(--panel); padding: 1rem; border-radius: 6px;
+           border-left: 3px solid var(--orange); }
+  .stat .label { color: var(--muted); font-size: 0.75rem; text-transform: uppercase;
+                  letter-spacing: 0.06em; }
+  .stat .value { font-size: 1.5rem; font-weight: 600; color: #fff; margin-top: 0.3rem; }
+  .stat.dd .value { color: var(--red); }
+  img { max-width: 100%; height: auto; background: white; border-radius: 4px;
+         margin: 0.5rem 0 1.5rem; display: block; }
+  table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; font-size: 0.9rem; }
+  th, td { text-align: left; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--border); }
+  th { color: var(--orange); font-weight: 500; background: var(--panel); }
+  tr:hover td { background: var(--panel); }
+  .footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border);
+             color: var(--muted); font-size: 0.8rem; }
+  .warn { background: #2a2010; border-left: 3px solid var(--orange);
+           padding: 0.8rem 1rem; border-radius: 4px; margin: 1.5rem 0; }
+</style>
+</head>
+<body>
+<h1>BTC dashboard — prototype</h1>
+<p class="meta">Généré le 2026-04-18 07:45 · Données CoinGecko · 138 mois (2014-11 → 2026-04)</p>
+
+<div class="warn">
+  <strong>Prototype HODL only.</strong> Les 9 stratégies (R1 TSMOM, R2 Mayer, R3 Power Law
+  × O1 Plateau, O2 Walk-fwd, O3 Leave-cycle) n'apparaîtront qu'à la fin de la phase D
+  du backtest. Ce dashboard est là pour valider le look-and-feel.
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="label">CAGR HODL</div><div class="value">59.0%</div></div>
+  <div class="stat dd"><div class="label">Max drawdown</div><div class="value">-75.4%</div></div>
+  <div class="stat"><div class="label">Sharpe annualisé</div><div class="value">0.99</div></div>
+  <div class="stat"><div class="label">Total return</div><div class="value">×207</div></div>
+  <div class="stat"><div class="label">Premier close</div><div class="value">$373</div></div>
+  <div class="stat"><div class="label">Dernier close</div><div class="value">$77,214</div></div>
+</div>
+
+<h2>Equity curve (log)</h2>
+<img src="equity.png" alt="Equity curve HODL">
+
+<h2>Drawdown</h2>
+<img src="drawdown.png" alt="Drawdown HODL">
+
+<h2>Return annuel</h2>
+<img src="yearly_returns.png" alt="Yearly returns HODL">
+
+<h2>10 dernières observations mensuelles</h2>
+<table class="dataframe recent">
+  <thead>
+    <tr style="text-align: right;">
+      <th>date</th>
+      <th>close_usd</th>
+      <th>hodl_equity</th>
+      <th>hodl_drawdown</th>
+      <th>return_1m</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2025-07-31</td>
+      <td>$115,750</td>
+      <td>31,004</td>
+      <td>0.0%</td>
+      <td>+8.0%</td>
+    </tr>
+    <tr>
+      <td>2025-08-31</td>
+      <td>$108,269</td>
+      <td>29,000</td>
+      <td>-6.5%</td>
+      <td>-6.5%</td>
+    </tr>
+    <tr>
+      <td>2025-09-30</td>
+      <td>$114,065</td>
+      <td>30,553</td>
+      <td>-1.5%</td>
+      <td>+5.4%</td>
+    </tr>
+    <tr>
+      <td>2025-10-31</td>
+      <td>$109,554</td>
+      <td>29,344</td>
+      <td>-5.4%</td>
+      <td>-4.0%</td>
+    </tr>
+    <tr>
+      <td>2025-11-30</td>
+      <td>$90,382</td>
+      <td>24,209</td>
+      <td>-21.9%</td>
+      <td>-17.5%</td>
+    </tr>
+    <tr>
+      <td>2025-12-31</td>
+      <td>$87,496</td>
+      <td>23,436</td>
+      <td>-24.4%</td>
+      <td>-3.2%</td>
+    </tr>
+    <tr>
+      <td>2026-01-31</td>
+      <td>$78,635</td>
+      <td>21,063</td>
+      <td>-32.1%</td>
+      <td>-10.1%</td>
+    </tr>
+    <tr>
+      <td>2026-02-28</td>
+      <td>$66,985</td>
+      <td>17,942</td>
+      <td>-42.1%</td>
+      <td>-14.8%</td>
+    </tr>
+    <tr>
+      <td>2026-03-31</td>
+      <td>$68,215</td>
+      <td>18,272</td>
+      <td>-41.1%</td>
+      <td>+1.8%</td>
+    </tr>
+    <tr>
+      <td>2026-04-30</td>
+      <td>$77,214</td>
+      <td>20,682</td>
+      <td>-33.3%</td>
+      <td>+13.2%</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="footer">
+  Fichiers générés : <code>dashboard.html</code>, <code>equity.png</code>,
+  <code>drawdown.png</code>, <code>yearly_returns.png</code>,
+  <code>monthly_hodl.csv</code> · projet
+  <a href="https://www.coingecko.com/" style="color:var(--orange)">CoinGecko</a>
+</div>
+</body>
+</html>

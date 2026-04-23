@@ -1,0 +1,7 @@
+cagr_pct,max_dd_pct,sharpe,final_equity,strategy,first_trigger_in_window
+26.12,-73.06,0.668,979.62,entry_only_D1_dd40,2018-03-31
+26.12,-73.06,0.668,979.62,entry_only_D2_dd50,2018-03-31
+62.57,-75.41,1.002,11891.85,entry_only_D3_pl_bargain,2016-08-31
+34.1,-73.06,0.78,1790.23,entry_only_D4_rsi_oversold,2019-02-28
+63.82,-75.41,1.011,12820.92,hodl_reference,2016-05-31
+80.11,-40.32,1.303,32562.56,cascade_baseline,2016-05-31

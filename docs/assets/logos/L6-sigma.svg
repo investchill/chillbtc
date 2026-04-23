@@ -1,0 +1,7 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ChillBTC logo L6 sigma">
+  <title>ChillBTC L6 — Sigma dans cercle</title>
+  <circle cx="100" cy="100" r="78" fill="none" stroke="#F7931A" stroke-width="8"/>
+  <text x="100" y="138" text-anchor="middle"
+        font-family="Inter, system-ui, -apple-system, sans-serif"
+        font-weight="700" font-size="100" fill="#0B0B0B">Σ</text>
+</svg>

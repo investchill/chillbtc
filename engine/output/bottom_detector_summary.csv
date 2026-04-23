@@ -1,0 +1,5 @@
+detector,n_triggers,first_trigger,last_trigger,avg_fr_3m_pct,avg_fr_6m_pct,avg_fr_12m_pct,avg_fr_24m_pct,win_rate_12m_pct,n_near_true_bottom
+D1_dd40,26,2018-03-31,2026-03-31,14.03,34.56,92.35,334.76,87.5,14
+D2_dd50,16,2018-03-31,2022-12-31,20.65,55.37,70.54,411.22,93.75,12
+D3_pl_bargain,9,2015-08-31,2022-12-31,51.33,73.69,271.34,1434.24,100.0,2
+D4_rsi_oversold,2,2019-02-28,2022-12-31,98.86,118.7,140.3,779.13,100.0,2

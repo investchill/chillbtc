@@ -1,0 +1,9 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ChillBTC logo L8 lotus geometrique">
+  <title>ChillBTC L8 — Posture lotus géométrique</title>
+  <!-- tête (point d'attention) -->
+  <circle cx="100" cy="62" r="16" fill="#0B0B0B"/>
+  <!-- corps : triangle large = lotus -->
+  <path d="M 40,170 L 160,170 L 100,90 Z" fill="#0B0B0B"/>
+  <!-- accent orange : point d'équilibre / chakra cœur -->
+  <circle cx="100" cy="142" r="6" fill="#F7931A"/>
+</svg>

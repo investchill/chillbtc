@@ -1,0 +1,23 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ChillBTC logo L1b enso calligraphique">
+  <title>ChillBTC L1b — Ensō calligraphique fin</title>
+  <defs>
+    <filter id="ink-rough" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.2"/>
+    </filter>
+  </defs>
+  <!-- trait principal fin, couleur encre, légère rugosité -->
+  <path d="M 160.6,135 A 70,70 0 1 0 100,170"
+        stroke="#1B1B1B" stroke-width="4" fill="none"
+        stroke-linecap="round" opacity="0.92"
+        filter="url(#ink-rough)"/>
+  <!-- trait fantôme plus large + transparent pour effet d'encre dilué -->
+  <path d="M 160.6,135 A 70,70 0 1 0 100,170"
+        stroke="#1B1B1B" stroke-width="9" fill="none"
+        stroke-linecap="round" opacity="0.10"
+        filter="url(#ink-rough)"/>
+  <!-- ₿ discret en signature -->
+  <text x="100" y="118" text-anchor="middle"
+        font-family="Inter, system-ui, -apple-system, sans-serif"
+        font-weight="500" font-size="48" fill="#F7931A" opacity="0.85">₿</text>
+</svg>

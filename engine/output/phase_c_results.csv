@@ -1,0 +1,11 @@
+cell_id,rule,optim,objective,params,cagr_pct,max_dd_pct,sharpe,switches_per_year,wfe,plateau_width,retention_cycle,width_ok,wfe_ok,retention_ok
+HODL,HODL,-,-,-,63.82,-75.41,1.011,0.0,,,,,,
+S1,R1,O1,cagr,n=8,61.57,-61.76,1.048,1.21,,0.077,,False,,
+S2,R1,O2,dd,n=11,47.84,-66.19,0.896,1.008,1.0,,,,True,
+S3,R1,O3,sharpe,n=8,61.57,-61.76,1.048,1.21,,,0.432,,,False
+S4,R2,O1,dd,"k_low=0.7, k_high=2",19.35,-55.82,0.611,0.303,,0.017,,False,,
+S5,R2,O2,sharpe,"k_low=0.7, k_high=2.1",32.0,-55.82,0.776,0.303,0.498,,,,False,
+S6,R2,O3,cagr,"k_low=1.1, k_high=2.3",68.52,-73.06,1.063,0.303,,,0.366,,,False
+S7,R3,O1,sharpe,"k_low=0.8, k_high=2.5",95.03,-42.13,1.351,0.403,,0.51,,True,,
+S8,R3,O2,cagr,"k_low=0.6, k_high=2.5",97.92,-42.13,1.383,0.403,0.585,,,,False,
+S9,R3,O3,dd,"k_low=0.5, k_high=2",46.98,-42.13,1.015,0.303,,,0.894,,,True

@@ -1,0 +1,25 @@
+Année,Stratégie cascade R1+R3,,HODL BTC pur,,Surperf strat − HODL (pp)
+,Perf annuelle,Portefeuille,Perf annuelle,Portefeuille,
+(capital initial),,10 000 €,,10 000 €,
+2016 (8 mois),"37,01%",13 701 €,"81,24%",18 124 €,"-44,23 pp"
+2017,"778,10%",120 307 €,"1339,36%",260 873 €,"-561,26 pp"
+2018,"0,00%",120 307 €,"-73,39%",69 415 €,"+73,39 pp"
+2019,"37,40%",165 299 €,"94,09%",134 728 €,"-56,69 pp"
+2020,"269,27%",610 397 €,"304,45%",544 916 €,"-35,19 pp"
+2021,"55,26%",947 714 €,"59,40%",868 593 €,"-4,14 pp"
+2022,"-9,04%",862 028 €,"-64,24%",310 642 €,"+55,19 pp"
+2023,"102,83%",1 748 490 €,"155,68%",794 234 €,"-52,84 pp"
+2024,"120,98%",3 863 783 €,"120,98%",1 755 084 €,"+0,00 pp"
+2025,"-5,00%",3 670 639 €,"-6,30%",1 644 476 €,"+1,30 pp"
+2026 (3 mois),"-11,29%",3 256 256 €,"-22,04%",1 282 092 €,"+10,75 pp"
+,,,,,
+Rendement annualisé sur la période complète (9.8 ans),"80,11%",,"63,82%",,"+16,29 pp"
+Rendement annualisé sur les 5 dernières années complètes,"43,16%",,"24,72%",,"+18,44 pp"
+Perte max sur 1 année calendaire,"-9,04%",,"-73,39%",,"+64,35 pp"
+Drawdown max (sur equity mensuelle),"-40,32%",,"-75,41%",,"+35,09 pp"
+Perf cumulée sur les 5 dernières années complètes,"501,35%",,"201,79%",,"+299,57 pp"
+ROI total,"32462,56%",,"12720,92%",,"+19741,63 pp"
+,,,,,
+"Note : chiffres strat avec frais 0,5 %/switch inclus (fidèle au backtest Python officiel).",,,,,
+Fenêtre backtest : 2016-05-31 → 2026-03-31 (119 mois).,,,,,
+"Paramètres figés : R1 n=11, R3 k_low=0.6/k_high=2.5/N_exp=5.8, convention strict_r1_def.",,,,,

@@ -1,0 +1,23 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ChillBTC logo L1d enso sumi hanko">
+  <title>ChillBTC L1d — Ensō sumi + sceau hanko ₿</title>
+  <defs>
+    <filter id="sumi-d" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="9" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="1.4"/>
+    </filter>
+  </defs>
+  <!-- trace fantôme dilué (encre qui s'imprègne dans le papier) -->
+  <path d="M 162.4,135 A 72,70 0 1 0 100,170"
+        stroke="#2B1F1B" stroke-width="11" fill="none"
+        stroke-linecap="round" opacity="0.06"/>
+  <!-- ensō encre sumi (noir-brun chaud, légèrement asymétrique rx≠ry) -->
+  <path d="M 162.4,135 A 72,70 0 1 0 100,170"
+        stroke="#2B1F1B" stroke-width="4.5" fill="none"
+        stroke-linecap="round" opacity="0.93"
+        filter="url(#sumi-d)"/>
+  <!-- hanko vermillon (sceau japonais) en bas-droite avec ₿ -->
+  <rect x="142" y="142" width="36" height="36" rx="2" fill="#A6202D" opacity="0.93"/>
+  <text x="160" y="170" text-anchor="middle"
+        font-family="Inter, system-ui, -apple-system, sans-serif"
+        font-weight="700" font-size="24" fill="#FAFAF7">₿</text>
+</svg>

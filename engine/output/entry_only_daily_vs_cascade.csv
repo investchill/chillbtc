@@ -1,0 +1,15 @@
+cagr_pct,max_dd_pct,sharpe,final_equity,variant,label,first_trigger_in_window
+59.99,-83.43,1.032,10154.38,S1_rsi_38,RSI(3) < 38 only,2016-06-21
+59.99,-83.43,1.032,10154.38,S1_rsi_30,RSI(3) < 30 only,2016-06-21
+59.99,-83.43,1.032,10154.38,S1_rsi_20,RSI(3) < 20 only,2016-06-21
+63.83,-83.43,1.064,12756.82,vol_excess_j1,Volume > J-1 only,2016-05-31
+63.83,-83.43,1.064,12756.82,vol_excess_ma20,Volume > 1.5×MA20 only,2016-05-31
+59.99,-83.43,1.032,10154.38,AND_rsi38_volj1,RSI<38 AND vol>J-1 (primary),2016-06-21
+59.99,-83.43,1.032,10154.38,AND_rsi30_volj1,RSI<30 AND vol>J-1,2016-06-21
+59.99,-83.43,1.032,10154.38,AND_rsi20_volj1,RSI<20 AND vol>J-1,2016-06-21
+59.99,-83.43,1.032,10154.38,AND_rsi38_volma20,RSI<38 AND vol>1.5×MA20,2016-06-21
+64.29,-83.43,1.073,13179.91,GATED_rsi38_volj1,GATED (in DD-30%): RSI<38 AND vol>J-1,2016-08-02
+64.29,-83.43,1.073,13179.91,GATED_rsi30_volj1,GATED (in DD-30%): RSI<30 AND vol>J-1,2016-08-02
+64.29,-83.43,1.073,13179.91,GATED_rsi38_volma20,GATED (in DD-30%): RSI<38 AND vol>1.5×MA20,2016-08-02
+63.83,-83.43,1.064,12820.92,hodl_reference,HODL pure,2016-05-31
+80.13,-40.32,1.308,32562.56,cascade_baseline,Cascade R1+R3 (frozen),2016-05-31

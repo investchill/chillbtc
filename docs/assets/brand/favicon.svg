@@ -1,0 +1,9 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <title>ChillBTC favicon</title>
+  <path d="M 160.6,135 A 70,70 0 1 0 100,170"
+        stroke="#241B17" stroke-width="5" fill="none"
+        stroke-linecap="round"/>
+  <text x="100" y="118" text-anchor="middle"
+        font-family="Inter, system-ui, -apple-system, sans-serif"
+        font-weight="600" font-size="52" fill="#F7931A">₿</text>
+</svg>

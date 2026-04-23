@@ -1,0 +1,50 @@
+{
+  "mode": "C_cascade_R1_R3",
+  "convention": "symmetric",
+  "def_cell": {
+    "cell_id": "S2",
+    "rule": "R1",
+    "optim": "O2",
+    "objective": "dd",
+    "params": {
+      "n": 11
+    },
+    "extras": {}
+  },
+  "agg_cell": {
+    "cell_id": "S8",
+    "rule": "R3",
+    "optim": "O2",
+    "objective": "cagr",
+    "params": {
+      "k_low": 0.6,
+      "k_high": 2.5
+    },
+    "extras": {
+      "a_constant": -16.916756337286298,
+      "n_exponent": 5.8
+    }
+  },
+  "fee_per_switch": 0.005,
+  "window_start": "2016-05-31T00:00:00",
+  "window_end": "2026-03-31T00:00:00",
+  "total_months": 119,
+  "cagr_pct": 75.41,
+  "max_dd_pct": -40.32,
+  "sharpe": 1.224,
+  "n_switches": 14,
+  "switches_per_year": 1.412,
+  "total_turnover": 7.0,
+  "distribution": {
+    "months_100pct": 56,
+    "months_50pct": 54,
+    "months_0pct": 9,
+    "pct_100pct": 47.1,
+    "pct_50pct": 45.4,
+    "pct_0pct": 7.6
+  },
+  "edge_cases": {
+    "months_def_BUY_and_agg_CASH": 23,
+    "note": "Edge case trait\u00e9 comme 0 % (agressif SELL prime). Doit rester rare."
+  }
+}

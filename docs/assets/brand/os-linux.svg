@@ -1,0 +1,17 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Linux">
+  <!-- body dark -->
+  <ellipse cx="50" cy="56" rx="26" ry="32" fill="currentColor"/>
+  <!-- belly cream -->
+  <ellipse cx="50" cy="64" rx="16" ry="22" fill="#FAFAF7" opacity="0.95"/>
+  <!-- head white eye patches -->
+  <circle cx="43" cy="36" r="6" fill="#FAFAF7"/>
+  <circle cx="57" cy="36" r="6" fill="#FAFAF7"/>
+  <!-- pupils -->
+  <circle cx="44" cy="37" r="2.2" fill="currentColor"/>
+  <circle cx="56" cy="37" r="2.2" fill="currentColor"/>
+  <!-- beak orange -->
+  <polygon points="50,43 44,50 56,50" fill="#F7931A"/>
+  <!-- feet orange -->
+  <ellipse cx="40" cy="88" rx="9" ry="4" fill="#F7931A"/>
+  <ellipse cx="60" cy="88" rx="9" ry="4" fill="#F7931A"/>
+</svg>
