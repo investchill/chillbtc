@@ -24,6 +24,7 @@ jobs:
           Copy-Item -Recurse engine\src dist\chillbtc\code\
           Copy-Item engine\pyproject.toml dist\chillbtc\code\
           Copy-Item engine\uv.lock dist\chillbtc\code\
+          Copy-Item engine\README.md dist\chillbtc\code\
           if (Test-Path engine\.python-version) { Copy-Item engine\.python-version dist\chillbtc\code\ }
           New-Item -ItemType Directory -Force -Path dist\chillbtc\code\output | Out-Null
           Copy-Item engine\output\cascade_position.csv dist\chillbtc\code\output\

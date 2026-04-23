@@ -8,7 +8,7 @@ la stratégie canonique :
 - R3 Power Law agressif : hysteresis sur ``close / fair_PL`` avec k_low=0.6,
   k_high=2.5, N_exponent=5.8. Constante A refit sur full série hebdo (script
   d'audit ; la cascade live mensuelle utilise A figé à -16.917 et n'est
-  recalculée qu'à la revue annuelle, cf. ``01-charte.md §6.8``).
+  recalculée qu'à la revue annuelle, 1ᵉʳ janvier).
 - Cascade ``strict_r1_def`` 100/50/0.
 
 Friction : proportionnelle au turnover ``|Δposition|``, comme la cascade mensuelle.

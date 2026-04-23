@@ -30,6 +30,7 @@ jobs:
           cp -R engine/src dist/chillbtc/code/
           cp engine/pyproject.toml dist/chillbtc/code/
           cp engine/uv.lock dist/chillbtc/code/
+          cp engine/README.md dist/chillbtc/code/
           cp engine/.python-version dist/chillbtc/code/ 2>/dev/null || true
           mkdir -p dist/chillbtc/code/output
           cp engine/output/cascade_position.csv dist/chillbtc/code/output/
