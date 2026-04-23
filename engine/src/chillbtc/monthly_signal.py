@@ -8,7 +8,7 @@ Config figée (valeurs canoniques) :
 - S2 défensif : R1 TSMOM, n = 11.
 - S8 agressif : R3 Power Law band, k_low = 0.6, k_high = 2.5, N_exp = 5.8.
 - Constante A du Power Law **figée à -16.917** jusqu'à la prochaine revue
-  annuelle (1ᵉʳ janvier).
+  annuelle (1ᵉʳ janvier). Cf. ``01-charte.md §6.8`` pour la justification.
 
 Exécution mensuelle (1ᵉʳ du mois, après clôture daily) :
 
@@ -92,13 +92,15 @@ def _position_label(position: float) -> str:
 def _drop_partial_current_month(monthly: pd.DataFrame) -> pd.DataFrame:
     """Drop la dernière ligne si le mois n'est pas encore clos.
 
-    Heuristique : si la dernière date index est à moins de 20 jours
-    d'aujourd'hui, on considère qu'elle représente un mois partiel.
-    Aligné sur ``backtest._trim_common_warmup``.
+    On ne drop que si la dernière date index est dans le mois civil
+    courant (= mois en cours, partiel par construction). Si la dernière
+    ligne correspond à un mois clos (ex : 30 avril quand on est le 1ᵉʳ
+    mai), on la garde — c'est exactement le close qu'on veut pour le
+    signal du nouveau mois. Aligné sur ``backtest._trim_common_warmup``.
     """
     today = pd.Timestamp.utcnow().tz_localize(None).normalize()
     last = monthly.index[-1]
-    if (today - last).days < 20:
+    if last.year == today.year and last.month == today.month:
         return monthly.iloc[:-1].copy()
     return monthly.copy()
 

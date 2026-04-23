@@ -30,10 +30,10 @@ uv sync       # installe Python 3.13 + pandas + numpy + matplotlib + requests
 ### Vérifier que tout tourne
 
 ```bash
-cd .. && ./chill              # wrapper racine, signal du mois + récaps
+cd engine && uv run chillbtc-monthly --dry-run
 ```
 
-Si `./chill` renvoie un signal et les récaps 10 mois / annuel, c'est bon.
+Si la commande affiche un signal mensuel (R1 + R3 + dosage), c'est bon.
 
 ---
 
@@ -42,8 +42,8 @@ Si `./chill` renvoie un signal et les récaps 10 mois / annuel, c'est bon.
 Tous les entry points sont exposés via `uv run` depuis `engine/`.
 
 ```
-uv run chillbtc              — signal mensuel + récap 10 mois + récap annuel (CLI unifié)
-uv run chillbtc-monthly      — uniquement le signal mensuel (flag --dry-run pour test)
+uv run chillbtc-monthly      — signal mensuel (flag --dry-run pour test sans append journal)
+uv run chillbtc-pages        — génère docs/{signaux,historique-annuel,historique-mensuel}.md
 uv run chillbtc-backtest     — full backtest 9 cellules (phase C), écrit engine/output/
 uv run chillbtc-phase-b      — sanity check règles R1/R2/R3 + métriques (CAGR/DD/Sharpe)
 uv run chillbtc-phase-c      — sanity check optimisations O1/O2/O3
@@ -51,11 +51,9 @@ uv run chillbtc-fetch        — refresh cache daily Bitstamp (CryptoDataDownloa
 uv run chillbtc-proto        — dashboard HODL prototype (non utilisé en live)
 ```
 
-Depuis la racine du repo, le wrapper `./chill` est équivalent à
-`cd engine && uv run chillbtc`.
-
-Sur macOS, `./chill` déhide d'abord le `.venv` au cas où iCloud aurait
-re-appliqué le flag `hidden` (cf. commentaire en tête du script).
+Le workflow GitHub Actions [`monthly-update.yml`](.github/workflows/monthly-update.yml)
+appelle `chillbtc-monthly` puis `chillbtc-pages` chaque 1ᵉʳ du mois à
+06:00 UTC.
 
 ---
 
@@ -63,12 +61,14 @@ re-appliqué le flag `hidden` (cf. commentaire en tête du script).
 
 ```
 .
-├── README.md                        — pitch + install end-user
+├── README.md                        — pitch + pointeurs vers les pages live
 ├── CONTRIBUTING.md                  — ce fichier
 ├── LICENSE                          — CC BY-NC-SA 4.0
-├── chill                            — wrapper racine (lance le CLI)
-├── docs/                            — landing page (GitHub Pages)
+├── docs/                            — landing + pages auto-générées (GitHub Pages)
 │   ├── index.html                   — page d'accueil publique
+│   ├── signaux.md                   — signal du mois courant (auto, 1ᵉʳ du mois)
+│   ├── historique-annuel.md         — perf annuelle strat / HODL (auto)
+│   ├── historique-mensuel.md        — toutes positions mensuelles (auto)
 │   └── assets/                      — brand + styles CSS
 ├── engine/                          — projet Python (uv)
 │   ├── pyproject.toml               — deps + entry points
@@ -77,17 +77,12 @@ re-appliqué le flag `hidden` (cf. commentaire en tête du script).
 │   │   ├── optims.py                — O1 plateau, O2 walk-forward, O3 LOCO
 │   │   ├── backtest.py              — runner carré latin 9 cellules
 │   │   ├── cascade.py               — cascade 2 signaux (mode C retenu)
-│   │   ├── cli.py                   — CLI unifié (entry point chillbtc)
-│   │   └── monthly_signal.py        — signal live mensuel
+│   │   ├── monthly_signal.py        — signal live mensuel
+│   │   └── build_pages.py           — génération des 3 pages docs/*.md
 │   ├── data/                        — cache OHLC daily/monthly/weekly Bitstamp
-│   └── output/                      — artefacts backtest (CSV, JSON, PNG)
-├── dist/chillbtc/                   — lanceurs cross-OS pour users non-dev
-│   ├── linux/chill.sh               — lanceur Linux
-│   ├── macos/chill.command          — lanceur macOS (double-clic)
-│   ├── windows/chill.bat            — lanceur Windows (double-clic)
-│   ├── LICENSE, VERSION
-│   └── code/                        — stagé par CI depuis engine/ (non tracké)
-└── .github/workflows/               — 3 smoke tests Linux/macOS/Windows
+│   └── output/                      — artefacts backtest + live_journal.csv
+└── .github/workflows/
+    └── monthly-update.yml           — cron 06:00 UTC du 1ᵉʳ du mois
 ```
 
 ---
@@ -97,8 +92,10 @@ re-appliqué le flag `hidden` (cf. commentaire en tête du script).
 ### Lancer le signal du mois (dev)
 
 ```bash
-./chill                       # refresh Bitstamp + signal + récap + append journal
-./chill --dry-run             # pareil sans append
+cd engine
+uv run chillbtc-monthly                # refresh Bitstamp + signal + append journal
+uv run chillbtc-monthly --dry-run      # pareil sans append
+uv run chillbtc-pages                  # régénère les 3 docs/*.md
 ```
 
 ### Rejouer le backtest complet
@@ -128,30 +125,23 @@ Génère `cascade_position{,_symmetric,_strict_r3_def}.csv` +
 
 ---
 
-## 5. CI — tests de fumée
+## 5. CI — workflow mensuel
 
-3 workflows dans `.github/workflows/` :
+Un seul workflow dans `.github/workflows/monthly-update.yml`. Il :
 
-- `test-chill-sh.yml` — smoke test Linux (ubuntu-latest)
-- `test-chill-command.yml` — smoke test macOS (macos-latest)
-- `test-chill-bat.yml` — smoke test Windows (windows-latest)
-
-Chacun :
-
-1. Check out le repo.
-2. Stage `dist/chillbtc/code/` depuis `engine/` (pas de duplication git).
-3. Lance le lanceur OS en scénario *first-time user* (PATH vidé, HOME neutre).
-4. Vérifie que le journal est bootstrappé automatiquement.
-5. Assert la présence des markers de sortie (« Signal BTC », « Récap
-   des 10 », « Perf annualisée », « DD max depuis »).
-6. Build un zip de distribution par OS et vérifie sa structure.
+1. Check out le repo (branche `public`).
+2. Setup `uv` + Python 3.13.
+3. `uv sync` depuis `engine/`.
+4. `uv run chillbtc-monthly` — refresh cache daily Bitstamp, calcule
+   le signal du mois clos, append au `engine/output/live_journal.csv`.
+5. `uv run chillbtc-pages` — recalcule la cascade gelée, écrit
+   `docs/{signaux,historique-annuel,historique-mensuel}.md`.
+6. Commit & push automatique (`github-actions[bot]`) si diff non vide.
 
 Déclencheurs :
 
-- Push sur `dist/chillbtc/**`, `engine/**`, ou le workflow lui-même.
-- `workflow_dispatch` manuel.
-
-Voir les runs dans l'onglet Actions du repo GitHub.
+- `schedule` cron `0 6 1 * *` (1ᵉʳ du mois à 06:00 UTC).
+- `workflow_dispatch` manuel via l'onglet Actions.
 
 ---
 
@@ -205,7 +195,8 @@ Exceptions admises :
 1. Pour un changement non-trivial, ouvrir une **issue** d'abord pour
    discuter l'approche.
 2. Fork → branche dédiée → PR vers `main`.
-3. Les 3 smoke tests CI doivent passer (Linux / macOS / Windows).
+3. Le workflow `monthly-update.yml` doit pouvoir s'exécuter sans erreur
+   (testable manuellement via `workflow_dispatch`).
 4. Pas de force-push sur des branches partagées.
 
 ---

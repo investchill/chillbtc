@@ -23,9 +23,10 @@ ai_docs/dev_process_report/
 09b-transition-checklist.md
 engine/output/transition_journal.csv
 
-# Journaux perso (index de sessions + journal live de la stratégie post-gel)
+# Index de sessions (conservé local, pas versionné)
 ai_docs/SESSIONS.md
-engine/output/live_journal.csv
+# (note : engine/output/live_journal.csv est tracké côté public — alimenté
+#  par le workflow GitHub Actions le 1ᵉʳ du mois)
 
 # Docs méthode privés (chemin critique, guide agent, roadmap, annexes)
 01-charte.md

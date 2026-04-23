@@ -242,12 +242,13 @@ def _trim_common_warmup(monthly: pd.DataFrame) -> pd.DataFrame:
     """
     max_warmup = max(SPECS[r].warmup_months for r in ("R1", "R2", "R3"))
     trimmed = monthly.iloc[max_warmup:].copy()
-    # Drop the last row if its date is earlier than today (month-end), i.e. the
-    # current month has not closed yet. Heuristic: if the last index is within
-    # 20 days of today (still "this month"), drop it.
+    # Drop the last row only if its index is in the current civil month
+    # (= partial month by construction). A month-end index from the
+    # *previous* civil month is the close we want, even if today is
+    # only 1-2 days after it.
     today = pd.Timestamp.utcnow().tz_localize(None).normalize()
     last = trimmed.index[-1]
-    if (today - last).days < 20:
+    if last.year == today.year and last.month == today.month:
         trimmed = trimmed.iloc[:-1]
     return trimmed
 

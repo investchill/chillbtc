@@ -1,0 +1,49 @@
+name: Monthly auto-update — pages publiques
+
+on:
+  schedule:
+    - cron: '0 6 1 * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v5
+
+      - name: Setup uv (Python 3.13)
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.13"
+
+      - name: Sync dependencies (engine)
+        working-directory: engine
+        run: uv sync
+
+      - name: Refresh data + append journal
+        working-directory: engine
+        run: uv run chillbtc-monthly
+
+      - name: Génération des 3 pages publiques
+        working-directory: engine
+        run: uv run chillbtc-pages
+
+      - name: Commit & push (si changements)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/signaux.md docs/historique-annuel.md docs/historique-mensuel.md \
+                  engine/output/live_journal.csv \
+                  engine/data/btc_daily.csv engine/data/btc_monthly.csv
+          if git diff --cached --quiet; then
+            echo "Aucun changement, rien à commit."
+          else
+            git commit -m "chore(auto): pages mensuelles — $(date -u +%Y-%m-%d)"
+            git push
+          fi
