@@ -1,0 +1,30 @@
+name: Tests
+
+on:
+  push:
+    branches: [public, main]
+  pull_request:
+    branches: [public, main]
+  workflow_dispatch: {}
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v5
+
+      - name: Setup uv (Python 3.13)
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.13"
+
+      - name: Sync dependencies (engine + dev group)
+        working-directory: engine
+        run: uv sync --group dev
+
+      - name: Run pytest
+        working-directory: engine
+        run: uv run --group dev pytest -v
