@@ -49,6 +49,7 @@ uv run chillbtc-phase-b      — sanity check règles R1/R2/R3 + métriques (CAG
 uv run chillbtc-phase-c      — sanity check optimisations O1/O2/O3
 uv run chillbtc-fetch        — refresh cache daily Bitstamp (CryptoDataDownload)
 uv run chillbtc-proto        — dashboard HODL prototype (non utilisé en live)
+uv run chillbtc-methodology-figures  — régénère les 3 PNG de docs/methodologie.md
 ```
 
 Le workflow GitHub Actions [`monthly-update.yml`](.github/workflows/monthly-update.yml)
