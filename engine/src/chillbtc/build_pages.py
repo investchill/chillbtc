@@ -97,6 +97,8 @@ def build_signaux_md(journal_df: pd.DataFrame) -> str:
     lines = [
         "# Signal BTC",
         "",
+        "> 📖 [Comprendre les 2 signaux et la méthodologie](methodologie.md)",
+        "",
         f"## {_emoji_pos(pos_pct)} {_label_pos(pos_pct)}",
         "",
         "## Signaux du mois",
