@@ -1,0 +1,38 @@
+# Jekyll config pour GitHub Pages — site ChillBTC
+# Source : branche public, dossier /docs
+# URL finale : https://investchill.github.io/chillbtc/
+
+title: ChillBTC
+description: BTC posé. Un coup d'œil par mois. Tu appliques, tu oublies.
+url: https://investchill.github.io
+baseurl: /chillbtc
+lang: fr
+
+# Rendu Markdown : kramdown en mode GFM pour accepter les tableaux,
+# autolinks, strikethrough et rendu des emoji comme sur GitHub.
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+
+# Plugins supportés nativement par GitHub Pages.
+# - jekyll-relative-links : réécrit `[...](foo.md)` → `foo.html` au rendu,
+#   permet de conserver des liens lisibles sur GitHub blob view.
+# - jekyll-seo-tag : balises <title>, description, OpenGraph auto depuis
+#   le front-matter de chaque page.
+plugins:
+  - jekyll-relative-links
+  - jekyll-seo-tag
+
+relative_links:
+  enabled: true
+  collections: false
+
+# Fichiers à ne pas copier dans le site rendu.
+exclude:
+  - logos-preview.html
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
