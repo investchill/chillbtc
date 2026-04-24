@@ -18,6 +18,7 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 from chillbtc.backtest import FEE_CONSERVATIVE
@@ -74,18 +75,27 @@ def build_signaux_md(journal_df: pd.DataFrame) -> str:
     journal_df = journal_df.sort_values("date").reset_index(drop=True)
     last = journal_df.iloc[-1]
     last_date = pd.Timestamp(last["date"])
-    mois = f"{MOIS_FR[last_date.month]} {last_date.year}"
+    cloture_str = f"{last_date.day:02d} {MOIS_FR[last_date.month]} {last_date.year}"
 
     pos_pct = float(last["position_pct"]) / 100.0
     sig_r1 = float(last["signal_r1"])
     sig_r3 = float(last["signal_r3"])
     ret_11m = float(last["return_11m"])
-    ratio_pl = float(last["ratio_price_fair_pl"])
     close = float(last["close_btc_usd"])
+    ratio_pl = float(last["ratio_price_fair_pl"])
     a_const = float(last["a_constant"])
 
+    # Fallback : si le journal a été backfillé depuis cascade_position.csv,
+    # ratio_pl et a_const sont vides → on les recalcule à la volée avec
+    # la config gelée (A figée), équivalent à ce que produit live.
+    if pd.isna(ratio_pl) or pd.isna(a_const):
+        a_const = A_POWER_LAW
+        days = (last_date - pd.Timestamp("2009-01-03")).days
+        fair = 10 ** (a_const + N_EXP_R3 * np.log10(days))
+        ratio_pl = close / fair
+
     lines = [
-        f"# Signal BTC — {mois}",
+        "# Signal BTC",
         "",
         f"## {_emoji_pos(pos_pct)} {_label_pos(pos_pct)}",
         "",
@@ -96,9 +106,10 @@ def build_signaux_md(journal_df: pd.DataFrame) -> str:
         "",
         "## Contexte",
         "",
-        f"- Prix BTC clôture mois : **{close:,.0f} USD**".replace(",", " "),
+        f"- Prix BTC à la clôture du **{cloture_str}** : "
+        f"**{close:,.0f} USD**".replace(",", " "),
         f"- Constante A Power Law : {a_const:.3f} "
-        "(figée jusqu'à la prochaine revue annuelle, 1ᵉʳ janvier)",
+        "(figée jusqu'à la prochaine revue annuelle)",
         "",
         "## 6 derniers mois",
         "",
@@ -145,43 +156,129 @@ def _yearly_returns(values: pd.Series) -> list[tuple[int, float, bool]]:
     return out
 
 
-def build_historique_annuel_md(table: pd.DataFrame) -> str:
-    """Page 2 — perf annuelle stratégie / HODL.
+def _yearly_dd(values: pd.Series) -> dict[int, float]:
+    """DD max intra-année sur l'equity mensuelle (peak reset chaque 1ᵉʳ janvier).
 
-    Deux séries présentées en parallèle, sans colonne delta (cf. spec).
+    Pour la 1ʳᵉ et la dernière année partielles, calcul sur la fenêtre dispo.
+    """
+    df = pd.DataFrame({"v": values})
+    df["year"] = df.index.year
+    out: dict[int, float] = {}
+    for year in sorted(df["year"].unique()):
+        ydf = df[df["year"] == year]
+        running_max = ydf["v"].cummax()
+        dd_series = ydf["v"] / running_max - 1
+        out[year] = float(dd_series.min())
+    return out
+
+
+def _annualized_n_years(values: pd.Series, n_years: int) -> float | None:
+    """Perf annualisée sur les ``n_years`` dernières années (rolling = 12n mois).
+
+    Retourne None si la série ne couvre pas assez de mois.
+    """
+    if len(values) <= n_years * 12:
+        return None
+    start = values.iloc[-(n_years * 12 + 1)]
+    end = values.iloc[-1]
+    return (end / start) ** (1 / n_years) - 1
+
+
+def _annualized_total(values: pd.Series) -> float:
+    """CAGR depuis le 1ᵉʳ point de la série."""
+    n_years = len(values) / 12
+    return (values.iloc[-1] / values.iloc[0]) ** (1 / n_years) - 1
+
+
+def _max_dd_total(values: pd.Series) -> float:
+    """DD max global sur toute la série."""
+    running_max = values.cummax()
+    dd = values / running_max - 1
+    return float(dd.min())
+
+
+def build_historique_annuel_md(table: pd.DataFrame) -> str:
+    """Page 2 — tableau ASCII bloc-code, format inspiré de l'ancien README.
+
+    Colonnes : année | perf strat | perf HODL | DD strat | DD HODL.
+    Récap en dessous : perf annualisée 3/5/depuis-start, DD max global.
     """
     eq = table["equity_cascade"]
     btc = table["btc_close"]
     hodl = btc / btc.iloc[0] * eq.iloc[0]
 
     strat_ret = _yearly_returns(eq)
-    hodl_ret = _yearly_returns(hodl)
+    hodl_ret_map = {y: r for y, r, _ in _yearly_returns(hodl)}
+    strat_dd = _yearly_dd(eq)
+    hodl_dd = _yearly_dd(hodl)
 
     start_str = f"{table.index[0].year}-{table.index[0].month:02d}"
+
+    # Tableau ASCII
+    table_lines = [
+        "  année    perf strat    perf HODL   DD strat   DD HODL",
+        "  -----------------------------------------------------",
+    ]
+    for year, ret_s, partial in strat_ret:
+        ret_h = hodl_ret_map.get(year, 0.0)
+        dd_s = strat_dd[year] * 100
+        dd_h = hodl_dd[year] * 100
+        marker = " *" if partial else "  "
+        table_lines.append(
+            f"  {year}{marker}  {ret_s*100:+8.1f}%   {ret_h*100:+8.1f}%   "
+            f"{dd_s:+6.1f}%   {dd_h:+6.1f}%"
+        )
+    table_lines.append("  -----------------------------------------------------")
+
+    # Récap
+    a3_s = _annualized_n_years(eq, 3)
+    a5_s = _annualized_n_years(eq, 5)
+    aT_s = _annualized_total(eq)
+    a3_h = _annualized_n_years(hodl, 3)
+    a5_h = _annualized_n_years(hodl, 5)
+    aT_h = _annualized_total(hodl)
+    dd_total_s = _max_dd_total(eq) * 100
+    dd_total_h = _max_dd_total(hodl) * 100
+
+    def _fmt_pair(s: float | None, h: float | None) -> str:
+        s_str = f"{s*100:+6.1f}%" if s is not None else "  n/a "
+        h_str = f"{h*100:+6.1f}%" if h is not None else "  n/a "
+        return f"strat {s_str}   |   HODL {h_str}"
+
+    pad = 32
+    table_lines += [
+        f"  {'Perf annualisée 3 ans'.ljust(pad)} : {_fmt_pair(a3_s, a3_h)}",
+        f"  {'Perf annualisée 5 ans'.ljust(pad)} : {_fmt_pair(a5_s, a5_h)}",
+        f"  {f'Perf annualisée depuis {start_str}'.ljust(pad)} : "
+        f"{_fmt_pair(aT_s, aT_h)}",
+        f"  {f'DD max depuis {start_str}'.ljust(pad)} : "
+        f"strat {dd_total_s:+6.1f}%   |   HODL {dd_total_h:+6.1f}%",
+    ]
+
     lines = [
         "# Historique annuel — Stratégie ChillBTC vs HODL",
         "",
         f"Performances annuelles depuis {start_str} "
         f"(données CDD Bitstamp 2014-11, moins {N_TSMOM} mois de warm-up R1 TSMOM). "
-        "L'année de démarrage et l'année en cours sont partielles.",
+        "Les années marquées `*` sont partielles (démarrage backtest, année en cours).",
         "",
-        "## Stratégie ChillBTC (cascade R1 + R3, mode C)",
+        "```",
+        *table_lines,
+        "```",
+        "",
+        "**Comment lire** :",
+        "",
+        "- **perf** : bilan entre le 31 décembre N-1 et le 31 décembre N. "
+        "Ce qui s'est passé entre les deux dates n'est pas visible ici.",
+        "- **DD max** : pire baisse temporaire de la valeur du portefeuille "
+        "pendant l'année, peu importe si on a vendu ou pas. Si la valeur passe "
+        "par 100 → 70, le DD est de -30 %, même si elle remonte à 90 ensuite.",
+        f"- **Perf annualisée 3 / 5 ans** : moyenne géométrique des 36 / 60 "
+        "derniers mois (rolling, pas calendaire).",
+        "",
+        f"_Dernière mise à jour : {_now_utc_str()} (auto)._",
         "",
     ]
-    for year, ret, partial in strat_ret:
-        suffix = " _(partielle)_" if partial else ""
-        lines.append(f"- **{year}** : {ret:+.1%}{suffix}")
-
-    lines += [
-        "",
-        "## HODL (buy-and-hold BTC)",
-        "",
-    ]
-    for year, ret, partial in hodl_ret:
-        suffix = " _(partielle)_" if partial else ""
-        lines.append(f"- **{year}** : {ret:+.1%}{suffix}")
-
-    lines += ["", f"_Dernière mise à jour : {_now_utc_str()} (auto)._", ""]
     return "\n".join(lines)
 
 

@@ -1,4 +1,4 @@
-# Signal BTC — mars 2026
+# Signal BTC
 
 ## 🟡 50 % BTC + 50 % USDC
 
@@ -9,11 +9,11 @@
 
 ## Contexte
 
-- Prix BTC clôture mois : **68 215 USD**
-- Constante A Power Law : -16.917 (figée jusqu'à la prochaine revue annuelle, 1ᵉʳ janvier)
+- Prix BTC à la clôture du **31 mars 2026** : **68 215 USD**
+- Constante A Power Law : -16.917 (figée jusqu'à la prochaine revue annuelle)
 
 ## 6 derniers mois
 
 - **2026-03** : 🟡 50 % — R1 CASH, R3 BUY
 
-_Dernière mise à jour : 2026-04-23 19:42 UTC (auto)._
+_Dernière mise à jour : 2026-04-24 04:34 UTC (auto)._

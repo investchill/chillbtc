@@ -1,35 +1,33 @@
 # Historique annuel — Stratégie ChillBTC vs HODL
 
-Performances annuelles depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 mois de warm-up R1 TSMOM). L'année de démarrage et l'année en cours sont partielles.
+Performances annuelles depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 mois de warm-up R1 TSMOM). Les années marquées `*` sont partielles (démarrage backtest, année en cours).
 
-## Stratégie ChillBTC (cascade R1 + R3, mode C)
+```
+  année    perf strat    perf HODL   DD strat   DD HODL
+  -----------------------------------------------------
+  2015 *     +25.8%      +38.9%     +0.0%     +0.0%
+  2016      +124.0%     +124.0%    -14.4%    -14.4%
+  2017      +926.4%    +1339.4%    -10.1%    -10.1%
+  2018        +0.0%      -73.4%     +0.0%    -64.2%
+  2019       +37.4%      +94.1%    -33.4%    -33.4%
+  2020      +269.3%     +304.5%    -31.2%    -31.2%
+  2021       +55.3%      +59.4%     -0.5%    -40.4%
+  2022        -9.0%      -64.2%     -9.8%    -63.7%
+  2023      +102.8%     +155.7%    -14.9%    -14.9%
+  2024      +121.0%     +121.0%    -17.3%    -17.3%
+  2025        -5.0%       -6.3%    -23.4%    -24.4%
+  2026 *     -11.3%      -22.0%     -7.4%    -14.8%
+  -----------------------------------------------------
+  Perf annualisée 3 ans            : strat  +41.3%   |   HODL  +33.8%
+  Perf annualisée 5 ans            : strat  +28.0%   |   HODL   +3.0%
+  Perf annualisée depuis 2015-10   : strat  +88.6%   |   HODL  +67.1%
+  DD max depuis 2015-10            : strat  -40.3%   |   HODL  -75.4%
+```
 
-- **2015** : +25.8% _(partielle)_
-- **2016** : +124.0%
-- **2017** : +926.4%
-- **2018** : +0.0%
-- **2019** : +37.4%
-- **2020** : +269.3%
-- **2021** : +55.3%
-- **2022** : -9.0%
-- **2023** : +102.8%
-- **2024** : +121.0%
-- **2025** : -5.0%
-- **2026** : -11.3% _(partielle)_
+**Comment lire** :
 
-## HODL (buy-and-hold BTC)
+- **perf** : bilan entre le 31 décembre N-1 et le 31 décembre N. Ce qui s'est passé entre les deux dates n'est pas visible ici.
+- **DD max** : pire baisse temporaire de la valeur du portefeuille pendant l'année, peu importe si on a vendu ou pas. Si la valeur passe par 100 → 70, le DD est de -30 %, même si elle remonte à 90 ensuite.
+- **Perf annualisée 3 / 5 ans** : moyenne géométrique des 36 / 60 derniers mois (rolling, pas calendaire).
 
-- **2015** : +38.9% _(partielle)_
-- **2016** : +124.0%
-- **2017** : +1339.4%
-- **2018** : -73.4%
-- **2019** : +94.1%
-- **2020** : +304.5%
-- **2021** : +59.4%
-- **2022** : -64.2%
-- **2023** : +155.7%
-- **2024** : +121.0%
-- **2025** : -6.3%
-- **2026** : -22.0% _(partielle)_
-
-_Dernière mise à jour : 2026-04-23 19:42 UTC (auto)._
+_Dernière mise à jour : 2026-04-24 04:34 UTC (auto)._

@@ -129,4 +129,4 @@ Une ligne par mois depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 mois 
 - **2026-02** : 🟡  50 % | strat +77477.8% | HODL +21503.9%
 - **2026-03** : 🟡  50 % | strat +78190.0% | HODL +21900.6%
 
-_Dernière mise à jour : 2026-04-23 19:42 UTC (auto)._
+_Dernière mise à jour : 2026-04-24 04:34 UTC (auto)._
