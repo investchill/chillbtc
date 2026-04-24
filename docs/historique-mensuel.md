@@ -8,7 +8,7 @@ description: Toutes les positions mois par mois depuis 2015.
 
 > **HODL** = acheter et garder, stratégie passive de référence (ne rien faire, conserver ses BTC en permanence).
 
-Une ligne par mois depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 mois de warm-up tendance (TSMOM)).
+Une ligne par mois depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 mois d'amorçage tendance (TSMOM)).
 
 **Comment lire** :
 
@@ -145,7 +145,7 @@ Une ligne par mois depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 mois 
   2016-01  🟢 100 %       370   -14.1%  -14.1%
   2015-12  🟢 100 %       431   +13.7%  +13.9%
   2015-11  🟡  50 %       378   +10.7%  +21.9%
-  2015-10  🔴   0 %       310    (début backtest)
+  2015-10  🔴   0 %       310    (début de la simulation)
 ```
 
-_Dernière mise à jour : 2026-04-24 12:06 UTC (auto)._
+_Dernière mise à jour : 2026-04-24 12:10 UTC (auto)._

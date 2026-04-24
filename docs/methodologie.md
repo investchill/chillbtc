@@ -11,7 +11,8 @@ de **tendance** et un de **valorisation**, **comment** chacun est construit, et
 **quand** ils se sont avérés utiles ou coûteux sur l'historique BTC.
 
 > La stratégie est gelée depuis 2026-05-01 jusqu'à la revue annuelle du 1ᵉʳ
-> janvier suivant. Les paramètres décrits ici sont les paramètres live.
+> janvier suivant. Les paramètres décrits ici sont ceux appliqués
+> actuellement.
 
 ---
 
@@ -31,7 +32,7 @@ que le second s'en rende compte.
 
 Ce choix de 2 signaux est aussi un choix **anti-overfit**. Un ensemble à 5 ou
 10 signaux optimisés simultanément sur ~180 observations mensuelles produirait
-un backtest flatteur et un live décevant. Deux signaux, chacun à 1 ou 2
+un résultat simulé flatteur et une réalité décevante. Deux signaux, chacun à 1 ou 2
 paramètres, restent auditables et robustes.
 
 ---
@@ -66,7 +67,7 @@ hors-échantillon qu'un pic étroit.
 Trois moments charnières où la tendance a pesé :
 
 - **2018-09** : la tendance bascule CASH après un retard de plusieurs mois
-  sur le top de janvier. La stratégie sort avant la chute de Q4 2018.
+  sur le sommet de janvier. La stratégie sort avant la chute de Q4 2018.
 - **2020-03** : la tendance reste CASH après le krach Covid. La stratégie
   rate le rebond en V. C'est le coût du lag TSMOM, assumé par construction.
 - **2022-04 à 2022-08** : la tendance reste CASH tout au long de la descente
@@ -115,17 +116,17 @@ accélère brutalement, mais c'est le compromis assumé.
 
 ### Illustrations historiques
 
-- **2017-12** : `close/fair` dépasse 4. La valorisation CASH au pic. La
+- **2017-12** : `prix/juste-valeur` dépasse 4. La valorisation CASH au pic. La
   stratégie coupe juste avant le krach de 2018.
-- **2021-11** : la valorisation CASH dès l'été 2021, tenue jusqu'au bottom
+- **2021-11** : la valorisation CASH dès l'été 2021, tenue jusqu'au creux
   2022. La stratégie évite l'essentiel de la baisse.
-- **2023-01** : `close/fair < 0.6` au bottom à 17 000 USD. La valorisation
+- **2023-01** : `prix/juste-valeur < 0.6` au creux à 17 000 USD. La valorisation
   repasse ACHAT tôt, captant une partie du rebond vers 23 000 USD en janvier.
 
 ![Valorisation — prix BTC contre la droite Power Law](assets/methodology/powerlaw_band.png)
 
 *Droite Power Law en pointillé bleu, bande de tolérance
-[0,6 × fair ; 2,5 × fair] en bleu clair. Un prix au-dessus de la bande
+[0,6 × juste-valeur ; 2,5 × juste-valeur] en bleu clair. Un prix au-dessus de la bande
 supérieure fait basculer la valorisation en CASH ; un prix sous la bande
 inférieure la ramène à ACHAT. Entre les deux, l'état précédent est maintenu.*
 
@@ -155,7 +156,7 @@ Bender, Briand, Melas et Aylur Subramanian (2013).
 - **2018** cycle baissier : tendance et valorisation CASH simultanément.
   Position à 0 % pendant l'essentiel de la chute.
 - **2021** cycle : tendance ACHAT presque toute l'année, valorisation CASH dès
-  l'été. Position à 50 % au top de novembre.
+  l'été. Position à 50 % au sommet de novembre.
 - **2022** FTX : tendance et valorisation CASH avant l'effondrement. Position
   à 0 % en novembre.
 
@@ -164,14 +165,14 @@ Bender, Briand, Melas et Aylur Subramanian (2013).
 *Prix BTC en haut avec annotations des moments charnières. Barre du bas
 codée par couleur : vert = 100 % BTC, orange = 50 % BTC + 50 % USDC,
 gris = 0 % (cash intégral). Les périodes grises correspondent aux marchés baissiers
-markets où les deux signaux disent CASH, les périodes orange isolées aux
-tops où seule la valorisation a basculé.*
+marchés où les deux signaux disent CASH, les périodes orange isolées aux
+sommets où seule la valorisation a basculé.*
 
 ---
 
 ## 5. Limites et menaces de validité
 
-**Échantillon petit.** Le backtest couvre environ 2,5 cycles BTC complets
+**Échantillon petit.** La simulation historique couvre environ 2,5 cycles BTC complets
 (2015-2026). Les intervalles de confiance sur la perf annualisée et la
 **baisse max** sont larges. Tu dois lire les chiffres comme des ordres de grandeur, pas
 comme des garanties point-à-point.
@@ -232,5 +233,5 @@ Cette page a été rédigée avec l'assistance de Claude Opus 4.7 (Anthropic)
 pour le *drafting* du texte, la recherche et la vérification des
 références bibliographiques via DOI. Les auteurs du projet ChillBTC
 prennent l'entière responsabilité du contenu, ont vérifié chaque
-affirmation numérique contre le code et les artefacts de backtest, et
+affirmation numérique contre le code et les artefacts de simulation, et
 confirment qu'aucune IA ne figure comme autrice.
