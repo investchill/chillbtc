@@ -289,13 +289,8 @@ def build_historique_annuel_md(table: pd.DataFrame) -> str:
 def build_historique_mensuel_md(table: pd.DataFrame) -> str:
     """Page 3 — toutes lignes mensuelles depuis 2014-11.
 
-    Format : ``AAAA-MM | alloc effective | perf strat MENSUEL | perf HODL MENSUEL``.
-
-    Affiche la **variation mensuelle** (du close N-1 au close N), pas le
-    cumul depuis le start. Plus lisible sur mobile et plus aligné avec
-    l'expérience opérationnelle (ce que la stratégie a fait CE mois).
-
-    Ordre inversé : mois le plus récent en haut.
+    Format : tableau ASCII bloc-code, colonnes mois / alloc / BTC close /
+    perf strat mensuelle / perf HODL mensuelle. Ordre inversé.
     """
     eq = table["equity_cascade"]
     btc = table["btc_close"]
@@ -306,6 +301,30 @@ def build_historique_mensuel_md(table: pd.DataFrame) -> str:
     hodl_monthly = hodl.pct_change()
 
     start_str = f"{table.index[0].year}-{table.index[0].month:02d}"
+
+    table_lines = [
+        "  mois     alloc      BTC USD    strat    HODL",
+        "  ---------------------------------------------",
+    ]
+    for date in reversed(table.index):
+        p = float(pos_effective.loc[date])
+        sm = strat_monthly.loc[date]
+        hm = hodl_monthly.loc[date]
+        bt = float(btc.loc[date])
+        emoji = _emoji_pos(p)
+        bt_str = f"{bt:>7,.0f}".replace(",", " ")
+        if pd.isna(sm) or pd.isna(hm):
+            line = (
+                f"  {date.year}-{date.month:02d}  {emoji} {int(p*100):3d} %   "
+                f"{bt_str}    (début backtest)"
+            )
+        else:
+            line = (
+                f"  {date.year}-{date.month:02d}  {emoji} {int(p*100):3d} %   "
+                f"{bt_str}   {float(sm)*100:+5.1f}%  {float(hm)*100:+5.1f}%"
+            )
+        table_lines.append(line)
+
     lines = [
         "# Historique mensuel — Stratégie ChillBTC vs HODL",
         "",
@@ -317,23 +336,15 @@ def build_historique_mensuel_md(table: pd.DataFrame) -> str:
         "- **alloc** : position effectivement détenue pendant ce mois "
         "(= signal calculé sur le close du mois précédent et appliqué le 1ᵉʳ).",
         "- **strat / HODL** : variation **mensuelle** du portefeuille "
-        "(close N-1 → close N), pas le cumul depuis le début.",
+        "(close N-1 → close N).",
+        "",
+        "```",
+        *table_lines,
+        "```",
+        "",
+        f"_Dernière mise à jour : {_now_utc_str()} (auto)._",
         "",
     ]
-    for date in reversed(table.index):
-        p = float(pos_effective.loc[date])
-        sm = strat_monthly.loc[date]
-        hm = hodl_monthly.loc[date]
-        emoji = _emoji_pos(p)
-        if pd.isna(sm) or pd.isna(hm):
-            perf_str = "_(début backtest)_"
-        else:
-            perf_str = f"strat {float(sm):+5.1%} · HODL {float(hm):+5.1%}"
-        lines.append(
-            f"- **{date.year}-{date.month:02d}** {emoji} {int(p * 100):3d} % — {perf_str}"
-        )
-
-    lines += ["", f"_Dernière mise à jour : {_now_utc_str()} (auto)._", ""]
     return "\n".join(lines)
 
 
