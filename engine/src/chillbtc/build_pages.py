@@ -90,7 +90,7 @@ def _emoji_sig(s: float) -> str:
 
 
 def _label_sig(s: float) -> str:
-    return "BUY" if s == 1.0 else "CASH"
+    return "ACHAT" if s == 1.0 else "CASH"
 
 
 def _now_utc_str() -> str:
