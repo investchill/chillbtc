@@ -38,4 +38,4 @@ Performances annuelles depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 m
 - **baisse max** : la plus grosse baisse temporaire du portefeuille pendant l'année, **sur papier** (c'est une perte non-réalisée, tu n'as pas vendu). Exemple : un portefeuille qui passe de 100 à 70 puis remonte à 90 a une baisse max de -30 %, même si le résultat final n'est que -10 %.
 - **Perf annualisée 3 / 5 ans** : moyenne géométrique des 36 / 60 derniers mois (rolling, pas calendaire).
 
-_Dernière mise à jour : 2026-04-24 12:10 UTC (auto)._
+_Dernière mise à jour : 2026-04-24 12:30 UTC (auto)._
