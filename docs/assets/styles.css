@@ -733,3 +733,232 @@ footer a { color: var(--muted); text-decoration-color: var(--orange); }
   .signal-table .signal-sub { display: block; font-size: 12px; }
   .signal-table .decision { padding: 4px 10px; font-size: 11.5px; }
 }
+
+/* =============================================================
+   Historique annuel + mensuel — history-table + history-summary
+   ============================================================= */
+
+/* ---------- Table commune ---------- */
+.history-table,
+.history-summary {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin: 28px 0 24px;
+}
+.history-table th,
+.history-summary th {
+  background: var(--bg);
+  padding: 12px 14px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--line);
+}
+.history-table td,
+.history-table tbody th,
+.history-summary td,
+.history-summary tbody th {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+  vertical-align: middle;
+}
+.history-table tbody tr:last-child td,
+.history-table tbody tr:last-child th,
+.history-summary tbody tr:last-child td,
+.history-summary tbody tr:last-child th { border-bottom: none; }
+
+/* Première colonne (année / mois / métrique) — libellé */
+.history-table tbody th[scope="row"],
+.history-summary tbody th[scope="row"] {
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  font-weight: 500;
+  font-size: 13.5px;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  background: var(--bg);
+  text-transform: none;
+  white-space: nowrap;
+}
+.history-summary tbody th[scope="row"] {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0;
+}
+
+/* Cellules num — mono, right-align, coloration par signe */
+.history-table .num,
+.history-summary .num {
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  font-weight: 500;
+  text-align: right;
+  white-space: nowrap;
+}
+.history-table .num.positive,
+.history-summary .num.positive { color: var(--green); }
+.history-table .num.negative,
+.history-summary .num.negative { color: var(--red); }
+.history-table .num.neutral,
+.history-summary .num.neutral { color: var(--muted); }
+.history-table .placeholder,
+.history-summary .placeholder { color: var(--muted); text-align: center; }
+
+/* Colonne ChillBTC — fond légèrement teinté (emphase) */
+.history-table .chill,
+.history-summary .chill { background: rgba(247, 147, 26, 0.04); }
+.history-table thead .chill,
+.history-summary thead .chill {
+  color: var(--orange);
+  background: var(--bg);
+}
+
+/* Hover row */
+.history-table tbody tr:hover,
+.history-summary tbody tr:hover { background: rgba(247, 147, 26, 0.06); }
+
+/* ---------- Annuel : en-tête 2 niveaux ---------- */
+.history-annual thead .group-header .group {
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+  padding: 12px 14px;
+}
+.history-annual thead .group-header .col-year {
+  vertical-align: middle;
+  border-bottom: 1px solid var(--line);
+}
+.history-annual thead .sub-header th {
+  font-size: 11px;
+  padding: 10px 14px;
+  text-align: right;
+}
+
+/* ---------- Mensuel : zebra + sticky header + colonnes ---------- */
+.history-monthly thead th {
+  position: sticky;
+  top: 60px; /* offset sous la topnav sticky */
+  z-index: 2;
+  background: var(--bg);
+}
+.history-monthly tbody tr:nth-child(even) td,
+.history-monthly tbody tr:nth-child(even) th[scope="row"] {
+  background: rgba(11, 11, 11, 0.015);
+}
+.history-monthly tbody tr:nth-child(even) .chill {
+  background: rgba(247, 147, 26, 0.055);
+}
+.history-monthly tbody tr:hover td,
+.history-monthly tbody tr:hover th[scope="row"] {
+  background: rgba(247, 147, 26, 0.08);
+}
+.history-monthly .col-month,
+.history-monthly .col-alloc { text-align: left; }
+.history-monthly .col-price { text-align: right; }
+.history-monthly .alloc-cell {
+  white-space: nowrap;
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  font-size: 13px;
+}
+.history-monthly .alloc-dot {
+  font-size: 15px;
+  margin-right: 4px;
+  vertical-align: -1px;
+}
+.history-monthly .num-price {
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  text-align: right;
+  white-space: nowrap;
+  color: var(--ink);
+}
+
+/* ---------- Mobile — stack en cards (Option A) ---------- */
+@media (max-width: 720px) {
+  .history-table,
+  .history-table thead,
+  .history-table tbody,
+  .history-table tr,
+  .history-table td,
+  .history-table tbody th {
+    display: block;
+    width: 100%;
+  }
+  .history-table thead { display: none; }
+  .history-table {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    overflow: visible;
+  }
+  .history-table tbody tr {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 14px 18px;
+    margin-bottom: 14px;
+  }
+  .history-table tbody tr:hover,
+  .history-table tbody tr:hover td,
+  .history-table tbody tr:hover th[scope="row"] { background: var(--card); }
+  .history-monthly tbody tr:nth-child(even) td,
+  .history-monthly tbody tr:nth-child(even) th[scope="row"],
+  .history-monthly tbody tr:nth-child(even) .chill { background: transparent; }
+
+  .history-table tbody th[scope="row"] {
+    padding: 4px 0 10px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+    background: transparent;
+  }
+  .history-table tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border: none;
+    font-size: 14px;
+    background: transparent !important;
+  }
+  .history-table tbody td::before {
+    content: attr(data-label);
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  }
+  .history-table tbody td.placeholder::before,
+  .history-table tbody td.alloc-cell::before,
+  .history-table tbody td.num-price::before { content: attr(data-label); }
+  .history-table .chill { background: transparent; }
+
+  /* Sticky header désactivé sur mobile (plus de thead) */
+  .history-monthly thead th { position: static; }
+
+  /* Summary : reste en tableau compact sur mobile (3 colonnes petites) */
+  .history-summary,
+  .history-summary thead,
+  .history-summary tbody,
+  .history-summary tr,
+  .history-summary td,
+  .history-summary th { display: revert; }
+  .history-summary thead { display: table-header-group; }
+  .history-summary { display: table; }
+  .history-summary th,
+  .history-summary td { padding: 10px 10px; font-size: 13px; }
+  .history-summary tbody th[scope="row"] { font-size: 13px; }
+}
