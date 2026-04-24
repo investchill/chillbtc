@@ -15,11 +15,11 @@ Une ligne par mois depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 mois 
 - **mois** : mois calendaire. Ligne `2025-11` = novembre 2025.
 - **alloc** : position détenue **pendant** ce mois, décidée sur la clôture du mois précédent. Ligne `2025-11` → alloc appliquée du 1ᵉʳ au 30 novembre, calculée sur la clôture du 31 octobre.
 - **BTC USD** : prix de clôture du **dernier jour du mois**. Ligne `2025-11` → clôture du 30 novembre.
-- **strat / HODL** : variation **mensuelle** du portefeuille (clôture du mois précédent → clôture du mois courant).
+- **ChillBTC / HODL** : variation **mensuelle** du portefeuille (clôture du mois précédent → clôture du mois courant).
 
 ```
-  mois     alloc      BTC USD    strat    HODL
-  ---------------------------------------------
+  mois     alloc      BTC USD    ChillBTC    HODL
+  ------------------------------------------------
   2026-03  🟡  50 %    68 215    +0.9%   +1.8%
   2026-02  🟡  50 %    66 985    -7.4%  -14.8%
   2026-01  🟡  50 %    78 635    -5.1%  -10.1%
@@ -148,4 +148,4 @@ Une ligne par mois depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 mois 
   2015-10  🔴   0 %       310    (début backtest)
 ```
 
-_Dernière mise à jour : 2026-04-24 11:49 UTC (auto)._
+_Dernière mise à jour : 2026-04-24 11:57 UTC (auto)._

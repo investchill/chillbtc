@@ -62,18 +62,18 @@ stratégie vs HODL.
   pas garanti.
 - Tu veux **limiter la casse en marché baissier** (la perte de −75 % de
   2022 serait passée à −9 %) quitte à **perdre un peu en marché haussier**
-  (la strat sous-performe HODL quand la hausse est forte, c'est normal par
-  construction).
+  (ChillBTC sous-performe HODL quand la hausse est forte, c'est normal
+  par construction).
 
 ### ❌ Cette méthode n'est PAS pour toi SI…
 
 - Tu **trades activement** (day trading, swing trading intra-mois).
-- Tu veux **battre le marché sur 3-6 mois** (la strat est conçue sur le cycle,
+- Tu veux **battre le marché sur 3-6 mois** (ChillBTC est conçu sur le cycle,
   pas sur le trimestre).
 - Tu **ne tolères pas** une baisse temporaire de ton portefeuille supérieure à −30 %.
-- Tu veux un **stop-loss intra-mois** (la strat décide une seule fois par mois,
+- Tu veux un **stop-loss intra-mois** (ChillBTC décide une seule fois par mois,
   point).
-- Tu veux **timer les tops** ou **sauter sur les breakouts** (la strat est en
+- Tu veux **timer les tops** ou **sauter sur les breakouts** (ChillBTC est en
   retard sur les tournants, c'est la contrepartie de sa robustesse).
 - Ton capital BTC est **inférieur à ~500 €** (les frais fixes de transaction
   dévorent le gain ; attends d'avoir un capital plus significatif).
@@ -123,9 +123,10 @@ par année et mois par mois sur les pages dédiées** :
 
 **Lecture rapide** (chiffres globaux sur ~10 ans) :
 
-- **Performance annualisée stratégie ≈ +90 %/an** vs **HODL ≈ +75 %/an**.
-- **Pire baisse stratégie −40 %** vs **HODL −75 %** (c'est ça, le vrai gain).
-- La strat **gagne largement en marché baissier** (2018, 2022) et
+- **Performance annualisée ChillBTC ≈ +90 %/an** vs **HODL ≈ +75 %/an**.
+- **Pire baisse temporaire ChillBTC −40 %** (sur papier, perte
+  non-réalisée) vs **HODL −75 %** — c'est ça, le vrai gain.
+- ChillBTC **gagne largement en marché baissier** (2018, 2022) et
   **sous-performe en marché haussier** (2017, 2019, 2020, 2023) — c'est
   normal par construction, pas un bug.
 
