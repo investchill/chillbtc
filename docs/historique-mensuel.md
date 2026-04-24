@@ -1,3 +1,9 @@
+---
+layout: page
+title: Historique mensuel
+description: Toutes les positions mois par mois depuis 2015.
+---
+
 # Historique mensuel — Stratégie ChillBTC vs HODL
 
 > **HODL** = acheter et garder, stratégie passive de référence (ne rien faire, conserver ses BTC en permanence).
@@ -140,4 +146,4 @@ Une ligne par mois depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 mois 
   2015-10  🔴   0 %       310    (début backtest)
 ```
 
-_Dernière mise à jour : 2026-04-24 09:28 UTC (auto)._
+_Dernière mise à jour : 2026-04-24 11:00 UTC (auto)._
