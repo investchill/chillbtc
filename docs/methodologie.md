@@ -1,3 +1,9 @@
+---
+layout: page
+title: Méthodologie
+description: Les 2 signaux de ChillBTC — pourquoi tendance + valorisation, comment ils sont construits, quand ils ont pesé.
+---
+
 # Méthodologie — les 2 signaux de ChillBTC
 
 Cette page explique **pourquoi** la stratégie utilise exactement 2 signaux, un
