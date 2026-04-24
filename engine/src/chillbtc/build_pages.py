@@ -264,6 +264,10 @@ def build_historique_annuel_md(table: pd.DataFrame) -> str:
     lines = [
         "# Historique annuel — Stratégie ChillBTC vs HODL",
         "",
+        "> **HODL** = acheter et garder, stratégie passive de référence "
+        "(ne rien faire, conserver ses BTC en permanence). "
+        "**DD** = *drawdown*, pire baisse temporaire du portefeuille dans l'année.",
+        "",
         f"Performances annuelles depuis {start_str} "
         f"(données CDD Bitstamp 2014-11, moins {N_TSMOM} mois de warm-up tendance (TSMOM)). "
         "Les années marquées `*` sont partielles (démarrage backtest, année en cours).",
@@ -329,6 +333,9 @@ def build_historique_mensuel_md(table: pd.DataFrame) -> str:
 
     lines = [
         "# Historique mensuel — Stratégie ChillBTC vs HODL",
+        "",
+        "> **HODL** = acheter et garder, stratégie passive de référence "
+        "(ne rien faire, conserver ses BTC en permanence).",
         "",
         f"Une ligne par mois depuis {start_str} "
         f"(données CDD Bitstamp 2014-11, moins {N_TSMOM} mois de warm-up tendance (TSMOM)).",
