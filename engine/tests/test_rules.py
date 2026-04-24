@@ -22,7 +22,6 @@ from chillbtc.rules import (
     signal_tsmom,
 )
 
-
 # ----- R1 — Time-Series Momentum (n = 11) ---------------------------------
 
 def test_signal_tsmom_bull_2017_12(monthly_series):
@@ -74,7 +73,7 @@ def test_hysteresis_band_entry_and_exit():
     ratio = pd.Series([np.nan, 0.5, 0.5, 0.8, 1.5, 2.1, 2.6, 2.3, 1.9, 0.5])
     out = _hysteresis_band(ratio, k_low=0.6, k_high=2.5)
     expected = [np.nan, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0]
-    for got, want in zip(out.tolist(), expected):
+    for got, want in zip(out.tolist(), expected, strict=True):
         if pd.isna(want):
             assert pd.isna(got)
         else:

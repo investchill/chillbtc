@@ -18,8 +18,8 @@ Each ``run_Ox`` returns a dict with at least:
 
 from __future__ import annotations
 
+from collections.abc import Callable, Iterable
 from dataclasses import dataclass, field
-from typing import Callable, Iterable
 
 import numpy as np
 import pandas as pd

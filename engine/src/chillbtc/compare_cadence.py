@@ -133,7 +133,7 @@ def render_markdown(df: pd.DataFrame) -> str:
         lines.append(f"## Frais {fee*100:.1f} % par switch\n")
         lines.append("```")
         lines.append(
-            f"Métrique                Mensuel        Hebdo         Δ (hebdo − mensuel)"
+            "Métrique                Mensuel        Hebdo         Δ (hebdo − mensuel)"
         )
         lines.append(
             f"CAGR                    {mo['cagr_pct']:7.2f} %    "
