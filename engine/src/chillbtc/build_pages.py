@@ -289,11 +289,16 @@ def build_historique_annuel_md(table: pd.DataFrame) -> str:
 def build_historique_mensuel_md(table: pd.DataFrame) -> str:
     """Page 3 — toutes lignes mensuelles depuis 2014-11.
 
-    Format : ``AAAA-MM | alloc | perf cumul strat | perf cumul HODL``.
+    Format : ``AAAA-MM | alloc effective | perf cumul strat | perf cumul HODL``.
+
+    L'alloc affichée est la position **effective ce mois-ci** = position
+    signalée à la fin du mois précédent (= ce que tu avais réellement en
+    portefeuille pendant ce mois). Cohérent avec la perf cumulée, qui est
+    calculée avec la même position décalée.
     """
     eq = table["equity_cascade"]
     btc = table["btc_close"]
-    pos = table["position"]
+    pos_effective = table["position"].shift(1).fillna(0.0)
     hodl = btc / btc.iloc[0] * eq.iloc[0]
 
     eq_cum = eq / eq.iloc[0] - 1
@@ -304,12 +309,18 @@ def build_historique_mensuel_md(table: pd.DataFrame) -> str:
         "# Historique mensuel — Stratégie ChillBTC vs HODL",
         "",
         f"Une ligne par mois depuis {start_str} "
-        f"(données CDD Bitstamp 2014-11, moins {N_TSMOM} mois de warm-up R1 TSMOM). "
-        "`perf cumul` = capitalisation depuis la base 100, en pourcentage.",
+        f"(données CDD Bitstamp 2014-11, moins {N_TSMOM} mois de warm-up R1 TSMOM).",
+        "",
+        "**Comment lire** :",
+        "",
+        "- **alloc** : position **effectivement détenue pendant ce mois** "
+        "(= signal calculé sur le close du mois précédent et appliqué le 1ᵉʳ).",
+        "- **perf cumul** : capitalisation depuis le 1ᵉʳ point de la fenêtre "
+        "(base 100), en pourcentage. `+100 %` = la valeur a doublé.",
         "",
     ]
     for date in table.index:
-        p = float(pos.loc[date])
+        p = float(pos_effective.loc[date])
         ec = float(eq_cum.loc[date])
         hc = float(hodl_cum.loc[date])
         emoji = _emoji_pos(p)

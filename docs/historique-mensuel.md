@@ -1,9 +1,14 @@
 # Historique mensuel — Stratégie ChillBTC vs HODL
 
-Une ligne par mois depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 mois de warm-up R1 TSMOM). `perf cumul` = capitalisation depuis la base 100, en pourcentage.
+Une ligne par mois depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 mois de warm-up R1 TSMOM).
 
-- **2015-10** : 🟡  50 % | strat    +0.0% | HODL    +0.0%
-- **2015-11** : 🟢 100 % | strat   +10.7% | HODL   +21.9%
+**Comment lire** :
+
+- **alloc** : position **effectivement détenue pendant ce mois** (= signal calculé sur le close du mois précédent et appliqué le 1ᵉʳ).
+- **perf cumul** : capitalisation depuis le 1ᵉʳ point de la fenêtre (base 100), en pourcentage. `+100 %` = la valeur a doublé.
+
+- **2015-10** : 🔴   0 % | strat    +0.0% | HODL    +0.0%
+- **2015-11** : 🟡  50 % | strat   +10.7% | HODL   +21.9%
 - **2015-12** : 🟢 100 % | strat   +25.8% | HODL   +38.9%
 - **2016-01** : 🟢 100 % | strat    +8.1% | HODL   +19.3%
 - **2016-02** : 🟢 100 % | strat   +27.6% | HODL   +40.8%
@@ -27,7 +32,7 @@ Une ligne par mois depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 mois 
 - **2017-08** : 🟢 100 % | strat +1283.5% | HODL +1426.9%
 - **2017-09** : 🟢 100 % | strat +1164.2% | HODL +1295.2%
 - **2017-10** : 🟢 100 % | strat +1780.3% | HODL +1975.1%
-- **2017-11** : 🔴   0 % | strat +2807.1% | HODL +3108.3%
+- **2017-11** : 🟢 100 % | strat +2807.1% | HODL +3108.3%
 - **2017-12** : 🔴   0 % | strat +2792.5% | HODL +4376.6%
 - **2018-01** : 🔴   0 % | strat +2792.5% | HODL +3173.2%
 - **2018-02** : 🔴   0 % | strat +2792.5% | HODL +3226.7%
@@ -41,11 +46,11 @@ Une ligne par mois depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 mois 
 - **2018-10** : 🔴   0 % | strat +2792.5% | HODL +1932.9%
 - **2018-11** : 🔴   0 % | strat +2792.5% | HODL +1180.7%
 - **2018-12** : 🔴   0 % | strat +2792.5% | HODL +1091.2%
-- **2019-01** : 🟡  50 % | strat +2792.5% | HODL +1000.8%
+- **2019-01** : 🔴   0 % | strat +2792.5% | HODL +1000.8%
 - **2019-02** : 🟡  50 % | strat +2945.6% | HODL +1122.8%
 - **2019-03** : 🟡  50 % | strat +3068.0% | HODL +1221.1%
 - **2019-04** : 🟡  50 % | strat +3521.6% | HODL +1599.3%
-- **2019-05** : 🟢 100 % | strat +4648.2% | HODL +2656.6%
+- **2019-05** : 🟡  50 % | strat +4648.2% | HODL +2656.6%
 - **2019-06** : 🟢 100 % | strat +5865.6% | HODL +3370.3%
 - **2019-07** : 🟢 100 % | strat +5491.5% | HODL +3152.7%
 - **2019-08** : 🟢 100 % | strat +5219.2% | HODL +2994.3%
@@ -57,16 +62,16 @@ Une ligne par mois depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 mois 
 - **2020-02** : 🟢 100 % | strat +4627.9% | HODL +2650.4%
 - **2020-03** : 🟢 100 % | strat +3460.0% | HODL +1970.9%
 - **2020-04** : 🟢 100 % | strat +4683.2% | HODL +2682.5%
-- **2020-05** : 🟡  50 % | strat +5137.2% | HODL +2946.6%
+- **2020-05** : 🟢 100 % | strat +5137.2% | HODL +2946.6%
 - **2020-06** : 🟡  50 % | strat +5037.2% | HODL +2845.5%
-- **2020-07** : 🟢 100 % | strat +5662.7% | HODL +3562.8%
+- **2020-07** : 🟡  50 % | strat +5662.7% | HODL +3562.8%
 - **2020-08** : 🟢 100 % | strat +5799.6% | HODL +3658.9%
 - **2020-09** : 🟢 100 % | strat +5355.8% | HODL +3376.2%
 - **2020-10** : 🟢 100 % | strat +6893.5% | HODL +4355.9%
 - **2020-11** : 🟢 100 % | strat +9872.0% | HODL +6253.7%
 - **2020-12** : 🟢 100 % | strat +14575.8% | HODL +9250.7%
 - **2021-01** : 🟢 100 % | strat +16675.7% | HODL +10588.7%
-- **2021-02** : 🔴   0 % | strat +22800.4% | HODL +14491.0%
+- **2021-02** : 🟢 100 % | strat +22800.4% | HODL +14491.0%
 - **2021-03** : 🔴   0 % | strat +22685.9% | HODL +18858.5%
 - **2021-04** : 🔴   0 % | strat +22685.9% | HODL +18533.6%
 - **2021-05** : 🔴   0 % | strat +22685.9% | HODL +11943.3%
@@ -84,7 +89,7 @@ Une ligne par mois depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 mois 
 - **2022-05** : 🔴   0 % | strat +22685.9% | HODL +10144.1%
 - **2022-06** : 🔴   0 % | strat +22685.9% | HODL +6326.1%
 - **2022-07** : 🔴   0 % | strat +22685.9% | HODL +7421.9%
-- **2022-08** : 🟡  50 % | strat +22685.9% | HODL +6369.4%
+- **2022-08** : 🔴   0 % | strat +22685.9% | HODL +6369.4%
 - **2022-09** : 🟡  50 % | strat +22268.8% | HODL +6164.9%
 - **2022-10** : 🟡  50 % | strat +22886.6% | HODL +6511.0%
 - **2022-11** : 🟡  50 % | strat +21020.6% | HODL +5437.6%
@@ -93,7 +98,7 @@ Une ligne par mois depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 mois 
 - **2023-02** : 🟡  50 % | strat +24768.1% | HODL +7361.8%
 - **2023-03** : 🟡  50 % | strat +27637.9% | HODL +9084.0%
 - **2023-04** : 🟡  50 % | strat +28007.6% | HODL +9328.8%
-- **2023-05** : 🟢 100 % | strat +27038.5% | HODL +8678.6%
+- **2023-05** : 🟡  50 % | strat +27038.5% | HODL +8678.6%
 - **2023-06** : 🟢 100 % | strat +30211.0% | HODL +9726.8%
 - **2023-07** : 🟢 100 % | strat +28979.4% | HODL +9327.5%
 - **2023-08** : 🟢 100 % | strat +25697.5% | HODL +8263.5%
@@ -123,10 +128,10 @@ Une ligne par mois depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 mois 
 - **2025-08** : 🟢 100 % | strat +107607.6% | HODL +34818.7%
 - **2025-09** : 🟢 100 % | strat +113373.6% | HODL +36688.0%
 - **2025-10** : 🟢 100 % | strat +108886.0% | HODL +35233.2%
-- **2025-11** : 🟡  50 % | strat +89813.4% | HODL +29049.8%
+- **2025-11** : 🟢 100 % | strat +89813.4% | HODL +29049.8%
 - **2025-12** : 🟡  50 % | strat +88153.1% | HODL +28119.1%
 - **2026-01** : 🟡  50 % | strat +83684.2% | HODL +25261.2%
 - **2026-02** : 🟡  50 % | strat +77477.8% | HODL +21503.9%
 - **2026-03** : 🟡  50 % | strat +78190.0% | HODL +21900.6%
 
-_Dernière mise à jour : 2026-04-24 04:34 UTC (auto)._
+_Dernière mise à jour : 2026-04-24 04:39 UTC (auto)._
