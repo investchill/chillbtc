@@ -23,7 +23,7 @@ par GitHub Actions. Aucune installation requise.
 ### [📊 Signal du mois en cours →](docs/signaux.md)
 
 L'allocation BTC à appliquer ce mois-ci (100 / 50 / 0 %), avec la valeur
-des 2 signaux R1 + R3 et le contexte du mois.
+des 2 signaux (tendance + valorisation) et le contexte du mois.
 
 ---
 
@@ -80,19 +80,19 @@ stratégie vs HODL.
 
 Chaque 1ᵉʳ du mois, l'outil lit **2 signaux** sur le prix BTC :
 
-- **R1 — la tendance** (Time-Series Momentum, Moskowitz/Pedersen 2012) :
+- **Tendance** (Time-Series Momentum, Moskowitz/Pedersen 2012) :
   BTC a-t-il monté sur les **11 derniers mois** ? → **BUY** (oui) ou **CASH** (non).
-- **R3 — la valorisation** (Power Law, Santostasi) : BTC est-il **cher ou
+- **Valorisation** (Power Law, Santostasi) : BTC est-il **cher ou
   pas cher** par rapport à sa droite de puissance historique ? → **BUY**
   (pas cher) ou **CASH** (trop cher).
 
 Les 2 signaux combinés → **1 dosage unique** (règle 100/50/0) :
 
 ```
-R1 BUY  + R3 BUY   →  100 %  BTC                           (climat haussier)
-R1 BUY  + R3 CASH  →   50 %  BTC  +  50 %  USDC            (BTC cher)
-R1 CASH + R3 BUY   →   50 %  BTC  +  50 %  USDC            (tendance floue)
-R1 CASH + R3 CASH  →    0 %  BTC  + 100 %  USDC            (bear confirmé)
+Tendance BUY  + Valorisation BUY   →  100 %  BTC                   (climat haussier)
+Tendance BUY  + Valorisation CASH  →   50 %  BTC  +  50 %  USDC    (BTC cher)
+Tendance CASH + Valorisation BUY   →   50 %  BTC  +  50 %  USDC    (tendance floue)
+Tendance CASH + Valorisation CASH  →    0 %  BTC  + 100 %  USDC    (bear confirmé)
 ```
 
 C'est tout. Pas d'autre paramètre, pas de condition cachée, pas de filtre
@@ -167,7 +167,7 @@ Chaque 1ᵉʳ du mois (tolérance jusqu'au 3 si tu es pris) :
 📘 **Install détaillée, commandes, structure du repo, règles de contribution :
 [`CONTRIBUTING.md`](CONTRIBUTING.md).**
 
-Le moteur Python (`engine/`) recalcule l'historique cascade R1 + R3 et
+Le moteur Python (`engine/`) recalcule l'historique cascade (tendance + valorisation) et
 régénère les 3 pages du `docs/`. Le workflow GitHub Actions
 [`.github/workflows/monthly-update.yml`](.github/workflows/monthly-update.yml)
 l'exécute le 1ᵉʳ du mois à 06:00 UTC.
@@ -178,9 +178,9 @@ l'exécute le 1ᵉʳ du mois à 06:00 UTC.
 
 **N-versioning par produit cartésien** : trois familles de règles × trois
 familles d'optimisation = **9 stratégies** calibrées indépendamment. La
-stratégie retenue (Mode C cascade) combine R1 (défensif) et R3 (agressif)
-pour sortir du marché via OR logique dès que l'un des deux signaux
-dit CASH.
+stratégie retenue (Mode C cascade) combine la tendance (défensive) et la
+valorisation (agressive) pour sortir du marché via OR logique dès que l'un
+des deux signaux dit CASH.
 
 ## 🛡 Garde-fous (résumé)
 
