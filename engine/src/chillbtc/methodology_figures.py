@@ -170,9 +170,9 @@ def plot_cascade_position_history(monthly: pd.DataFrame, out: Path) -> None:
     )
 
     annotations = [
-        ("2017-12-31", "Top 2017 : valorisation CASH → 50 %"),
+        ("2017-12-31", "Top 2017 : valorisation CASH → 0 %"),
         ("2018-12-31", "Bear 2018 : 0 % toute l'année"),
-        ("2021-11-30", "Top 2021 : valorisation CASH → 50 %"),
+        ("2021-11-30", "Top 2021 : valorisation CASH → 0 %"),
         ("2022-11-30", "FTX : 0 % à l'effondrement"),
     ]
     for date_str, text in annotations:

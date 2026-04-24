@@ -97,8 +97,8 @@ Les 2 signaux combinés → **1 dosage unique** (règle 100/50/0) :
 
 ```
 Tendance ACHAT + Valorisation ACHAT  →  100 %  BTC                   (climat haussier)
-Tendance ACHAT + Valorisation CASH   →   50 %  BTC  +  50 %  USDC    (BTC cher)
-Tendance CASH  + Valorisation ACHAT  →   50 %  BTC  +  50 %  USDC    (tendance floue)
+Tendance ACHAT + Valorisation CASH   →    0 %  BTC  + 100 %  USDC    (valorisation CASH prime)
+Tendance CASH  + Valorisation ACHAT  →   50 %  BTC  +  50 %  USDC    (signaux opposés)
 Tendance CASH  + Valorisation CASH   →    0 %  BTC  + 100 %  USDC    (baisse confirmée)
 ```
 
