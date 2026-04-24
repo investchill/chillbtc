@@ -20,4 +20,4 @@ description: L'allocation BTC à appliquer ce mois-ci, et les 2 signaux sous-jac
 - Prix BTC à la clôture du **31 mars 2026** : **68 215 USD**
 - Constante A Power Law : -16.917 (figée jusqu'à la prochaine revue annuelle)
 
-_Dernière mise à jour : 2026-04-24 11:00 UTC (auto)._
+_Dernière mise à jour : 2026-04-24 11:49 UTC (auto)._

@@ -369,10 +369,14 @@ def build_historique_mensuel_md(table: pd.DataFrame) -> str:
         "",
         "**Comment lire** :",
         "",
-        "- **alloc** : position effectivement détenue pendant ce mois "
-        "(= signal calculé sur le close du mois précédent et appliqué le 1ᵉʳ).",
+        "- **mois** : mois calendaire. Ligne `2025-11` = novembre 2025.",
+        "- **alloc** : position détenue **pendant** ce mois, décidée sur "
+        "la clôture du mois précédent. Ligne `2025-11` → alloc appliquée "
+        "du 1ᵉʳ au 30 novembre, calculée sur la clôture du 31 octobre.",
+        "- **BTC USD** : prix de clôture du **dernier jour du mois**. "
+        "Ligne `2025-11` → clôture du 30 novembre.",
         "- **strat / HODL** : variation **mensuelle** du portefeuille "
-        "(close N-1 → close N).",
+        "(clôture du mois précédent → clôture du mois courant).",
         "",
         "```",
         *table_lines,

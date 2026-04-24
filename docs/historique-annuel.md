@@ -38,4 +38,4 @@ Performances annuelles depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 m
 - **DD max** : pire baisse temporaire de la valeur du portefeuille pendant l'année, peu importe si on a vendu ou pas. Si la valeur passe par 100 → 70, le DD est de -30 %, même si elle remonte à 90 ensuite.
 - **Perf annualisée 3 / 5 ans** : moyenne géométrique des 36 / 60 derniers mois (rolling, pas calendaire).
 
-_Dernière mise à jour : 2026-04-24 11:00 UTC (auto)._
+_Dernière mise à jour : 2026-04-24 11:49 UTC (auto)._
