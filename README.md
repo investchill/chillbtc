@@ -55,25 +55,25 @@ stratégie vs HODL.
 - Tu veux une **règle fixe**, pas "je ressens que…" ou "mon pote a dit".
 - Tu es **résident fiscal français** (la règle `CASH = USDC` annule la friction
   fiscale sur les switches mensuels — art. 150 VH bis CGI).
-- Tu utilises **Binance** (adaptable à d'autres plateformes mais le backtest
-  suppose Binance).
+- Tu utilises **Binance** (adaptable à d'autres plateformes mais la
+  simulation historique suppose Binance).
 - Tu acceptes qu'une **baisse temporaire jusqu'à −50 %** de ton portefeuille
-  reste possible. Le backtest 2016-2026 montre −40 % max, mais le futur n'est
-  pas garanti.
+  reste possible. La simulation 2016-2026 montre −40 % max (baisse temporaire
+  sur papier), mais le futur n'est pas garanti.
 - Tu veux **limiter la casse en marché baissier** (la perte de −75 % de
   2022 serait passée à −9 %) quitte à **perdre un peu en marché haussier**
-  (la strat sous-performe HODL quand la hausse est forte, c'est normal par
-  construction).
+  (ChillBTC sous-performe HODL quand la hausse est forte, c'est normal
+  par construction).
 
 ### ❌ Cette méthode n'est PAS pour toi SI…
 
 - Tu **trades activement** (day trading, swing trading intra-mois).
-- Tu veux **battre le marché sur 3-6 mois** (la strat est conçue sur le cycle,
+- Tu veux **battre le marché sur 3-6 mois** (ChillBTC est conçu sur le cycle,
   pas sur le trimestre).
 - Tu **ne tolères pas** une baisse temporaire de ton portefeuille supérieure à −30 %.
-- Tu veux un **stop-loss intra-mois** (la strat décide une seule fois par mois,
+- Tu veux un **stop-loss intra-mois** (ChillBTC décide une seule fois par mois,
   point).
-- Tu veux **timer les tops** ou **sauter sur les breakouts** (la strat est en
+- Tu veux **timer les sommets** ou **sauter sur les cassures** (ChillBTC est en
   retard sur les tournants, c'est la contrepartie de sa robustesse).
 - Ton capital BTC est **inférieur à ~500 €** (les frais fixes de transaction
   dévorent le gain ; attends d'avoir un capital plus significatif).
@@ -88,18 +88,18 @@ stratégie vs HODL.
 Chaque 1ᵉʳ du mois, l'outil lit **2 signaux** sur le prix BTC :
 
 - **Tendance** (Time-Series Momentum, Moskowitz/Pedersen 2012) :
-  BTC a-t-il monté sur les **11 derniers mois** ? → **BUY** (oui) ou **CASH** (non).
+  BTC a-t-il monté sur les **11 derniers mois** ? → **ACHAT** (oui) ou **CASH** (non).
 - **Valorisation** (Power Law, Santostasi) : BTC est-il **cher ou
-  pas cher** par rapport à sa droite de puissance historique ? → **BUY**
+  pas cher** par rapport à sa droite de puissance historique ? → **ACHAT**
   (pas cher) ou **CASH** (trop cher).
 
 Les 2 signaux combinés → **1 dosage unique** (règle 100/50/0) :
 
 ```
-Tendance BUY  + Valorisation BUY   →  100 %  BTC                   (climat haussier)
-Tendance BUY  + Valorisation CASH  →   50 %  BTC  +  50 %  USDC    (BTC cher)
-Tendance CASH + Valorisation BUY   →   50 %  BTC  +  50 %  USDC    (tendance floue)
-Tendance CASH + Valorisation CASH  →    0 %  BTC  + 100 %  USDC    (baisse confirmée)
+Tendance ACHAT + Valorisation ACHAT  →  100 %  BTC                   (climat haussier)
+Tendance ACHAT + Valorisation CASH   →    0 %  BTC  + 100 %  USDC    (valorisation CASH prime)
+Tendance CASH  + Valorisation ACHAT  →   50 %  BTC  +  50 %  USDC    (signaux opposés)
+Tendance CASH  + Valorisation CASH   →    0 %  BTC  + 100 %  USDC    (baisse confirmée)
 ```
 
 C'est tout. Pas d'autre paramètre, pas de condition cachée, pas de filtre
@@ -111,7 +111,7 @@ académiques avec DOI, illustrations historiques annotées sur 10 ans) : voir
 
 ---
 
-## 📊 Performance historique (backtest depuis 2015-10)
+## 📊 Performance historique (simulation depuis 2015-10)
 
 Mis à jour automatiquement chaque 1ᵉʳ du mois — **table complète année
 par année et mois par mois sur les pages dédiées** :
@@ -123,9 +123,10 @@ par année et mois par mois sur les pages dédiées** :
 
 **Lecture rapide** (chiffres globaux sur ~10 ans) :
 
-- **Performance annualisée stratégie ≈ +90 %/an** vs **HODL ≈ +75 %/an**.
-- **Pire baisse stratégie −40 %** vs **HODL −75 %** (c'est ça, le vrai gain).
-- La strat **gagne largement en marché baissier** (2018, 2022) et
+- **Performance annualisée ChillBTC ≈ +90 %/an** vs **HODL ≈ +75 %/an**.
+- **Pire baisse temporaire ChillBTC −40 %** (sur papier, perte
+  non-réalisée) vs **HODL −75 %** — c'est ça, le vrai gain.
+- ChillBTC **gagne largement en marché baissier** (2018, 2022) et
   **sous-performe en marché haussier** (2017, 2019, 2020, 2023) — c'est
   normal par construction, pas un bug.
 

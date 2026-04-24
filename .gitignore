@@ -61,3 +61,10 @@ logs/
 .vscode/
 *.swp
 *.swo
+
+# Jekyll local preview artefacts (GitHub Pages builds server-side, ne rien versionner ici)
+docs/_site/
+docs/.jekyll-cache/
+docs/vendor/
+docs/Gemfile
+docs/Gemfile.lock
