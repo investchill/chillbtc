@@ -1,5 +1,10 @@
 # ChillBTC — le BTC posé. Un coup d'œil par mois.
 
+[![Tests](https://github.com/investchill/chillbtc/actions/workflows/test.yml/badge.svg)](https://github.com/investchill/chillbtc/actions/workflows/test.yml)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-lightgrey.svg)](LICENSE)
+[![Python 3.13](https://img.shields.io/badge/python-3.13-blue.svg)](https://www.python.org/downloads/release/python-3130/)
+[![Strategy frozen](https://img.shields.io/badge/strategy-frozen%20until%202027--01-informational.svg)](CHANGELOG.md)
+
 **ChillBTC** est une stratégie d'investissement Bitcoin **mécanique**,
 **set-and-forget**, conçue pour limiter les baisses violentes en bear
 market sans rater la hausse à long terme. L'outil te donne
