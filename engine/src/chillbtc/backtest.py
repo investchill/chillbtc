@@ -14,20 +14,18 @@ Output: ``engine/output/phase_c_results.csv`` (one row per cell) +
 from __future__ import annotations
 
 import json
+from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Callable
 
 import numpy as np
 import pandas as pd
 
 from chillbtc.data import load_or_fetch
 from chillbtc.metrics import (
-    PERIODS_PER_YEAR,
     cagr,
     equity_from_signals,
     max_drawdown,
-    n_switches,
     sharpe,
 )
 from chillbtc.optims import (
@@ -138,7 +136,6 @@ def _hodl_perf(monthly: pd.DataFrame) -> dict:
     signals = pd.Series(1.0, index=monthly.index, name="hodl")
     equity = equity_from_signals(monthly, signals, fee_per_switch=0.0)
     returns = equity.pct_change()
-    n_years = len(monthly) / PERIODS_PER_YEAR
     return {
         "cell_id": "HODL",
         "rule": "HODL",

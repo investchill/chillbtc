@@ -26,7 +26,6 @@ from __future__ import annotations
 import csv
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
 
 from chillbtc.backtest import FEE_CONSERVATIVE, _trim_common_warmup

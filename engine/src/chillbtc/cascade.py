@@ -112,7 +112,6 @@ def build_cascade_position(
     position = pd.Series(0.0, index=def_b.index, name="position_cascade")
 
     both_buy = (def_b == 1) & (agg_b == 1)
-    both_cash = (def_b == 0) & (agg_b == 0)
     only_agg_buy = (def_b == 0) & (agg_b == 1)   # R1 CASH, R3 BUY
     only_def_buy = (def_b == 1) & (agg_b == 0)   # R1 BUY, R3 CASH (edge actuel)
 
