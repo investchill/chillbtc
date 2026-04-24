@@ -67,10 +67,12 @@ Trois moments charnières où la tendance a pesé :
 
 ![Signaux tendance et valorisation — historique 2015-2026](assets/methodology/signaux_history.png)
 
-*Prix BTC en échelle log. Les zones grises marquent les mois où la tendance
-(TSMOM 11 m) est CASH ; les zones bleues, les mois où la valorisation
-(prix/fair_PL > 2,5) est CASH. Les superpositions sont les bear markets
-confirmés, où les 2 signaux disent CASH simultanément.*
+*Prix BTC en échelle log avec les 3 états CASH codés par couleur
+mutuellement exclusive : **gris** = seule la tendance est CASH (momentum
+faible, prix encore raisonnable), **bleu clair** = seule la valorisation
+est CASH (prix surchauffé, tendance encore haussière), **rose** = les 2
+signaux CASH simultanément (bear confirmé). Les zones non ombrées sont
+les mois où les 2 signaux disent BUY.*
 
 ---
 
