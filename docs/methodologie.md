@@ -2,9 +2,7 @@
 
 Cette page explique **pourquoi** la stratégie utilise exactement 2 signaux, un
 de **tendance** et un de **valorisation**, **comment** chacun est construit, et
-**quand** ils se sont avérés utiles ou coûteux sur l'historique BTC. Le corps
-est accessible à tout lecteur intéressé. Les encadrés *Pour l'expert* donnent
-les formules, les citations DOI et les limites académiques.
+**quand** ils se sont avérés utiles ou coûteux sur l'historique BTC.
 
 > La stratégie est gelée depuis 2026-05-01 jusqu'à la revue annuelle du 1ᵉʳ
 > janvier suivant. Les paramètres décrits ici sont les paramètres live.
@@ -56,17 +54,6 @@ stabilité couvre n ∈ {9, 10, 11, 12, 13}, tous produisant un DD voisin. Un
 paramètre choisi dans un plateau large résiste mieux aux régimes
 hors-échantillon qu'un pic étroit.
 
-> **Pour l'expert.** La tendance est implémentée comme
-> `signal[t] = 1 si log(P[t]) - log(P[t-11]) > 0 sinon 0`.
-> Pas de vol-targeting (contrairement au paper original), pas de size
-> scaling. Critique principale : Goyal, Welch (2008) puis Goyal, Welch,
-> Zafirov (2024) ont montré que de nombreux signaux prédictifs de prime
-> de risque actions perdent leur pouvoir hors-échantillon. TSMOM résiste
-> mieux que la moyenne, mais le risque d'atténuation existe, notamment si
-> l'institutionnalisation du BTC accélère l'arbitrage intra-mois. Voir
-> aussi le plateau de stabilité documenté dans
-> `engine/output/phase_c_results.csv`.
-
 ### Illustrations historiques
 
 Trois moments charnières où la tendance a pesé :
@@ -111,18 +98,6 @@ Recalibrer A chaque mois reviendrait à ajuster la référence sur le prix
 lui-même, vidant le signal de son contenu anti-bulle. Figer A pour l'année
 coupe ce biais. Le coût est une désynchronisation possible si l'adoption
 accélère brutalement, mais c'est le compromis assumé.
-
-> **Pour l'expert.** `fair_PL(t) = 10^(A + 5.8 × log10(days[t]))`. Bande
-> d'hystérésis stricte : entrée BUY quand `close/fair < 0.6`, sortie CASH
-> quand `close/fair > 2.5`. A est fitté comme moyenne du résidu
-> `log(close) - 5.8 × log(days)` sur l'historique complet au moment de la
-> revue annuelle. La valeur live est A = -16.917 (figée 2026-04-18).
-> **Critique.** Contrairement au Stock-to-Flow de PlanB (2019), invalidé
-> empiriquement depuis 2022 pour cause de raisonnement circulaire et
-> d'autocorrélation non contrôlée, la Power Law n'utilise pas la
-> capitalisation comme variable explicative, donc échappe à la tautologie
-> principale du S2F. Elle reste sensible au choix de t₀ (genesis block)
-> et à l'exposant N, et ne bénéficie d'aucun mécanisme générateur fermé.
 
 ### Illustrations historiques
 
