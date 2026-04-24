@@ -1,4 +1,4 @@
-# ChillBTC — BTC posé. Un coup d'œil par mois.
+# ChillBTC — le BTC posé. Un coup d'œil par mois.
 
 **ChillBTC** est une stratégie d'investissement Bitcoin **mécanique**,
 **set-and-forget**, conçue pour limiter les baisses violentes en bear
