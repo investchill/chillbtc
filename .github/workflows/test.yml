@@ -25,6 +25,10 @@ jobs:
         working-directory: engine
         run: uv sync --group dev
 
+      - name: Run ruff lint
+        working-directory: engine
+        run: uv run --group dev ruff check .
+
       - name: Run pytest
         working-directory: engine
         run: uv run --group dev pytest -v

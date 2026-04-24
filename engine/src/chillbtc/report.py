@@ -26,9 +26,6 @@ import pandas as pd
 
 from chillbtc.backtest import (
     FEE_CONSERVATIVE,
-    LATIN_SQUARE,
-    OPTIM_FNS,
-    SPECS,
     _trim_common_warmup,
 )
 from chillbtc.cascade import run_cascade

@@ -124,19 +124,25 @@ cd engine && uv run python -m chillbtc.cascade
 Génère `cascade_position{,_symmetric,_strict_r3_def}.csv` +
 `cascade_summary{...}.json` — la convention `strict_r1_def` est celle retenue.
 
-### Lancer les tests
+### Lancer les tests + le lint
 
 ```bash
 cd engine
-uv sync --group dev              # installe pytest + pytest-cov
+uv sync --group dev              # installe pytest + pytest-cov + ruff
 uv run --group dev pytest        # lance toute la suite (< 2 s)
 uv run --group dev pytest -v     # avec détail test par test
+uv run --group dev ruff check .  # lint : ligne ≤ 100, pyupgrade, bugbear, isort
 ```
 
-La suite couvre les primitives R1 / R3, la cascade, les métriques
+La suite de tests couvre les primitives R1 / R3, la cascade, les métriques
 (CAGR / DD / Sharpe) et les helpers de présentation du signal mensuel.
 Pas de réseau : tout tourne sur `engine/data/btc_monthly.csv` déjà
 commité + des séries synthétiques.
+
+Le lint passe sur tout le package `src/chillbtc/` + `tests/`. Les dossiers
+`output/` et `data/` sont exclus. Configuration dans
+[`engine/pyproject.toml`](engine/pyproject.toml) sous `[tool.ruff]` :
+règles `E`, `F`, `I`, `W`, `UP`, `B`, `E501` ignoré (chaînes pandas).
 
 ---
 
@@ -145,8 +151,9 @@ commité + des séries synthétiques.
 ### 5.1 Tests (`test.yml`)
 
 Déclenché sur chaque `push` ou `pull_request` vers `public` ou `main`,
-ainsi qu'en manuel via `workflow_dispatch`. `uv sync --group dev` puis
-`uv run --group dev pytest`. Doit être vert avant tout merge.
+ainsi qu'en manuel via `workflow_dispatch`. Enchaîne `uv sync --group dev`,
+`ruff check .`, puis `pytest`. **Les trois étapes doivent être vertes
+avant tout merge.**
 
 ### 5.2 Mise à jour mensuelle (`monthly-update.yml`)
 
