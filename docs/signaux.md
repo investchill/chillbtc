@@ -1,5 +1,7 @@
 # Signal BTC
 
+> 📖 [Comprendre les 2 signaux et la méthodologie](methodologie.md)
+
 ## 🟡 50 % BTC + 50 % USDC
 
 ## Signaux du mois
@@ -12,4 +14,4 @@
 - Prix BTC à la clôture du **31 mars 2026** : **68 215 USD**
 - Constante A Power Law : -16.917 (figée jusqu'à la prochaine revue annuelle)
 
-_Dernière mise à jour : 2026-04-24 04:36 UTC (auto)._
+_Dernière mise à jour : 2026-04-24 08:14 UTC (auto)._
