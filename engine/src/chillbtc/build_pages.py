@@ -103,8 +103,8 @@ def build_signaux_md(journal_df: pd.DataFrame) -> str:
         "",
         "## Signaux du mois",
         "",
-        f"- **R1 TSMOM 11m** : {ret_11m:+.1%}  →  {_emoji_sig(sig_r1)} {_label_sig(sig_r1)}",
-        f"- **R3 Power Law** : {ratio_pl:.2f}  →  {_emoji_sig(sig_r3)} {_label_sig(sig_r3)}",
+        f"- **Tendance** (TSMOM 11 m) : {ret_11m:+.1%}  →  {_emoji_sig(sig_r1)} {_label_sig(sig_r1)}",
+        f"- **Valorisation** (Power Law) : {ratio_pl:.2f}  →  {_emoji_sig(sig_r3)} {_label_sig(sig_r3)}",
         "",
         "## Contexte",
         "",
@@ -128,7 +128,7 @@ def build_signaux_md(journal_df: pd.DataFrame) -> str:
             r3 = float(row["signal_r3"])
             lines.append(
                 f"- **{d.year}-{d.month:02d}** : {_emoji_pos(p)} {int(p * 100)} % "
-                f"— R1 {_label_sig(r1)}, R3 {_label_sig(r3)}"
+                f"— tendance {_label_sig(r1)}, valorisation {_label_sig(r3)}"
             )
         lines.append("")
 
@@ -265,7 +265,7 @@ def build_historique_annuel_md(table: pd.DataFrame) -> str:
         "# Historique annuel — Stratégie ChillBTC vs HODL",
         "",
         f"Performances annuelles depuis {start_str} "
-        f"(données CDD Bitstamp 2014-11, moins {N_TSMOM} mois de warm-up R1 TSMOM). "
+        f"(données CDD Bitstamp 2014-11, moins {N_TSMOM} mois de warm-up tendance (TSMOM)). "
         "Les années marquées `*` sont partielles (démarrage backtest, année en cours).",
         "",
         "```",
@@ -331,7 +331,7 @@ def build_historique_mensuel_md(table: pd.DataFrame) -> str:
         "# Historique mensuel — Stratégie ChillBTC vs HODL",
         "",
         f"Une ligne par mois depuis {start_str} "
-        f"(données CDD Bitstamp 2014-11, moins {N_TSMOM} mois de warm-up R1 TSMOM).",
+        f"(données CDD Bitstamp 2014-11, moins {N_TSMOM} mois de warm-up tendance (TSMOM)).",
         "",
         "**Comment lire** :",
         "",
