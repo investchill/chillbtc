@@ -39,8 +39,8 @@ monté sur les 11 derniers mois** ? Si oui, la tendance est favorable et le
 signal dit BUY. Sinon, il dit CASH.
 
 C'est bien une **comparaison ponctuelle** entre le prix d'aujourd'hui et
-celui d'il y a 11 mois, pas un calcul continu ni une dérivée instantanée.
-L'intuition vient d'un résultat académique largement documenté : sur un grand
+celui d'il y a 11 mois. L'intuition vient d'un résultat académique largement
+documenté : sur un grand
 nombre de marchés, le rendement passé sur 1 à 12 mois prédit le rendement du
 mois suivant. Moskowitz, Ooi et Pedersen (2012) l'ont montré sur 58 marchés
 futures (actions, devises, matières premières, obligations) de 1965 à 2009.
