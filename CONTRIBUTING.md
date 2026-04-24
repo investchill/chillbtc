@@ -244,7 +244,14 @@ non-commercial uniquement, partage à l'identique.
 
 ## 8. Contact
 
-- **Issues GitHub** — préférence pour les discussions techniques.
+- **Issues GitHub** — préférence pour les discussions techniques. Trois
+  templates sont fournis dans `.github/ISSUE_TEMPLATE/` : bug, proposition
+  d'amélioration, trigger META.
+- **Pull requests** — le template `.github/PULL_REQUEST_TEMPLATE.md` se
+  remplit automatiquement et te rappelle les checks anti-overfit.
+- **Sécurité** — vulnérabilités traitées en privé, voir
+  [`SECURITY.md`](SECURITY.md).
+- **Comportement** — voir [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md).
 - **Mail** — `chillbtc@zaclys.net` pour tout autre contact.
 
 Pas un conseil en investissement. Les performances passées ne préjugent
