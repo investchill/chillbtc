@@ -41,6 +41,33 @@ MOIS_FR = {
     9: "septembre", 10: "octobre", 11: "novembre", 12: "décembre",
 }
 
+# Front-matter Jekyll injecté en tête des pages auto-générées pour que
+# GitHub Pages applique le layout commun (_layouts/page.html). Préservé à
+# chaque regénération mensuelle puisque produit par le builder lui-même.
+JEKYLL_FRONTMATTER = {
+    "signaux.md": (
+        "---\n"
+        "layout: page\n"
+        "title: Signal du mois\n"
+        "description: L'allocation BTC à appliquer ce mois-ci, et les 2 signaux sous-jacents.\n"
+        "---\n\n"
+    ),
+    "historique-annuel.md": (
+        "---\n"
+        "layout: page\n"
+        "title: Historique annuel\n"
+        "description: Performance annuelle stratégie vs HODL depuis 2015.\n"
+        "---\n\n"
+    ),
+    "historique-mensuel.md": (
+        "---\n"
+        "layout: page\n"
+        "title: Historique mensuel\n"
+        "description: Toutes les positions mois par mois depuis 2015.\n"
+        "---\n\n"
+    ),
+}
+
 
 def _emoji_pos(p: float) -> str:
     if p >= 0.99:
@@ -427,7 +454,7 @@ def main() -> None:
     }
     for name, content in pages.items():
         path = docs_dir / name
-        path.write_text(content, encoding="utf-8")
+        path.write_text(JEKYLL_FRONTMATTER[name] + content, encoding="utf-8")
         print(f"  ✅ {path.relative_to(repo_root)}")
 
 
