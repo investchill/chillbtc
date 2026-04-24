@@ -310,8 +310,7 @@ def build_historique_mensuel_md(table: pd.DataFrame) -> str:
         "# Historique mensuel — Stratégie ChillBTC vs HODL",
         "",
         f"Une ligne par mois depuis {start_str} "
-        f"(données CDD Bitstamp 2014-11, moins {N_TSMOM} mois de warm-up R1 TSMOM). "
-        "Du **plus récent en haut** au plus ancien en bas.",
+        f"(données CDD Bitstamp 2014-11, moins {N_TSMOM} mois de warm-up R1 TSMOM).",
         "",
         "**Comment lire** :",
         "",
