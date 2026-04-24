@@ -46,6 +46,11 @@ BUY_GREEN = "#2E7D32"
 BAND_BLUE = "#1565C0"
 ANNOT_BG = "#FFF8E1"
 
+# Three mutually-exclusive CASH states (tendance, valorisation, both)
+COLOR_TEND_ONLY = "#BDBDBD"   # grey, momentum weak, price still reasonable
+COLOR_VALO_ONLY = "#90CAF9"   # light blue, price overheated, trend still up
+COLOR_BOTH_CASH = "#EF9A9A"   # light red, bear confirmed
+
 
 def _load_monthly() -> pd.DataFrame:
     repo = Path(__file__).resolve().parents[2]
@@ -53,25 +58,42 @@ def _load_monthly() -> pd.DataFrame:
     return pd.read_csv(cache, parse_dates=["date"], index_col="date")
 
 
-def _shade_cash_zones(ax, signal: pd.Series, color: str, alpha: float, label: str) -> None:
-    """Fill between months where the signal is CASH (0)."""
-    s = signal.fillna(0.0).astype(float).to_numpy()
-    dates = signal.index.to_numpy()
-    in_cash = False
-    start = None
-    first = True
-    for i, v in enumerate(s):
-        if v == 0.0 and not in_cash:
-            start = dates[i]
-            in_cash = True
-        elif v == 1.0 and in_cash:
-            ax.axvspan(start, dates[i], color=color, alpha=alpha,
+def _shade_three_states(ax, sig_tend: pd.Series, sig_valo: pd.Series) -> None:
+    """Shade the three mutually-exclusive CASH states with distinct colors.
+
+    Each month falls into exactly one of four buckets (BUY+BUY, tendance CASH
+    only, valorisation CASH only, both CASH). BUY+BUY is left unshaded; the
+    three CASH states each get a dedicated color and a single legend entry.
+    """
+    tend = sig_tend.fillna(1.0).astype(float).to_numpy()
+    valo = sig_valo.fillna(1.0).astype(float).to_numpy()
+    dates = sig_tend.index.to_numpy()
+
+    state_defs = [
+        ("tend_only", (tend == 0) & (valo == 1), COLOR_TEND_ONLY,
+         "Tendance CASH uniquement"),
+        ("valo_only", (tend == 1) & (valo == 0), COLOR_VALO_ONLY,
+         "Valorisation CASH uniquement"),
+        ("both_cash", (tend == 0) & (valo == 0), COLOR_BOTH_CASH,
+         "Les 2 signaux CASH (bear confirmé)"),
+    ]
+    alpha = 0.50
+    for _, mask, color, label in state_defs:
+        in_zone = False
+        start = None
+        first = True
+        for i, on in enumerate(mask):
+            if on and not in_zone:
+                start = dates[i]
+                in_zone = True
+            elif not on and in_zone:
+                ax.axvspan(start, dates[i], color=color, alpha=alpha,
+                           label=label if first else None)
+                first = False
+                in_zone = False
+        if in_zone:
+            ax.axvspan(start, dates[-1], color=color, alpha=alpha,
                        label=label if first else None)
-            first = False
-            in_cash = False
-    if in_cash:
-        ax.axvspan(start, dates[-1], color=color, alpha=alpha,
-                   label=label if first else None)
 
 
 def plot_signaux_history(monthly: pd.DataFrame, out: Path) -> None:
@@ -82,12 +104,9 @@ def plot_signaux_history(monthly: pd.DataFrame, out: Path) -> None:
     )
 
     fig, ax = plt.subplots(figsize=(13.33, 6.0), dpi=120)
+    _shade_three_states(ax, sig_tend, sig_valo)
     ax.semilogy(monthly.index, monthly["close_usd"], color=BTC_ORANGE,
                 linewidth=1.8, label="Prix BTC (USD, log)")
-    _shade_cash_zones(ax, sig_tend, CASH_GREY, 0.25,
-                      "Tendance CASH (TSMOM 11 m ≤ 0)")
-    _shade_cash_zones(ax, sig_valo, BAND_BLUE, 0.12,
-                      "Valorisation CASH (prix/fair_PL > 2.5)")
 
     ax.set_title("Signaux tendance et valorisation — historique 2015-2026",
                  fontsize=14, loc="left")
