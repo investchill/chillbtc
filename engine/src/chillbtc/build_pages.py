@@ -15,7 +15,7 @@ les données et appende la dernière ligne au journal) avant ``chillbtc-pages``.
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 import numpy as np
@@ -67,7 +67,7 @@ def _label_sig(s: float) -> str:
 
 
 def _now_utc_str() -> str:
-    return datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    return datetime.now(UTC).strftime("%Y-%m-%d %H:%M UTC")
 
 
 def build_signaux_md(journal_df: pd.DataFrame) -> str:
@@ -279,7 +279,7 @@ def build_historique_annuel_md(table: pd.DataFrame) -> str:
         "- **DD max** : pire baisse temporaire de la valeur du portefeuille "
         "pendant l'année, peu importe si on a vendu ou pas. Si la valeur passe "
         "par 100 → 70, le DD est de -30 %, même si elle remonte à 90 ensuite.",
-        f"- **Perf annualisée 3 / 5 ans** : moyenne géométrique des 36 / 60 "
+        "- **Perf annualisée 3 / 5 ans** : moyenne géométrique des 36 / 60 "
         "derniers mois (rolling, pas calendaire).",
         "",
         f"_Dernière mise à jour : {_now_utc_str()} (auto)._",

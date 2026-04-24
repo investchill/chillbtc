@@ -126,8 +126,8 @@ def _render_markdown(rows: list[dict], cell_id_a: str, cascade_summary: dict) ->
     lines.append("")
     lines.append(f"- **Mode A** : sélection de la cellule `{cell_id_a}` (max CAGR sous DD ≤ -50 %).")
     lines.append(f"- **Mode B** : ensemble vote K={K_ENSEMBLE} parmi 9.")
-    lines.append(f"- **Mode C** : cascade R1 (S2, R1×O2 DD, n=11) + R3 (S8, R3×O2 CAGR walk-forward), "
-                 f"convention `strict_r1_def` (edge case R1 BUY & R3 CASH → 0 %).")
+    lines.append("- **Mode C** : cascade R1 (S2, R1×O2 DD, n=11) + R3 (S8, R3×O2 CAGR walk-forward), "
+                 "convention `strict_r1_def` (edge case R1 BUY & R3 CASH → 0 %).")
     lines.append("")
     lines.append("### KPIs comparés")
     lines.append("")
@@ -160,7 +160,6 @@ def _render_markdown(rows: list[dict], cell_id_a: str, cascade_summary: dict) ->
     lines.append("")
     # Analyse automatique
     a_perf = next(r for r in rows if r["mode"] == "Mode A")
-    b_perf = next(r for r in rows if r["mode"] == "Mode B")
     c_perf = next(r for r in rows if r["mode"] == "Mode C")
     hodl_perf = next(r for r in rows if r["mode"] == "HODL")
 
@@ -171,8 +170,8 @@ def _render_markdown(rows: list[dict], cell_id_a: str, cascade_summary: dict) ->
     lines.append(f"- Mode A ({cell_id_a} seul) a le **meilleur CAGR** ({a_perf['cagr_pct']:.1f} %), "
                  f"mais c'est une cellule R3 isolée — **biais in-sample non complètement lavé** (refit de A "
                  f"sur la full history, WFE=0.585 en Phase C). La perf \"honnête\" hors biais serait plus basse.")
-    lines.append(f"- Mode B ensemble K=4 **dilue le biais R3** (9 cellules votent) mais ne domine A sur aucun "
-                 f"KPI. Il sert surtout de filet de robustesse conceptuelle.")
+    lines.append("- Mode B ensemble K=4 **dilue le biais R3** (9 cellules votent) mais ne domine A sur aucun "
+                 "KPI. Il sert surtout de filet de robustesse conceptuelle.")
     lines.append(f"- Mode C cascade a le **Sharpe le plus bas** des 3 modes actifs ({c_perf['sharpe']:.2f}), "
                  f"mais **aucun des 3 modes ne domine strictement les 2 autres** : A gagne CAGR/Sharpe mais "
                  f"perd DD, C gagne DD mais perd CAGR/Sharpe.")
