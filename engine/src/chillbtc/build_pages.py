@@ -111,22 +111,26 @@ def build_signaux_md(journal_df: pd.DataFrame) -> str:
         f"- Constante A Power Law : {a_const:.3f} "
         "(figée jusqu'à la prochaine revue annuelle)",
         "",
-        "## 6 derniers mois",
-        "",
     ]
 
-    last_6 = journal_df.tail(6).iloc[::-1]
-    for _, row in last_6.iterrows():
-        d = pd.Timestamp(row["date"])
-        p = float(row["position_pct"]) / 100.0
-        r1 = float(row["signal_r1"])
-        r3 = float(row["signal_r3"])
-        lines.append(
-            f"- **{d.year}-{d.month:02d}** : {_emoji_pos(p)} {int(p * 100)} % "
-            f"— R1 {_label_sig(r1)}, R3 {_label_sig(r3)}"
-        )
+    # Section "N derniers mois" : titre dynamique, skip si <= 1 ligne
+    # (le mois en cours est déjà affiché plus haut).
+    n = min(6, len(journal_df))
+    if n > 1:
+        lines += [f"## {n} derniers mois", ""]
+        last_n = journal_df.tail(n).iloc[::-1]
+        for _, row in last_n.iterrows():
+            d = pd.Timestamp(row["date"])
+            p = float(row["position_pct"]) / 100.0
+            r1 = float(row["signal_r1"])
+            r3 = float(row["signal_r3"])
+            lines.append(
+                f"- **{d.year}-{d.month:02d}** : {_emoji_pos(p)} {int(p * 100)} % "
+                f"— R1 {_label_sig(r1)}, R3 {_label_sig(r3)}"
+            )
+        lines.append("")
 
-    lines += ["", f"_Dernière mise à jour : {_now_utc_str()} (auto)._", ""]
+    lines += [f"_Dernière mise à jour : {_now_utc_str()} (auto)._", ""]
     return "\n".join(lines)
 
 

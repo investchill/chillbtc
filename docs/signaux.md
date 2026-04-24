@@ -12,8 +12,4 @@
 - Prix BTC à la clôture du **31 mars 2026** : **68 215 USD**
 - Constante A Power Law : -16.917 (figée jusqu'à la prochaine revue annuelle)
 
-## 6 derniers mois
-
-- **2026-03** : 🟡 50 % — R1 CASH, R3 BUY
-
-_Dernière mise à jour : 2026-04-24 04:34 UTC (auto)._
+_Dernière mise à jour : 2026-04-24 04:36 UTC (auto)._
