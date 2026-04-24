@@ -1,6 +1,6 @@
 # Historique mensuel — Stratégie ChillBTC vs HODL
 
-Une ligne par mois depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 mois de warm-up R1 TSMOM).
+Une ligne par mois depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 mois de warm-up tendance (TSMOM)).
 
 **Comment lire** :
 
@@ -138,4 +138,4 @@ Une ligne par mois depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 mois 
   2015-10  🔴   0 %       310    (début backtest)
 ```
 
-_Dernière mise à jour : 2026-04-24 05:00 UTC (auto)._
+_Dernière mise à jour : 2026-04-24 08:24 UTC (auto)._
