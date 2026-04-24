@@ -34,8 +34,8 @@ des 2 signaux (tendance + valorisation) et le contexte du mois.
 
 ### [📈 Historique annuel →](docs/historique-annuel.md)
 
-Performance année par année depuis 2015 — stratégie ChillBTC vs HODL en
-parallèle.
+Performance année par année depuis 2015 — stratégie ChillBTC vs **HODL**
+(acheter et garder, stratégie passive de référence) en parallèle.
 
 ---
 
@@ -57,8 +57,9 @@ stratégie vs HODL.
   fiscale sur les switches mensuels — art. 150 VH bis CGI).
 - Tu utilises **Binance** (adaptable à d'autres plateformes mais le backtest
   suppose Binance).
-- Tu acceptes qu'un **drawdown jusqu'à −50 %** reste possible. Le backtest
-  2016-2026 montre −40 % max mais le futur n'est pas garanti.
+- Tu acceptes qu'une **baisse temporaire jusqu'à −50 %** de ton portefeuille
+  reste possible. Le backtest 2016-2026 montre −40 % max, mais le futur n'est
+  pas garanti.
 - Tu veux **limiter la casse en marché baissier** (la perte de −75 % de
   2022 serait passée à −9 %) quitte à **perdre un peu en marché haussier**
   (la strat sous-performe HODL quand la hausse est forte, c'est normal par
@@ -69,7 +70,7 @@ stratégie vs HODL.
 - Tu **trades activement** (day trading, swing trading intra-mois).
 - Tu veux **battre le marché sur 3-6 mois** (la strat est conçue sur le cycle,
   pas sur le trimestre).
-- Tu **ne tolères pas** un drawdown > −30 %.
+- Tu **ne tolères pas** une baisse temporaire de ton portefeuille supérieure à −30 %.
 - Tu veux un **stop-loss intra-mois** (la strat décide une seule fois par mois,
   point).
 - Tu veux **timer les tops** ou **sauter sur les breakouts** (la strat est en
@@ -120,10 +121,10 @@ par année et mois par mois sur les pages dédiées** :
 - **[📅 Historique mensuel →](docs/historique-mensuel.md)** — toutes les
   positions et la perf cumulée mois par mois.
 
-**Lecture rapide** (KPIs globaux, derniers chiffres consolidés) :
+**Lecture rapide** (chiffres globaux sur ~10 ans) :
 
-- **CAGR stratégie ≈ +90 %/an** vs **HODL ≈ +75 %/an** sur ~10 ans.
-- **Drawdown max stratégie −40 %** vs **HODL −75 %** (c'est ça, le vrai gain).
+- **Performance annualisée stratégie ≈ +90 %/an** vs **HODL ≈ +75 %/an**.
+- **Pire baisse stratégie −40 %** vs **HODL −75 %** (c'est ça, le vrai gain).
 - La strat **gagne largement en marché baissier** (2018, 2022) et
   **sous-performe en marché haussier** (2017, 2019, 2020, 2023) — c'est
   normal par construction, pas un bug.
@@ -181,18 +182,29 @@ l'exécute le 1ᵉʳ du mois à 06:00 UTC.
 
 ---
 
-## 🧭 Architecture conceptuelle
+## 🧭 Comment la méthode a été construite
 
-**N-versioning par produit cartésien** : trois familles de règles × trois
-familles d'optimisation = **9 stratégies** calibrées indépendamment. La
-stratégie retenue (Mode C cascade) combine la tendance (défensive) et la
-valorisation (agressive) pour sortir du marché via OR logique dès que l'un
-des deux signaux dit CASH.
+Trois règles candidates (tendance, Mayer, valorisation) croisées avec
+trois façons indépendantes de les calibrer, soit **neuf combinaisons
+testées** séparément. Celle retenue combine **la tendance** (qui sort
+tôt en cas de retournement) et **la valorisation** (qui sort quand le
+prix est trop cher) : la position est réduite ou coupée dès que l'un
+des deux signaux passe CASH.
 
-## 🛡 Garde-fous (résumé)
+📖 Détails complets (formules, références académiques avec DOI,
+illustrations historiques) dans
+**[docs/methodologie.md](docs/methodologie.md)**.
 
-- Règles à **1 ou 2 paramètres maximum**. Pas de filtres ad hoc.
-- **Plateau de stabilité exigé** : si seul le pic exact fonctionne = overfit.
-- **Walk-forward + leave-one-cycle-out** comme filets OOS.
-- **Décision figée à l'avance** : aucun bricolage entre revues annuelles.
-- **Journal mensuel obligatoire** : sans journal, pas d'apprentissage.
+## 🛡 Garde-fous anti-sur-optimisation
+
+- Chaque règle n'a au plus **1 ou 2 boutons à tourner**. Aucune
+  exception.
+- Un paramètre n'est retenu que s'il fait partie d'une **plage large
+  qui marche**, jamais un pic isolé du grid search.
+- Deux protocoles de validation indépendants, qui cachent une partie de
+  l'historique à la calibration pour vérifier que le résultat n'est pas
+  dû à la chance.
+- **Décision figée à l'avance** : aucun ajustement entre deux revues
+  annuelles.
+- **Journal mensuel obligatoire** : sans trace, pas d'apprentissage
+  possible.
