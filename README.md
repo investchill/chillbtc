@@ -98,6 +98,10 @@ R1 CASH + R3 CASH  →    0 %  BTC  + 100 %  USDC            (bear confirmé)
 C'est tout. Pas d'autre paramètre, pas de condition cachée, pas de filtre
 discrétionnaire.
 
+📖 **Pour aller plus loin sur la méthodologie** (formules exactes, fondements
+académiques avec DOI, illustrations historiques annotées sur 10 ans) : voir
+**[docs/methodologie.md](docs/methodologie.md)**.
+
 ---
 
 ## 📊 Performance historique (backtest depuis 2015-10)
