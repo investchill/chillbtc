@@ -148,4 +148,4 @@ Une ligne par mois depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 mois 
   2015-10  🔴   0 %       310    (début de la simulation)
 ```
 
-_Dernière mise à jour : 2026-04-24 12:10 UTC (auto)._
+_Dernière mise à jour : 2026-04-24 12:30 UTC (auto)._

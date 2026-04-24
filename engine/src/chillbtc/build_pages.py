@@ -121,17 +121,74 @@ def build_signaux_md(journal_df: pd.DataFrame) -> str:
         fair = 10 ** (a_const + N_EXP_R3 * np.log10(days))
         ratio_pl = close / fair
 
+    # Allocation card — Design 1 (deux cartes BTC + USDC côte-à-côte).
+    btc_pct_int = int(round(pos_pct * 100))
+    usdc_pct_int = 100 - btc_pct_int
+    state_emoji = _emoji_pos(pos_pct)
+    btc_dim = " alloc-dim" if btc_pct_int == 0 else ""
+    usdc_dim = " alloc-dim" if usdc_pct_int == 0 else ""
+
+    alloc_html = (
+        '<div class="signal-alloc">\n'
+        f'  <div class="alloc-card alloc-btc{btc_dim}">\n'
+        f'    <div class="alloc-state">{state_emoji}</div>\n'
+        f'    <div class="alloc-pct">{btc_pct_int} %</div>\n'
+        '    <div class="alloc-label">BTC</div>\n'
+        '  </div>\n'
+        f'  <div class="alloc-card alloc-usdc{usdc_dim}">\n'
+        f'    <div class="alloc-state">{state_emoji}</div>\n'
+        f'    <div class="alloc-pct">{usdc_pct_int} %</div>\n'
+        '    <div class="alloc-label">USDC</div>\n'
+        '  </div>\n'
+        '</div>'
+    )
+
+    # Signal table — ligne Tendance + ligne Valorisation, tags pastel.
+    r1_value_str = f"{ret_11m:+.1%}"
+    r1_num_class = "positive" if ret_11m >= 0 else "negative"
+    r3_value_str = f"{ratio_pl:.2f}"
+    r1_decision_class = "achat" if sig_r1 == 1.0 else "cash"
+    r3_decision_class = "achat" if sig_r3 == 1.0 else "cash"
+
+    signal_table_html = (
+        '<table class="signal-table">\n'
+        '  <thead>\n'
+        '    <tr>\n'
+        '      <th>Signal</th>\n'
+        '      <th class="num-col">Valeur</th>\n'
+        '      <th class="arrow-col"></th>\n'
+        '      <th>Décision</th>\n'
+        '    </tr>\n'
+        '  </thead>\n'
+        '  <tbody>\n'
+        '    <tr>\n'
+        '      <td>Tendance <span class="signal-sub">(TSMOM 11 m)</span></td>\n'
+        f'      <td class="num {r1_num_class}">{r1_value_str}</td>\n'
+        '      <td class="arrow">→</td>\n'
+        f'      <td><span class="decision {r1_decision_class}">'
+        f'{_emoji_sig(sig_r1)} {_label_sig(sig_r1)}</span></td>\n'
+        '    </tr>\n'
+        '    <tr>\n'
+        '      <td>Valorisation <span class="signal-sub">(Power Law)</span></td>\n'
+        f'      <td class="num">{r3_value_str}</td>\n'
+        '      <td class="arrow">→</td>\n'
+        f'      <td><span class="decision {r3_decision_class}">'
+        f'{_emoji_sig(sig_r3)} {_label_sig(sig_r3)}</span></td>\n'
+        '    </tr>\n'
+        '  </tbody>\n'
+        '</table>'
+    )
+
     lines = [
         "# Signal BTC",
         "",
         "> 📖 [Comprendre les 2 signaux et la méthodologie](methodologie.md)",
         "",
-        f"## {_emoji_pos(pos_pct)} {_label_pos(pos_pct)}",
+        alloc_html,
         "",
         "## Signaux du mois",
         "",
-        f"- **Tendance** (TSMOM 11 m) : {ret_11m:+.1%}  →  {_emoji_sig(sig_r1)} {_label_sig(sig_r1)}",
-        f"- **Valorisation** (Power Law) : {ratio_pl:.2f}  →  {_emoji_sig(sig_r3)} {_label_sig(sig_r3)}",
+        signal_table_html,
         "",
         "## Contexte",
         "",
