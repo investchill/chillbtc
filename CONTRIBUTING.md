@@ -123,11 +123,33 @@ cd engine && uv run python -m chillbtc.cascade
 Génère `cascade_position{,_symmetric,_strict_r3_def}.csv` +
 `cascade_summary{...}.json` — la convention `strict_r1_def` est celle retenue.
 
+### Lancer les tests
+
+```bash
+cd engine
+uv sync --group dev              # installe pytest + pytest-cov
+uv run --group dev pytest        # lance toute la suite (< 2 s)
+uv run --group dev pytest -v     # avec détail test par test
+```
+
+La suite couvre les primitives R1 / R3, la cascade, les métriques
+(CAGR / DD / Sharpe) et les helpers de présentation du signal mensuel.
+Pas de réseau : tout tourne sur `engine/data/btc_monthly.csv` déjà
+commité + des séries synthétiques.
+
 ---
 
-## 5. CI — workflow mensuel
+## 5. CI — workflows
 
-Un seul workflow dans `.github/workflows/monthly-update.yml`. Il :
+### 5.1 Tests (`test.yml`)
+
+Déclenché sur chaque `push` ou `pull_request` vers `public` ou `main`,
+ainsi qu'en manuel via `workflow_dispatch`. `uv sync --group dev` puis
+`uv run --group dev pytest`. Doit être vert avant tout merge.
+
+### 5.2 Mise à jour mensuelle (`monthly-update.yml`)
+
+Un workflow dans `.github/workflows/monthly-update.yml`. Il :
 
 1. Check out le repo (branche `public`).
 2. Setup `uv` + Python 3.13.
