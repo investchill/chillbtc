@@ -1,6 +1,6 @@
 # Historique annuel — Stratégie ChillBTC vs HODL
 
-Performances annuelles depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 mois de warm-up R1 TSMOM). Les années marquées `*` sont partielles (démarrage backtest, année en cours).
+Performances annuelles depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 mois de warm-up tendance (TSMOM)). Les années marquées `*` sont partielles (démarrage backtest, année en cours).
 
 ```
   année    perf strat    perf HODL   DD strat   DD HODL
@@ -30,4 +30,4 @@ Performances annuelles depuis 2015-10 (données CDD Bitstamp 2014-11, moins 11 m
 - **DD max** : pire baisse temporaire de la valeur du portefeuille pendant l'année, peu importe si on a vendu ou pas. Si la valeur passe par 100 → 70, le DD est de -30 %, même si elle remonte à 90 ensuite.
 - **Perf annualisée 3 / 5 ans** : moyenne géométrique des 36 / 60 derniers mois (rolling, pas calendaire).
 
-_Dernière mise à jour : 2026-04-24 04:34 UTC (auto)._
+_Dernière mise à jour : 2026-04-24 08:24 UTC (auto)._
