@@ -96,11 +96,13 @@ Chaque 1ᵉʳ du mois, l'outil lit **2 signaux** sur le prix BTC :
 Les 2 signaux combinés → **1 dosage unique** (règle 100/50/0) :
 
 ```
-Tendance ACHAT + Valorisation ACHAT  →  100 %  BTC                   (climat haussier)
-Tendance ACHAT + Valorisation CASH   →    0 %  BTC  + 100 %  USDC    (valorisation CASH prime)
-Tendance CASH  + Valorisation ACHAT  →   50 %  BTC  +  50 %  USDC    (signaux opposés)
-Tendance CASH  + Valorisation CASH   →    0 %  BTC  + 100 %  USDC    (baisse confirmée)
+Tendance ACHAT + Valorisation ACHAT  →  🟢  100 % BTC    (climat haussier)
+Tendance CASH  + Valorisation ACHAT  →  🟡   50 % BTC    (signaux opposés)
+Tendance ACHAT + Valorisation CASH   →  🔴    0 % BTC    (valorisation CASH prime)
+Tendance CASH  + Valorisation CASH   →  🔴    0 % BTC    (baisse confirmée)
 ```
+
+> Le solde non-BTC est gardé en USDC (voir §1 *CASH = USDC*).
 
 C'est tout. Pas d'autre paramètre, pas de condition cachée, pas de filtre
 discrétionnaire.
