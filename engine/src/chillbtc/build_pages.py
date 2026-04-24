@@ -289,44 +289,49 @@ def build_historique_annuel_md(table: pd.DataFrame) -> str:
 def build_historique_mensuel_md(table: pd.DataFrame) -> str:
     """Page 3 — toutes lignes mensuelles depuis 2014-11.
 
-    Format : ``AAAA-MM | alloc effective | perf cumul strat | perf cumul HODL``.
+    Format : ``AAAA-MM | alloc effective | perf strat MENSUEL | perf HODL MENSUEL``.
 
-    L'alloc affichée est la position **effective ce mois-ci** = position
-    signalée à la fin du mois précédent (= ce que tu avais réellement en
-    portefeuille pendant ce mois). Cohérent avec la perf cumulée, qui est
-    calculée avec la même position décalée.
+    Affiche la **variation mensuelle** (du close N-1 au close N), pas le
+    cumul depuis le start. Plus lisible sur mobile et plus aligné avec
+    l'expérience opérationnelle (ce que la stratégie a fait CE mois).
+
+    Ordre inversé : mois le plus récent en haut.
     """
     eq = table["equity_cascade"]
     btc = table["btc_close"]
     pos_effective = table["position"].shift(1).fillna(0.0)
     hodl = btc / btc.iloc[0] * eq.iloc[0]
 
-    eq_cum = eq / eq.iloc[0] - 1
-    hodl_cum = hodl / hodl.iloc[0] - 1
+    strat_monthly = eq.pct_change()
+    hodl_monthly = hodl.pct_change()
 
     start_str = f"{table.index[0].year}-{table.index[0].month:02d}"
     lines = [
         "# Historique mensuel — Stratégie ChillBTC vs HODL",
         "",
         f"Une ligne par mois depuis {start_str} "
-        f"(données CDD Bitstamp 2014-11, moins {N_TSMOM} mois de warm-up R1 TSMOM).",
+        f"(données CDD Bitstamp 2014-11, moins {N_TSMOM} mois de warm-up R1 TSMOM). "
+        "Du **plus récent en haut** au plus ancien en bas.",
         "",
         "**Comment lire** :",
         "",
-        "- **alloc** : position **effectivement détenue pendant ce mois** "
+        "- **alloc** : position effectivement détenue pendant ce mois "
         "(= signal calculé sur le close du mois précédent et appliqué le 1ᵉʳ).",
-        "- **perf cumul** : capitalisation depuis le 1ᵉʳ point de la fenêtre "
-        "(base 100), en pourcentage. `+100 %` = la valeur a doublé.",
+        "- **strat / HODL** : variation **mensuelle** du portefeuille "
+        "(close N-1 → close N), pas le cumul depuis le début.",
         "",
     ]
-    for date in table.index:
+    for date in reversed(table.index):
         p = float(pos_effective.loc[date])
-        ec = float(eq_cum.loc[date])
-        hc = float(hodl_cum.loc[date])
+        sm = strat_monthly.loc[date]
+        hm = hodl_monthly.loc[date]
         emoji = _emoji_pos(p)
+        if pd.isna(sm) or pd.isna(hm):
+            perf_str = "_(début backtest)_"
+        else:
+            perf_str = f"strat {float(sm):+5.1%} · HODL {float(hm):+5.1%}"
         lines.append(
-            f"- **{date.year}-{date.month:02d}** : {emoji} {int(p * 100):3d} % "
-            f"| strat {ec:+8.1%} | HODL {hc:+8.1%}"
+            f"- **{date.year}-{date.month:02d}** {emoji} {int(p * 100):3d} % — {perf_str}"
         )
 
     lines += ["", f"_Dernière mise à jour : {_now_utc_str()} (auto)._", ""]
