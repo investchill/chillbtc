@@ -137,11 +137,11 @@ inférieure la ramène à ACHAT. Entre les deux, l'état précédent est mainten
 Les 2 signaux se combinent par **logique OR défensive** : si l'un dit CASH,
 la position est au moins allégée. Le dosage prend trois valeurs :
 
-- Tendance ACHAT et valorisation ACHAT, 100 % BTC, climat haussier assumé
-- Tendance ACHAT et valorisation CASH, 0 % BTC, la valorisation CASH prime
+- 🟢 Tendance ACHAT et valorisation ACHAT → **100 % BTC**, climat haussier assumé
+- 🟡 Tendance CASH et valorisation ACHAT → **50 % BTC**, signaux opposés
+- 🔴 Tendance ACHAT et valorisation CASH → **0 % BTC**, la valorisation CASH prime
   (la bulle l'emporte sur la tendance résiduelle)
-- Tendance CASH et valorisation ACHAT, 50 % BTC + 50 % USDC, signaux opposés
-- Tendance CASH et valorisation CASH, 0 % BTC + 100 % USDC, marché baissier confirmé
+- 🔴 Tendance CASH et valorisation CASH → **0 % BTC**, marché baissier confirmé
 
 Le dosage à 3 crans (0 %, 50 %, 100 %) réduit le coût de friction par rapport
 à un binaire tout-ou-rien : une bascule partielle de 1.00 à 0.50 ne paie la
