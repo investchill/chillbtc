@@ -1,11 +1,16 @@
 # ChillBTC — le BTC posé. Un coup d'œil par mois.
 
-**ChillBTC** est une stratégie d'investissement Bitcoin **mécanique**,
-**set-and-forget**, conçue pour limiter les baisses violentes en bear
-market sans rater la hausse à long terme. L'outil te donne
-**1 instruction simple par mois** : **100 %, 50 % ou 0 % de ton
-allocation BTC**. Tu appliques le dosage sur Binance, tu fermes, tu
-retournes à ta vie.
+[![Tests](https://github.com/investchill/chillbtc/actions/workflows/test.yml/badge.svg)](https://github.com/investchill/chillbtc/actions/workflows/test.yml)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-lightgrey.svg)](LICENSE)
+[![Python 3.13](https://img.shields.io/badge/python-3.13-blue.svg)](https://www.python.org/downloads/release/python-3130/)
+[![Strategy frozen](https://img.shields.io/badge/strategy-frozen%20until%202027--01-informational.svg)](CHANGELOG.md)
+
+**ChillBTC** est une stratégie d'investissement Bitcoin **à règles
+fixes**, que tu **appliques une fois par mois puis oublies**. Elle est
+conçue pour limiter les grosses baisses en marché baissier sans rater
+la hausse sur le long terme. L'outil te donne **1 instruction simple
+par mois** : **100 %, 50 % ou 0 % de ton allocation BTC**. Tu appliques
+le dosage sur Binance, tu fermes, tu retournes à ta vie.
 
 > © 2026 ChillBTC — Contact : chillbtc@zaclys.net
 > Usage non-commercial uniquement ([CC BY-NC-SA 4.0](LICENSE)).
@@ -47,16 +52,17 @@ stratégie vs HODL.
 
 - Tu crois au **BTC long-terme** (plusieurs cycles de 4 ans).
 - Tu veux **quelques minutes par mois**, pas quelques minutes par jour.
-- Tu veux une **règle mécanique**, pas "je ressens que…" ou "mon pote a dit".
+- Tu veux une **règle fixe**, pas "je ressens que…" ou "mon pote a dit".
 - Tu es **résident fiscal français** (la règle `CASH = USDC` annule la friction
   fiscale sur les switches mensuels — art. 150 VH bis CGI).
 - Tu utilises **Binance** (adaptable à d'autres plateformes mais le backtest
   suppose Binance).
 - Tu acceptes qu'un **drawdown jusqu'à −50 %** reste possible. Le backtest
   2016-2026 montre −40 % max mais le futur n'est pas garanti.
-- Tu veux **limiter la casse en bear** (la perte de −75 % de 2022 serait passée
-  à −9 %) quitte à **perdre un peu en bull** (la strat sous-performe HODL en
-  bull market strong, c'est mécanique et normal).
+- Tu veux **limiter la casse en marché baissier** (la perte de −75 % de
+  2022 serait passée à −9 %) quitte à **perdre un peu en marché haussier**
+  (la strat sous-performe HODL quand la hausse est forte, c'est normal par
+  construction).
 
 ### ❌ Cette méthode n'est PAS pour toi SI…
 
@@ -92,7 +98,7 @@ Les 2 signaux combinés → **1 dosage unique** (règle 100/50/0) :
 Tendance BUY  + Valorisation BUY   →  100 %  BTC                   (climat haussier)
 Tendance BUY  + Valorisation CASH  →   50 %  BTC  +  50 %  USDC    (BTC cher)
 Tendance CASH + Valorisation BUY   →   50 %  BTC  +  50 %  USDC    (tendance floue)
-Tendance CASH + Valorisation CASH  →    0 %  BTC  + 100 %  USDC    (bear confirmé)
+Tendance CASH + Valorisation CASH  →    0 %  BTC  + 100 %  USDC    (baisse confirmée)
 ```
 
 C'est tout. Pas d'autre paramètre, pas de condition cachée, pas de filtre
@@ -118,8 +124,9 @@ par année et mois par mois sur les pages dédiées** :
 
 - **CAGR stratégie ≈ +90 %/an** vs **HODL ≈ +75 %/an** sur ~10 ans.
 - **Drawdown max stratégie −40 %** vs **HODL −75 %** (c'est ça, le vrai gain).
-- La strat **gagne largement en bear** (2018, 2022) et **sous-performe en
-  bull** (2017, 2019, 2020, 2023) — c'est mécanique, pas un bug.
+- La strat **gagne largement en marché baissier** (2018, 2022) et
+  **sous-performe en marché haussier** (2017, 2019, 2020, 2023) — c'est
+  normal par construction, pas un bug.
 
 ---
 
