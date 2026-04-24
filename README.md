@@ -55,11 +55,11 @@ stratégie vs HODL.
 - Tu veux une **règle fixe**, pas "je ressens que…" ou "mon pote a dit".
 - Tu es **résident fiscal français** (la règle `CASH = USDC` annule la friction
   fiscale sur les switches mensuels — art. 150 VH bis CGI).
-- Tu utilises **Binance** (adaptable à d'autres plateformes mais le backtest
-  suppose Binance).
+- Tu utilises **Binance** (adaptable à d'autres plateformes mais la
+  simulation historique suppose Binance).
 - Tu acceptes qu'une **baisse temporaire jusqu'à −50 %** de ton portefeuille
-  reste possible. Le backtest 2016-2026 montre −40 % max, mais le futur n'est
-  pas garanti.
+  reste possible. La simulation 2016-2026 montre −40 % max (baisse temporaire
+  sur papier), mais le futur n'est pas garanti.
 - Tu veux **limiter la casse en marché baissier** (la perte de −75 % de
   2022 serait passée à −9 %) quitte à **perdre un peu en marché haussier**
   (ChillBTC sous-performe HODL quand la hausse est forte, c'est normal
@@ -73,7 +73,7 @@ stratégie vs HODL.
 - Tu **ne tolères pas** une baisse temporaire de ton portefeuille supérieure à −30 %.
 - Tu veux un **stop-loss intra-mois** (ChillBTC décide une seule fois par mois,
   point).
-- Tu veux **timer les tops** ou **sauter sur les breakouts** (ChillBTC est en
+- Tu veux **timer les sommets** ou **sauter sur les cassures** (ChillBTC est en
   retard sur les tournants, c'est la contrepartie de sa robustesse).
 - Ton capital BTC est **inférieur à ~500 €** (les frais fixes de transaction
   dévorent le gain ; attends d'avoir un capital plus significatif).
@@ -111,7 +111,7 @@ académiques avec DOI, illustrations historiques annotées sur 10 ans) : voir
 
 ---
 
-## 📊 Performance historique (backtest depuis 2015-10)
+## 📊 Performance historique (simulation depuis 2015-10)
 
 Mis à jour automatiquement chaque 1ᵉʳ du mois — **table complète année
 par année et mois par mois sur les pages dédiées** :

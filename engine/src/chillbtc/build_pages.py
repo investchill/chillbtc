@@ -300,8 +300,8 @@ def build_historique_annuel_md(table: pd.DataFrame) -> str:
         "dans l'année, sur papier (perte non-réalisée, tu n'as pas vendu).",
         "",
         f"Performances annuelles depuis {start_str} "
-        f"(données CDD Bitstamp 2014-11, moins {N_TSMOM} mois de warm-up tendance (TSMOM)). "
-        "Les années marquées `*` sont partielles (démarrage backtest, année en cours).",
+        f"(données CDD Bitstamp 2014-11, moins {N_TSMOM} mois d'amorçage tendance (TSMOM)). "
+        "Les années marquées `*` sont partielles (démarrage de la simulation, année en cours).",
         "",
         "```",
         *table_lines,
@@ -354,7 +354,7 @@ def build_historique_mensuel_md(table: pd.DataFrame) -> str:
         if pd.isna(sm) or pd.isna(hm):
             line = (
                 f"  {date.year}-{date.month:02d}  {emoji} {int(p*100):3d} %   "
-                f"{bt_str}    (début backtest)"
+                f"{bt_str}    (début de la simulation)"
             )
         else:
             line = (
@@ -370,7 +370,7 @@ def build_historique_mensuel_md(table: pd.DataFrame) -> str:
         "(ne rien faire, conserver ses BTC en permanence).",
         "",
         f"Une ligne par mois depuis {start_str} "
-        f"(données CDD Bitstamp 2014-11, moins {N_TSMOM} mois de warm-up tendance (TSMOM)).",
+        f"(données CDD Bitstamp 2014-11, moins {N_TSMOM} mois d'amorçage tendance (TSMOM)).",
         "",
         "**Comment lire** :",
         "",
