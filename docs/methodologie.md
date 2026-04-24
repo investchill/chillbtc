@@ -65,7 +65,12 @@ Trois moments charnières où la tendance a pesé :
 - **2022-04 à 2022-08** : la tendance reste CASH tout au long de la descente
   Luna / 3AC / FTX. La stratégie traverse le bear à 0 % ou 50 %.
 
-*(Graphiques annotés à venir en Q2.3.)*
+![Signaux tendance et valorisation — historique 2015-2026](assets/methodology/signaux_history.png)
+
+*Prix BTC en échelle log. Les zones grises marquent les mois où la tendance
+(TSMOM 11 m) est CASH ; les zones bleues, les mois où la valorisation
+(prix/fair_PL > 2,5) est CASH. Les superpositions sont les bear markets
+confirmés, où les 2 signaux disent CASH simultanément.*
 
 ---
 
@@ -108,7 +113,12 @@ accélère brutalement, mais c'est le compromis assumé.
 - **2023-01** : `close/fair < 0.6` au bottom à 17 000 USD. La valorisation
   repasse BUY tôt, captant une partie du rebond vers 23 000 USD en janvier.
 
-*(Graphiques annotés à venir en Q2.3.)*
+![Valorisation — prix BTC contre la droite Power Law](assets/methodology/powerlaw_band.png)
+
+*Droite Power Law en pointillé bleu, bande de tolérance
+[0,6 × fair ; 2,5 × fair] en bleu clair. Un prix au-dessus de la bande
+supérieure fait basculer la valorisation en CASH ; un prix sous la bande
+inférieure la ramène à BUY. Entre les deux, l'état précédent est maintenu.*
 
 ---
 
@@ -139,6 +149,14 @@ Bender, Briand, Melas et Aylur Subramanian (2013).
   l'été. Position à 50 % au top de novembre.
 - **2022** FTX : tendance et valorisation CASH avant l'effondrement. Position
   à 0 % en novembre.
+
+![Cascade — position recommandée vs prix BTC sur 4 cycles](assets/methodology/cascade_position_history.png)
+
+*Prix BTC en haut avec annotations des moments charnières. Barre du bas
+codée par couleur : vert = 100 % BTC, orange = 50 % BTC + 50 % USDC,
+gris = 0 % (cash intégral). Les périodes grises correspondent aux bear
+markets où les deux signaux disent CASH, les périodes orange isolées aux
+tops où seule la valorisation a basculé.*
 
 ---
 

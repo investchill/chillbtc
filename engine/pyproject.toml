@@ -22,6 +22,7 @@ chillbtc-phase-c = "chillbtc.phase_c_check:main"
 chillbtc-backtest = "chillbtc.backtest:main"
 chillbtc-monthly = "chillbtc.monthly_signal:main"
 chillbtc-pages = "chillbtc.build_pages:main"
+chillbtc-methodology-figures = "chillbtc.methodology_figures:main"
 chillbtc = "chillbtc.cli:main"
 
 [build-system]
