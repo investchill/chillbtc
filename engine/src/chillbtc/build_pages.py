@@ -56,7 +56,7 @@ JEKYLL_FRONTMATTER = {
         "---\n"
         "layout: page\n"
         "title: Historique annuel\n"
-        "description: Performance annuelle stratégie vs HODL depuis 2015.\n"
+        "description: Performance annuelle ChillBTC vs HODL depuis 2015.\n"
         "---\n\n"
     ),
     "historique-mensuel.md": (
@@ -249,8 +249,8 @@ def build_historique_annuel_md(table: pd.DataFrame) -> str:
 
     # Tableau ASCII
     table_lines = [
-        "  année    perf strat    perf HODL   DD strat   DD HODL",
-        "  -----------------------------------------------------",
+        "  année    perf ChillBTC    perf HODL   baisse max ChillBTC   baisse max HODL",
+        "  ----------------------------------------------------------------------------",
     ]
     for year, ret_s, partial in strat_ret:
         ret_h = hodl_ret_map.get(year, 0.0)
@@ -258,10 +258,13 @@ def build_historique_annuel_md(table: pd.DataFrame) -> str:
         dd_h = hodl_dd[year] * 100
         marker = " *" if partial else "  "
         table_lines.append(
-            f"  {year}{marker}  {ret_s*100:+8.1f}%   {ret_h*100:+8.1f}%   "
-            f"{dd_s:+6.1f}%   {dd_h:+6.1f}%"
+            f"  {year}{marker}   "
+            f"{ret_s*100:+12.1f}%    "
+            f"{ret_h*100:+8.1f}%   "
+            f"{dd_s:+18.1f}%   "
+            f"{dd_h:+14.1f}%"
         )
-    table_lines.append("  -----------------------------------------------------")
+    table_lines.append("  ----------------------------------------------------------------------------")
 
     # Récap
     a3_s = _annualized_n_years(eq, 3)
@@ -276,7 +279,7 @@ def build_historique_annuel_md(table: pd.DataFrame) -> str:
     def _fmt_pair(s: float | None, h: float | None) -> str:
         s_str = f"{s*100:+6.1f}%" if s is not None else "  n/a "
         h_str = f"{h*100:+6.1f}%" if h is not None else "  n/a "
-        return f"strat {s_str}   |   HODL {h_str}"
+        return f"ChillBTC {s_str}   |   HODL {h_str}"
 
     pad = 32
     table_lines += [
@@ -284,8 +287,8 @@ def build_historique_annuel_md(table: pd.DataFrame) -> str:
         f"  {'Perf annualisée 5 ans'.ljust(pad)} : {_fmt_pair(a5_s, a5_h)}",
         f"  {f'Perf annualisée depuis {start_str}'.ljust(pad)} : "
         f"{_fmt_pair(aT_s, aT_h)}",
-        f"  {f'DD max depuis {start_str}'.ljust(pad)} : "
-        f"strat {dd_total_s:+6.1f}%   |   HODL {dd_total_h:+6.1f}%",
+        f"  {f'baisse max depuis {start_str}'.ljust(pad)} : "
+        f"ChillBTC {dd_total_s:+6.1f}%   |   HODL {dd_total_h:+6.1f}%",
     ]
 
     lines = [
@@ -293,7 +296,8 @@ def build_historique_annuel_md(table: pd.DataFrame) -> str:
         "",
         "> **HODL** = acheter et garder, stratégie passive de référence "
         "(ne rien faire, conserver ses BTC en permanence). "
-        "**DD** = *drawdown*, pire baisse temporaire du portefeuille dans l'année.",
+        "**baisse max** = plus grosse baisse temporaire du portefeuille "
+        "dans l'année, sur papier (perte non-réalisée, tu n'as pas vendu).",
         "",
         f"Performances annuelles depuis {start_str} "
         f"(données CDD Bitstamp 2014-11, moins {N_TSMOM} mois de warm-up tendance (TSMOM)). "
@@ -307,9 +311,10 @@ def build_historique_annuel_md(table: pd.DataFrame) -> str:
         "",
         "- **perf** : bilan entre le 31 décembre N-1 et le 31 décembre N. "
         "Ce qui s'est passé entre les deux dates n'est pas visible ici.",
-        "- **DD max** : pire baisse temporaire de la valeur du portefeuille "
-        "pendant l'année, peu importe si on a vendu ou pas. Si la valeur passe "
-        "par 100 → 70, le DD est de -30 %, même si elle remonte à 90 ensuite.",
+        "- **baisse max** : la plus grosse baisse temporaire du portefeuille "
+        "pendant l'année, **sur papier** (c'est une perte non-réalisée, tu n'as "
+        "pas vendu). Exemple : un portefeuille qui passe de 100 à 70 puis remonte "
+        "à 90 a une baisse max de -30 %, même si le résultat final n'est que -10 %.",
         "- **Perf annualisée 3 / 5 ans** : moyenne géométrique des 36 / 60 "
         "derniers mois (rolling, pas calendaire).",
         "",
@@ -336,8 +341,8 @@ def build_historique_mensuel_md(table: pd.DataFrame) -> str:
     start_str = f"{table.index[0].year}-{table.index[0].month:02d}"
 
     table_lines = [
-        "  mois     alloc      BTC USD    strat    HODL",
-        "  ---------------------------------------------",
+        "  mois     alloc      BTC USD    ChillBTC    HODL",
+        "  ------------------------------------------------",
     ]
     for date in reversed(table.index):
         p = float(pos_effective.loc[date])
@@ -375,7 +380,7 @@ def build_historique_mensuel_md(table: pd.DataFrame) -> str:
         "du 1ᵉʳ au 30 novembre, calculée sur la clôture du 31 octobre.",
         "- **BTC USD** : prix de clôture du **dernier jour du mois**. "
         "Ligne `2025-11` → clôture du 30 novembre.",
-        "- **strat / HODL** : variation **mensuelle** du portefeuille "
+        "- **ChillBTC / HODL** : variation **mensuelle** du portefeuille "
         "(clôture du mois précédent → clôture du mois courant).",
         "",
         "```",

@@ -55,8 +55,9 @@ résultat au couple *value + momentum* sur 8 marchés globaux.
 ### Pourquoi n = 11 et pas 12
 
 La fenêtre n = 11 a été retenue par optimisation walk-forward sur l'axe
-minimisation du *max drawdown*. Ce n'est pas un pic isolé : le plateau de
-stabilité couvre n ∈ {9, 10, 11, 12, 13}, tous produisant un DD voisin. Un
+minimisation de la **baisse max** (plus grosse baisse temporaire sur
+papier). Ce n'est pas un pic isolé : le plateau de stabilité couvre
+n ∈ {9, 10, 11, 12, 13}, tous produisant une baisse max voisine. Un
 paramètre choisi dans un plateau large résiste mieux aux régimes
 hors-échantillon qu'un pic étroit.
 
@@ -171,8 +172,8 @@ tops où seule la valorisation a basculé.*
 ## 5. Limites et menaces de validité
 
 **Échantillon petit.** Le backtest couvre environ 2,5 cycles BTC complets
-(2015-2026). Les intervalles de confiance sur le CAGR et le *max drawdown*
-sont larges. Tu dois lire les chiffres comme des ordres de grandeur, pas
+(2015-2026). Les intervalles de confiance sur la perf annualisée et la
+**baisse max** sont larges. Tu dois lire les chiffres comme des ordres de grandeur, pas
 comme des garanties point-à-point.
 
 **Risques d'invalidation.** Deux scénarios casseraient la stratégie sans

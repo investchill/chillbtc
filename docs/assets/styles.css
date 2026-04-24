@@ -312,6 +312,12 @@ section {
 .fit-table thead th.fit-theme { width: 18%; }
 .fit-table thead th.fit-yes { width: 41%; color: var(--green); }
 .fit-table thead th.fit-no  { width: 41%; color: var(--red); }
+.fit-table thead .fit-emoji {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 1.1em;
+  vertical-align: -1px;
+}
 .fit-table tbody th.fit-theme {
   padding: 18px 20px;
   text-align: left;
