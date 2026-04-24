@@ -238,6 +238,12 @@ section {
 .badge-cash  { background: #FBE8E8; color: var(--red); }
 .rule-table .pos { font-size: 16px; color: var(--ink); }
 .rule-table .pos strong { color: var(--orange); }
+.rule-table .pos-dot {
+  display: inline-block;
+  font-size: 18px;
+  vertical-align: -2px;
+  margin-right: 4px;
+}
 .rule-table .ctx { color: var(--muted); font-size: 13px; margin-top: 4px; font-style: italic; }
 
 @media (max-width: 640px) {
