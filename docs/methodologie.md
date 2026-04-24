@@ -63,7 +63,7 @@ Trois moments charnières où la tendance a pesé :
 - **2020-03** : la tendance reste CASH après le krach Covid. La stratégie
   rate le rebond en V. C'est le coût du lag TSMOM, assumé par construction.
 - **2022-04 à 2022-08** : la tendance reste CASH tout au long de la descente
-  Luna / 3AC / FTX. La stratégie traverse le bear à 0 % ou 50 %.
+  Luna / 3AC / FTX. La stratégie traverse la baisse à 0 % ou 50 %.
 
 ![Signaux tendance et valorisation — historique 2015-2026](assets/methodology/signaux_history.png)
 
@@ -71,7 +71,7 @@ Trois moments charnières où la tendance a pesé :
 mutuellement exclusive : **gris** = seule la tendance est CASH (momentum
 faible, prix encore raisonnable), **bleu clair** = seule la valorisation
 est CASH (prix surchauffé, tendance encore haussière), **rose** = les 2
-signaux CASH simultanément (bear confirmé). Les zones non ombrées sont
+signaux CASH simultanément (marché baissier confirmé). Les zones non ombrées sont
 les mois où les 2 signaux disent BUY.*
 
 ---
@@ -133,7 +133,7 @@ la position est au moins allégée. Le dosage prend trois valeurs :
 - Tendance BUY et valorisation CASH, 0 % BTC, la valorisation CASH prime
   (la bulle l'emporte sur la tendance résiduelle)
 - Tendance CASH et valorisation BUY, 50 % BTC + 50 % USDC, signaux opposés
-- Tendance CASH et valorisation CASH, 0 % BTC + 100 % USDC, bear confirmé
+- Tendance CASH et valorisation CASH, 0 % BTC + 100 % USDC, marché baissier confirmé
 
 Le dosage à 3 crans (0 %, 50 %, 100 %) réduit le coût de friction par rapport
 à un binaire tout-ou-rien : une bascule partielle de 1.00 à 0.50 ne paie la
@@ -143,10 +143,10 @@ Bender, Briand, Melas et Aylur Subramanian (2013).
 
 ### Illustrations cross-cycles
 
-- **2017** bull : valorisation CASH dès Q4, tendance encore BUY. Position à
-  50 % au pic.
-- **2018** bear : tendance et valorisation CASH simultanément. Position à
-  0 % pendant l'essentiel du crash.
+- **2017** cycle haussier : valorisation CASH dès Q4, tendance encore BUY.
+  Position à 50 % au pic.
+- **2018** cycle baissier : tendance et valorisation CASH simultanément.
+  Position à 0 % pendant l'essentiel de la chute.
 - **2021** cycle : tendance BUY presque toute l'année, valorisation CASH dès
   l'été. Position à 50 % au top de novembre.
 - **2022** FTX : tendance et valorisation CASH avant l'effondrement. Position
@@ -156,7 +156,7 @@ Bender, Briand, Melas et Aylur Subramanian (2013).
 
 *Prix BTC en haut avec annotations des moments charnières. Barre du bas
 codée par couleur : vert = 100 % BTC, orange = 50 % BTC + 50 % USDC,
-gris = 0 % (cash intégral). Les périodes grises correspondent aux bear
+gris = 0 % (cash intégral). Les périodes grises correspondent aux marchés baissiers
 markets où les deux signaux disent CASH, les périodes orange isolées aux
 tops où seule la valorisation a basculé.*
 
