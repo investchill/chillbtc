@@ -402,10 +402,83 @@ footer p {
 }
 footer a { color: var(--muted); text-decoration-color: var(--orange); }
 
+/* ---------- FAQ ---------- */
+.faq .section-lead { margin-bottom: 8px; }
+.faq-item {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-top: 14px;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.faq-item:first-of-type { margin-top: 32px; }
+.faq-item:hover { box-shadow: 0 1px 2px rgba(0,0,0,.05), 0 6px 20px rgba(0,0,0,.06); }
+.faq-item[open] { border-color: var(--orange); }
+.faq-item summary {
+  cursor: pointer;
+  padding: 20px 56px 20px 24px;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--ink);
+  position: relative;
+  list-style: none;
+  transition: color 0.15s ease;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: "";
+  position: absolute;
+  right: 26px;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform 0.2s ease, border-color 0.15s ease;
+}
+.faq-item[open] summary::after {
+  transform: translateY(-30%) rotate(-135deg);
+  border-color: var(--orange);
+}
+.faq-item summary:hover { color: var(--orange); }
+.faq-answer {
+  padding: 0 24px 20px;
+  color: var(--ink-soft);
+  font-size: 15.5px;
+  line-height: 1.65;
+}
+.faq-answer p { margin: 0 0 12px; }
+.faq-answer p:last-child { margin-bottom: 0; }
+.faq-answer ul {
+  margin: 0 0 4px;
+  padding-left: 22px;
+}
+.faq-answer li { margin-bottom: 6px; }
+.faq-answer a { color: var(--orange); text-decoration-color: rgba(247, 147, 26, 0.4); }
+.faq-answer a:hover { text-decoration-color: var(--orange); }
+.faq-answer code {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 14px;
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+}
+.faq-cta {
+  margin-top: 40px;
+  text-align: center;
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 640px) {
   .hero { padding: 64px 0 48px; }
   .hero-logo { width: 96px; height: 96px; margin-bottom: 24px; }
   section { padding: 56px 0; }
   .rule-box pre { font-size: 12px; }
+  .faq-item summary { padding: 18px 48px 18px 20px; font-size: 16px; }
+  .faq-item summary::after { right: 22px; }
+  .faq-answer { padding: 0 20px 18px; font-size: 15px; }
 }
