@@ -40,7 +40,7 @@ paramètres, restent auditables et robustes.
 
 Le signal de tendance répond à une question simple : **le prix BTC a-t-il
 monté sur les 11 derniers mois** ? Si oui, la tendance est favorable et le
-signal dit BUY. Sinon, il dit CASH.
+signal dit ACHAT. Sinon, il dit CASH.
 
 C'est bien une **comparaison ponctuelle** entre le prix d'aujourd'hui et
 celui d'il y a 11 mois. L'intuition vient d'un résultat académique largement
@@ -79,7 +79,7 @@ mutuellement exclusive : **gris** = seule la tendance est CASH (momentum
 faible, prix encore raisonnable), **bleu clair** = seule la valorisation
 est CASH (prix surchauffé, tendance encore haussière), **rose** = les 2
 signaux CASH simultanément (marché baissier confirmé). Les zones non ombrées sont
-les mois où les 2 signaux disent BUY.*
+les mois où les 2 signaux disent ACHAT.*
 
 ---
 
@@ -92,7 +92,7 @@ fixé et A recalibré une fois par an au 1ᵉʳ janvier, puis gelé le reste de
 l'année.
 
 Quand le prix s'écarte fortement au-dessus de la droite, la valorisation
-bascule CASH. Quand le prix repasse nettement en dessous, elle rebascule BUY.
+bascule CASH. Quand le prix repasse nettement en dessous, elle rebascule ACHAT.
 Entre les deux, elle maintient son état précédent.
 
 ### Intuition théorique
@@ -120,14 +120,14 @@ accélère brutalement, mais c'est le compromis assumé.
 - **2021-11** : la valorisation CASH dès l'été 2021, tenue jusqu'au bottom
   2022. La stratégie évite l'essentiel de la baisse.
 - **2023-01** : `close/fair < 0.6` au bottom à 17 000 USD. La valorisation
-  repasse BUY tôt, captant une partie du rebond vers 23 000 USD en janvier.
+  repasse ACHAT tôt, captant une partie du rebond vers 23 000 USD en janvier.
 
 ![Valorisation — prix BTC contre la droite Power Law](assets/methodology/powerlaw_band.png)
 
 *Droite Power Law en pointillé bleu, bande de tolérance
 [0,6 × fair ; 2,5 × fair] en bleu clair. Un prix au-dessus de la bande
 supérieure fait basculer la valorisation en CASH ; un prix sous la bande
-inférieure la ramène à BUY. Entre les deux, l'état précédent est maintenu.*
+inférieure la ramène à ACHAT. Entre les deux, l'état précédent est maintenu.*
 
 ---
 
@@ -136,10 +136,10 @@ inférieure la ramène à BUY. Entre les deux, l'état précédent est maintenu.
 Les 2 signaux se combinent par **logique OR défensive** : si l'un dit CASH,
 la position est au moins allégée. Le dosage prend trois valeurs :
 
-- Tendance BUY et valorisation BUY, 100 % BTC, climat haussier assumé
-- Tendance BUY et valorisation CASH, 0 % BTC, la valorisation CASH prime
+- Tendance ACHAT et valorisation ACHAT, 100 % BTC, climat haussier assumé
+- Tendance ACHAT et valorisation CASH, 0 % BTC, la valorisation CASH prime
   (la bulle l'emporte sur la tendance résiduelle)
-- Tendance CASH et valorisation BUY, 50 % BTC + 50 % USDC, signaux opposés
+- Tendance CASH et valorisation ACHAT, 50 % BTC + 50 % USDC, signaux opposés
 - Tendance CASH et valorisation CASH, 0 % BTC + 100 % USDC, marché baissier confirmé
 
 Le dosage à 3 crans (0 %, 50 %, 100 %) réduit le coût de friction par rapport
@@ -150,11 +150,11 @@ Bender, Briand, Melas et Aylur Subramanian (2013).
 
 ### Illustrations cross-cycles
 
-- **2017** cycle haussier : valorisation CASH dès Q4, tendance encore BUY.
+- **2017** cycle haussier : valorisation CASH dès Q4, tendance encore ACHAT.
   Position à 50 % au pic.
 - **2018** cycle baissier : tendance et valorisation CASH simultanément.
   Position à 0 % pendant l'essentiel de la chute.
-- **2021** cycle : tendance BUY presque toute l'année, valorisation CASH dès
+- **2021** cycle : tendance ACHAT presque toute l'année, valorisation CASH dès
   l'été. Position à 50 % au top de novembre.
 - **2022** FTX : tendance et valorisation CASH avant l'effondrement. Position
   à 0 % en novembre.

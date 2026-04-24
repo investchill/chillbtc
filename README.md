@@ -88,18 +88,18 @@ stratégie vs HODL.
 Chaque 1ᵉʳ du mois, l'outil lit **2 signaux** sur le prix BTC :
 
 - **Tendance** (Time-Series Momentum, Moskowitz/Pedersen 2012) :
-  BTC a-t-il monté sur les **11 derniers mois** ? → **BUY** (oui) ou **CASH** (non).
+  BTC a-t-il monté sur les **11 derniers mois** ? → **ACHAT** (oui) ou **CASH** (non).
 - **Valorisation** (Power Law, Santostasi) : BTC est-il **cher ou
-  pas cher** par rapport à sa droite de puissance historique ? → **BUY**
+  pas cher** par rapport à sa droite de puissance historique ? → **ACHAT**
   (pas cher) ou **CASH** (trop cher).
 
 Les 2 signaux combinés → **1 dosage unique** (règle 100/50/0) :
 
 ```
-Tendance BUY  + Valorisation BUY   →  100 %  BTC                   (climat haussier)
-Tendance BUY  + Valorisation CASH  →   50 %  BTC  +  50 %  USDC    (BTC cher)
-Tendance CASH + Valorisation BUY   →   50 %  BTC  +  50 %  USDC    (tendance floue)
-Tendance CASH + Valorisation CASH  →    0 %  BTC  + 100 %  USDC    (baisse confirmée)
+Tendance ACHAT + Valorisation ACHAT  →  100 %  BTC                   (climat haussier)
+Tendance ACHAT + Valorisation CASH   →   50 %  BTC  +  50 %  USDC    (BTC cher)
+Tendance CASH  + Valorisation ACHAT  →   50 %  BTC  +  50 %  USDC    (tendance floue)
+Tendance CASH  + Valorisation CASH   →    0 %  BTC  + 100 %  USDC    (baisse confirmée)
 ```
 
 C'est tout. Pas d'autre paramètre, pas de condition cachée, pas de filtre

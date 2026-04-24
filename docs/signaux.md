@@ -13,11 +13,11 @@ description: L'allocation BTC à appliquer ce mois-ci, et les 2 signaux sous-jac
 ## Signaux du mois
 
 - **Tendance** (TSMOM 11 m) : -27.6%  →  ❌ CASH
-- **Valorisation** (Power Law) : 0.52  →  ✅ BUY
+- **Valorisation** (Power Law) : 0.52  →  ✅ ACHAT
 
 ## Contexte
 
 - Prix BTC à la clôture du **31 mars 2026** : **68 215 USD**
 - Constante A Power Law : -16.917 (figée jusqu'à la prochaine revue annuelle)
 
-_Dernière mise à jour : 2026-04-24 11:57 UTC (auto)._
+_Dernière mise à jour : 2026-04-24 12:06 UTC (auto)._
