@@ -43,6 +43,7 @@
       <div class="topnav-links">
         <a href="#download">Voir le signal</a>
         <a href="#how">Comment ça marche</a>
+        <a href="#faq">FAQ</a>
         <a href="https://github.com/investchill/chillbtc">GitHub</a>
       </div>
     </div>
@@ -227,6 +228,72 @@
           </tr>
         </tbody>
       </table>
+    </div>
+  </section>
+
+  <!-- ============== FAQ ============== -->
+  <section id="faq" class="faq">
+    <div class="wrap">
+      <h2>Questions fréquentes</h2>
+      <p class="section-lead">Méthode <strong>ouverte, gratuite, communautaire</strong>. L'idée, c'est de gagner ensemble.</p>
+
+      <details class="faq-item">
+        <summary>C'est gratuit ? Je paye quoi ?</summary>
+        <div class="faq-answer">
+          <p>Oui, entièrement gratuit. ChillBTC est <strong>open-source</strong> sous licence <a href="https://github.com/investchill/chillbtc/blob/main/LICENSE">CC BY-NC-SA 4.0</a>. Le code, les données et les paramètres sont publics sur GitHub. Pas d'abonnement, pas de compte premium, pas de token à acheter. Seule contrainte de la licence : <strong>usage non-commercial uniquement</strong> — tu ne peux pas revendre la méthode ou en faire un service payant.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Qui décide du signal chaque mois ? Quelqu'un peut-il le truquer ?</summary>
+        <div class="faq-answer">
+          <p>Personne n'a la main sur le signal affiché. Le code qui calcule le dosage est <strong>public sur GitHub</strong>, le workflow qui publie la page chaque 1<sup>er</sup> du mois est <strong>auditable ligne par ligne</strong>, et les paramètres sont <strong>figés jusqu'à la prochaine revue annuelle</strong>. Tu peux toi-même cloner le dépôt et vérifier que le signal que tu vois correspond exactement à ce que le code produit.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Je peux proposer une nouvelle règle ou une amélioration ?</summary>
+        <div class="faq-answer">
+          <p>Oui, et c'est l'intérêt d'une méthode ouverte. Deux garde-fous stricts encadrent les propositions :</p>
+          <ul>
+            <li><strong>Rester sur la cadence « un coup d'œil par mois »</strong> : pas de décision intra-mois, pas de stop-loss, pas de règle qui demande de surveiller le prix au quotidien.</li>
+            <li><strong>Pas de sur-optimisation</strong> : la règle doit marcher sur une <strong>plage large</strong> de paramètres, pas sur un pic isolé du backtest historique. Le template d'issue <code>feature_request</code> sur GitHub te guide sur les checks à valider.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Pourquoi open-source plutôt que payant ?</summary>
+        <div class="faq-answer">
+          <p>Parce que <strong>la force d'une méthode, c'est la communauté qui l'examine</strong>. Une stratégie secrète, calibrée seule dans son coin, finit par dériver : l'auteur se convainc qu'elle marche et ne voit plus ses biais. Ouvrir le code, c'est accepter la critique, détecter les bugs, mélanger les idées de tout le monde. <strong>L'idée, c'est de gagner ensemble.</strong></p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Je suis le bienvenu même si je ne suis pas développeur ?</summary>
+        <div class="faq-answer">
+          <p>Oui, évidemment. Tu peux contribuer sans écrire une ligne de code :</p>
+          <ul>
+            <li>Signaler un bug ou une ambiguïté dans la documentation — les templates d'issue GitHub te guident pas à pas.</li>
+            <li>Partager ton retour d'expérience quand tu appliques la méthode au fil du temps.</li>
+            <li>Traduire la doc si tu maîtrises une autre langue.</li>
+            <li>Relire la méthodologie et pointer ce qui reste opaque pour un non-expert.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Comment la méthode évolue-t-elle dans le temps ?</summary>
+        <div class="faq-answer">
+          <p>Elle est <strong>figée jusqu'à la prochaine revue annuelle</strong> (1<sup>er</sup> janvier). Entre deux revues, aucun paramètre ne bouge — c'est le garde-fou contre les ajustements au feeling. À la revue annuelle, la communauté peut proposer des ajustements via GitHub (issues et pull requests). Seul un événement exceptionnel (faillite de plateforme, dépegging de stablecoin, changement réglementaire majeur) peut déclencher une revue hors cycle, documentée publiquement dans le dépôt.</p>
+        </div>
+      </details>
+
+      <p class="faq-cta">
+        <a href="https://github.com/investchill/chillbtc" class="btn btn-primary" aria-label="Rejoindre la communauté sur GitHub">
+          🤝 Rejoindre la communauté sur GitHub →
+        </a>
+      </p>
     </div>
   </section>
 
