@@ -41,6 +41,33 @@ MOIS_FR = {
     9: "septembre", 10: "octobre", 11: "novembre", 12: "décembre",
 }
 
+# Front-matter Jekyll injecté en tête des pages auto-générées pour que
+# GitHub Pages applique le layout commun (_layouts/page.html). Préservé à
+# chaque regénération mensuelle puisque produit par le builder lui-même.
+JEKYLL_FRONTMATTER = {
+    "signaux.md": (
+        "---\n"
+        "layout: page\n"
+        "title: Signal du mois\n"
+        "description: L'allocation BTC à appliquer ce mois-ci, et les 2 signaux sous-jacents.\n"
+        "---\n\n"
+    ),
+    "historique-annuel.md": (
+        "---\n"
+        "layout: page\n"
+        "title: Historique annuel\n"
+        "description: Performance annuelle ChillBTC vs HODL depuis 2015.\n"
+        "---\n\n"
+    ),
+    "historique-mensuel.md": (
+        "---\n"
+        "layout: page\n"
+        "title: Historique mensuel\n"
+        "description: Toutes les positions mois par mois depuis 2015.\n"
+        "---\n\n"
+    ),
+}
+
 
 def _emoji_pos(p: float) -> str:
     if p >= 0.99:
@@ -63,11 +90,40 @@ def _emoji_sig(s: float) -> str:
 
 
 def _label_sig(s: float) -> str:
-    return "BUY" if s == 1.0 else "CASH"
+    return "ACHAT" if s == 1.0 else "CASH"
 
 
 def _now_utc_str() -> str:
     return datetime.now(UTC).strftime("%Y-%m-%d %H:%M UTC")
+
+
+def _sign_class(val: float) -> str:
+    """Classe CSS pour la couleur d'une valeur signée (vert/rouge/neutre)."""
+    if val > 0.05:
+        return "positive"
+    if val < -0.05:
+        return "negative"
+    return "neutral"
+
+
+def _num_td(val: float, label: str, chill: bool = False) -> str:
+    """Cellule <td> pourcentage signé avec code couleur + data-label mobile."""
+    chill_cls = " chill" if chill else ""
+    return (
+        f'<td data-label="{label}" class="num {_sign_class(val)}{chill_cls}">'
+        f'{val:+.1f} %</td>'
+    )
+
+
+def _pct_annualized_td(val: float | None, label: str, chill: bool = False) -> str:
+    """Idem _num_td mais gère le cas None (→ 'n/a')."""
+    if val is None:
+        chill_cls = " chill" if chill else ""
+        return (
+            f'<td data-label="{label}" class="num placeholder{chill_cls}">'
+            f'n/a</td>'
+        )
+    return _num_td(val * 100, label, chill=chill)
 
 
 def build_signaux_md(journal_df: pd.DataFrame) -> str:
@@ -94,17 +150,74 @@ def build_signaux_md(journal_df: pd.DataFrame) -> str:
         fair = 10 ** (a_const + N_EXP_R3 * np.log10(days))
         ratio_pl = close / fair
 
+    # Allocation card — Design 1 (deux cartes BTC + USDC côte-à-côte).
+    btc_pct_int = int(round(pos_pct * 100))
+    usdc_pct_int = 100 - btc_pct_int
+    state_emoji = _emoji_pos(pos_pct)
+    btc_dim = " alloc-dim" if btc_pct_int == 0 else ""
+    usdc_dim = " alloc-dim" if usdc_pct_int == 0 else ""
+
+    alloc_html = (
+        '<div class="signal-alloc">\n'
+        f'  <div class="alloc-card alloc-btc{btc_dim}">\n'
+        f'    <div class="alloc-state">{state_emoji}</div>\n'
+        f'    <div class="alloc-pct">{btc_pct_int} %</div>\n'
+        '    <div class="alloc-label">BTC</div>\n'
+        '  </div>\n'
+        f'  <div class="alloc-card alloc-usdc{usdc_dim}">\n'
+        f'    <div class="alloc-state">{state_emoji}</div>\n'
+        f'    <div class="alloc-pct">{usdc_pct_int} %</div>\n'
+        '    <div class="alloc-label">USDC</div>\n'
+        '  </div>\n'
+        '</div>'
+    )
+
+    # Signal table — ligne Tendance + ligne Valorisation, tags pastel.
+    r1_value_str = f"{ret_11m:+.1%}"
+    r1_num_class = "positive" if ret_11m >= 0 else "negative"
+    r3_value_str = f"{ratio_pl:.2f}"
+    r1_decision_class = "achat" if sig_r1 == 1.0 else "cash"
+    r3_decision_class = "achat" if sig_r3 == 1.0 else "cash"
+
+    signal_table_html = (
+        '<table class="signal-table">\n'
+        '  <thead>\n'
+        '    <tr>\n'
+        '      <th>Signal</th>\n'
+        '      <th class="num-col">Valeur</th>\n'
+        '      <th class="arrow-col"></th>\n'
+        '      <th>Décision</th>\n'
+        '    </tr>\n'
+        '  </thead>\n'
+        '  <tbody>\n'
+        '    <tr>\n'
+        '      <td>Tendance <span class="signal-sub">(TSMOM 11 m)</span></td>\n'
+        f'      <td class="num {r1_num_class}">{r1_value_str}</td>\n'
+        '      <td class="arrow">→</td>\n'
+        f'      <td><span class="decision {r1_decision_class}">'
+        f'{_emoji_sig(sig_r1)} {_label_sig(sig_r1)}</span></td>\n'
+        '    </tr>\n'
+        '    <tr>\n'
+        '      <td>Valorisation <span class="signal-sub">(Power Law)</span></td>\n'
+        f'      <td class="num">{r3_value_str}</td>\n'
+        '      <td class="arrow">→</td>\n'
+        f'      <td><span class="decision {r3_decision_class}">'
+        f'{_emoji_sig(sig_r3)} {_label_sig(sig_r3)}</span></td>\n'
+        '    </tr>\n'
+        '  </tbody>\n'
+        '</table>'
+    )
+
     lines = [
         "# Signal BTC",
         "",
         "> 📖 [Comprendre les 2 signaux et la méthodologie](methodologie.md)",
         "",
-        f"## {_emoji_pos(pos_pct)} {_label_pos(pos_pct)}",
+        alloc_html,
         "",
         "## Signaux du mois",
         "",
-        f"- **Tendance** (TSMOM 11 m) : {ret_11m:+.1%}  →  {_emoji_sig(sig_r1)} {_label_sig(sig_r1)}",
-        f"- **Valorisation** (Power Law) : {ratio_pl:.2f}  →  {_emoji_sig(sig_r3)} {_label_sig(sig_r3)}",
+        signal_table_html,
         "",
         "## Contexte",
         "",
@@ -220,23 +333,46 @@ def build_historique_annuel_md(table: pd.DataFrame) -> str:
 
     start_str = f"{table.index[0].year}-{table.index[0].month:02d}"
 
-    # Tableau ASCII
-    table_lines = [
-        "  année    perf strat    perf HODL   DD strat   DD HODL",
-        "  -----------------------------------------------------",
-    ]
+    # Tableau annuel HTML (en-tête 2 niveaux : Performance | Baisse max)
+    table_rows = []
     for year, ret_s, partial in strat_ret:
-        ret_h = hodl_ret_map.get(year, 0.0)
-        dd_s = strat_dd[year] * 100
-        dd_h = hodl_dd[year] * 100
-        marker = " *" if partial else "  "
-        table_lines.append(
-            f"  {year}{marker}  {ret_s*100:+8.1f}%   {ret_h*100:+8.1f}%   "
-            f"{dd_s:+6.1f}%   {dd_h:+6.1f}%"
+        ret_h_pct = hodl_ret_map.get(year, 0.0) * 100
+        ret_s_pct = ret_s * 100
+        dd_s_pct = strat_dd[year] * 100
+        dd_h_pct = hodl_dd[year] * 100
+        year_label = f"{year} *" if partial else f"{year}"
+        table_rows.append(
+            '    <tr>\n'
+            f'      <th scope="row">{year_label}</th>\n'
+            f'      {_num_td(ret_s_pct, "perf ChillBTC", chill=True)}\n'
+            f'      {_num_td(ret_h_pct, "perf HODL")}\n'
+            f'      {_num_td(dd_s_pct, "baisse max ChillBTC", chill=True)}\n'
+            f'      {_num_td(dd_h_pct, "baisse max HODL")}\n'
+            '    </tr>'
         )
-    table_lines.append("  -----------------------------------------------------")
 
-    # Récap
+    table_html = (
+        '<table class="history-table history-annual">\n'
+        '  <thead>\n'
+        '    <tr class="group-header">\n'
+        '      <th rowspan="2" class="col-year">Année</th>\n'
+        '      <th colspan="2" class="group">Performance</th>\n'
+        '      <th colspan="2" class="group">Baisse max temporaire</th>\n'
+        '    </tr>\n'
+        '    <tr class="sub-header">\n'
+        '      <th class="chill">ChillBTC</th>\n'
+        '      <th>HODL</th>\n'
+        '      <th class="chill">ChillBTC</th>\n'
+        '      <th>HODL</th>\n'
+        '    </tr>\n'
+        '  </thead>\n'
+        '  <tbody>\n'
+        + '\n'.join(table_rows) + '\n'
+        '  </tbody>\n'
+        '</table>'
+    )
+
+    # Récap global — table séparée à 3 colonnes (métrique / ChillBTC / HODL)
     a3_s = _annualized_n_years(eq, 3)
     a5_s = _annualized_n_years(eq, 5)
     aT_s = _annualized_total(eq)
@@ -246,43 +382,65 @@ def build_historique_annuel_md(table: pd.DataFrame) -> str:
     dd_total_s = _max_dd_total(eq) * 100
     dd_total_h = _max_dd_total(hodl) * 100
 
-    def _fmt_pair(s: float | None, h: float | None) -> str:
-        s_str = f"{s*100:+6.1f}%" if s is not None else "  n/a "
-        h_str = f"{h*100:+6.1f}%" if h is not None else "  n/a "
-        return f"strat {s_str}   |   HODL {h_str}"
-
-    pad = 32
-    table_lines += [
-        f"  {'Perf annualisée 3 ans'.ljust(pad)} : {_fmt_pair(a3_s, a3_h)}",
-        f"  {'Perf annualisée 5 ans'.ljust(pad)} : {_fmt_pair(a5_s, a5_h)}",
-        f"  {f'Perf annualisée depuis {start_str}'.ljust(pad)} : "
-        f"{_fmt_pair(aT_s, aT_h)}",
-        f"  {f'DD max depuis {start_str}'.ljust(pad)} : "
-        f"strat {dd_total_s:+6.1f}%   |   HODL {dd_total_h:+6.1f}%",
-    ]
+    summary_html = (
+        '<table class="history-summary">\n'
+        '  <thead>\n'
+        '    <tr>\n'
+        '      <th>Récap global</th>\n'
+        '      <th class="chill">ChillBTC</th>\n'
+        '      <th>HODL</th>\n'
+        '    </tr>\n'
+        '  </thead>\n'
+        '  <tbody>\n'
+        '    <tr>\n'
+        '      <th scope="row">Perf annualisée 3 ans</th>\n'
+        f'      {_pct_annualized_td(a3_s, "ChillBTC", chill=True)}\n'
+        f'      {_pct_annualized_td(a3_h, "HODL")}\n'
+        '    </tr>\n'
+        '    <tr>\n'
+        '      <th scope="row">Perf annualisée 5 ans</th>\n'
+        f'      {_pct_annualized_td(a5_s, "ChillBTC", chill=True)}\n'
+        f'      {_pct_annualized_td(a5_h, "HODL")}\n'
+        '    </tr>\n'
+        '    <tr>\n'
+        f'      <th scope="row">Perf annualisée depuis {start_str}</th>\n'
+        f'      {_pct_annualized_td(aT_s, "ChillBTC", chill=True)}\n'
+        f'      {_pct_annualized_td(aT_h, "HODL")}\n'
+        '    </tr>\n'
+        '    <tr>\n'
+        f'      <th scope="row">Baisse max depuis {start_str}</th>\n'
+        f'      {_num_td(dd_total_s, "ChillBTC", chill=True)}\n'
+        f'      {_num_td(dd_total_h, "HODL")}\n'
+        '    </tr>\n'
+        '  </tbody>\n'
+        '</table>'
+    )
 
     lines = [
         "# Historique annuel — Stratégie ChillBTC vs HODL",
         "",
         "> **HODL** = acheter et garder, stratégie passive de référence "
         "(ne rien faire, conserver ses BTC en permanence). "
-        "**DD** = *drawdown*, pire baisse temporaire du portefeuille dans l'année.",
+        "**baisse max** = plus grosse baisse temporaire du portefeuille "
+        "dans l'année, sur papier (perte non-réalisée, tu n'as pas vendu).",
         "",
-        f"Performances annuelles depuis {start_str} "
-        f"(données CDD Bitstamp 2014-11, moins {N_TSMOM} mois de warm-up tendance (TSMOM)). "
-        "Les années marquées `*` sont partielles (démarrage backtest, année en cours).",
+        f"Performances annuelles depuis {start_str}, à partir du cours BTC/USD "
+        f"historique de Bitstamp (avec {N_TSMOM} mois d'amorçage avant cette "
+        "date pour le signal de tendance). Les années marquées `*` sont "
+        "partielles (démarrage de la simulation, année en cours).",
         "",
-        "```",
-        *table_lines,
-        "```",
+        table_html,
+        "",
+        summary_html,
         "",
         "**Comment lire** :",
         "",
         "- **perf** : bilan entre le 31 décembre N-1 et le 31 décembre N. "
         "Ce qui s'est passé entre les deux dates n'est pas visible ici.",
-        "- **DD max** : pire baisse temporaire de la valeur du portefeuille "
-        "pendant l'année, peu importe si on a vendu ou pas. Si la valeur passe "
-        "par 100 → 70, le DD est de -30 %, même si elle remonte à 90 ensuite.",
+        "- **baisse max** : la plus grosse baisse temporaire du portefeuille "
+        "pendant l'année, **sur papier** (c'est une perte non-réalisée, tu n'as "
+        "pas vendu). Exemple : un portefeuille qui passe de 100 à 70 puis remonte "
+        "à 90 a une baisse max de -30 %, même si le résultat final n'est que -10 %.",
         "- **Perf annualisée 3 / 5 ans** : moyenne géométrique des 36 / 60 "
         "derniers mois (rolling, pas calendaire).",
         "",
@@ -308,28 +466,53 @@ def build_historique_mensuel_md(table: pd.DataFrame) -> str:
 
     start_str = f"{table.index[0].year}-{table.index[0].month:02d}"
 
-    table_lines = [
-        "  mois     alloc      BTC USD    strat    HODL",
-        "  ---------------------------------------------",
-    ]
+    # Tableau mensuel HTML — zebra + sticky header
+    table_rows = []
     for date in reversed(table.index):
         p = float(pos_effective.loc[date])
         sm = strat_monthly.loc[date]
         hm = hodl_monthly.loc[date]
         bt = float(btc.loc[date])
         emoji = _emoji_pos(p)
-        bt_str = f"{bt:>7,.0f}".replace(",", " ")
+        bt_str = f"{bt:,.0f}".replace(",", " ")
+        month_label = f"{date.year}-{date.month:02d}"
+        alloc_label = f'<span class="alloc-dot">{emoji}</span> {int(p*100)} %'
+
         if pd.isna(sm) or pd.isna(hm):
-            line = (
-                f"  {date.year}-{date.month:02d}  {emoji} {int(p*100):3d} %   "
-                f"{bt_str}    (début backtest)"
+            strat_cell = (
+                '<td data-label="ChillBTC" class="num placeholder chill">—</td>'
             )
+            hodl_cell = '<td data-label="HODL" class="num placeholder">—</td>'
         else:
-            line = (
-                f"  {date.year}-{date.month:02d}  {emoji} {int(p*100):3d} %   "
-                f"{bt_str}   {float(sm)*100:+5.1f}%  {float(hm)*100:+5.1f}%"
-            )
-        table_lines.append(line)
+            strat_cell = _num_td(float(sm) * 100, "ChillBTC", chill=True)
+            hodl_cell = _num_td(float(hm) * 100, "HODL")
+
+        table_rows.append(
+            '    <tr>\n'
+            f'      <th scope="row">{month_label}</th>\n'
+            f'      <td data-label="Allocation" class="alloc-cell">{alloc_label}</td>\n'
+            f'      <td data-label="BTC USD" class="num-price">{bt_str}</td>\n'
+            f'      {strat_cell}\n'
+            f'      {hodl_cell}\n'
+            '    </tr>'
+        )
+
+    table_html = (
+        '<table class="history-table history-monthly">\n'
+        '  <thead>\n'
+        '    <tr>\n'
+        '      <th class="col-month">Mois</th>\n'
+        '      <th class="col-alloc">Allocation</th>\n'
+        '      <th class="col-price">BTC USD</th>\n'
+        '      <th class="chill">ChillBTC</th>\n'
+        '      <th>HODL</th>\n'
+        '    </tr>\n'
+        '  </thead>\n'
+        '  <tbody>\n'
+        + '\n'.join(table_rows) + '\n'
+        '  </tbody>\n'
+        '</table>'
+    )
 
     lines = [
         "# Historique mensuel — Stratégie ChillBTC vs HODL",
@@ -337,19 +520,22 @@ def build_historique_mensuel_md(table: pd.DataFrame) -> str:
         "> **HODL** = acheter et garder, stratégie passive de référence "
         "(ne rien faire, conserver ses BTC en permanence).",
         "",
-        f"Une ligne par mois depuis {start_str} "
-        f"(données CDD Bitstamp 2014-11, moins {N_TSMOM} mois de warm-up tendance (TSMOM)).",
+        f"Une ligne par mois depuis {start_str}, à partir du cours BTC/USD "
+        f"historique de Bitstamp (avec {N_TSMOM} mois d'amorçage avant cette "
+        "date pour le signal de tendance).",
         "",
         "**Comment lire** :",
         "",
-        "- **alloc** : position effectivement détenue pendant ce mois "
-        "(= signal calculé sur le close du mois précédent et appliqué le 1ᵉʳ).",
-        "- **strat / HODL** : variation **mensuelle** du portefeuille "
-        "(close N-1 → close N).",
+        "- **mois** : mois calendaire. Ligne `2025-11` = novembre 2025.",
+        "- **Allocation** : position détenue **pendant** ce mois, décidée "
+        "sur la clôture du mois précédent. Ligne `2025-11` → alloc appliquée "
+        "du 1ᵉʳ au 30 novembre, calculée sur la clôture du 31 octobre.",
+        "- **BTC USD** : prix de clôture du **dernier jour du mois**. "
+        "Ligne `2025-11` → clôture du 30 novembre.",
+        "- **ChillBTC / HODL** : variation **mensuelle** du portefeuille "
+        "(clôture du mois précédent → clôture du mois courant).",
         "",
-        "```",
-        *table_lines,
-        "```",
+        table_html,
         "",
         f"_Dernière mise à jour : {_now_utc_str()} (auto)._",
         "",
@@ -427,7 +613,7 @@ def main() -> None:
     }
     for name, content in pages.items():
         path = docs_dir / name
-        path.write_text(content, encoding="utf-8")
+        path.write_text(JEKYLL_FRONTMATTER[name] + content, encoding="utf-8")
         print(f"  ✅ {path.relative_to(repo_root)}")
 
 

@@ -312,6 +312,12 @@ section {
 .fit-table thead th.fit-theme { width: 18%; }
 .fit-table thead th.fit-yes { width: 41%; color: var(--green); }
 .fit-table thead th.fit-no  { width: 41%; color: var(--red); }
+.fit-table thead .fit-emoji {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 1.1em;
+  vertical-align: -1px;
+}
 .fit-table tbody th.fit-theme {
   padding: 18px 20px;
   text-align: left;
@@ -476,4 +482,483 @@ footer a { color: var(--muted); text-decoration-color: var(--orange); }
   .faq-item summary { padding: 18px 48px 18px 20px; font-size: 16px; }
   .faq-item summary::after { right: 22px; }
   .faq-answer { padding: 0 20px 18px; font-size: 15px; }
+}
+
+/* =============================================================
+   Jekyll sub-pages (signal, méthodologie, historique annuel/mensuel)
+   ============================================================= */
+
+/* ---------- Page content (prose) ---------- */
+.page-content {
+  padding: 56px 0 80px;
+}
+.page-content .wrap {
+  max-width: 780px;
+}
+.page-content > .wrap > .wordmark {
+  margin-bottom: 16px;
+  text-align: left;
+}
+.page-content h1 {
+  font-size: clamp(32px, 4.4vw, 48px);
+  line-height: 1.1;
+  margin: 48px 0 24px;
+}
+.page-content h1:first-of-type {
+  margin-top: 0;
+}
+.page-content h2 {
+  font-size: clamp(22px, 2.4vw, 28px);
+  line-height: 1.25;
+  margin: 40px 0 16px;
+}
+.page-content h3 {
+  font-size: 18px;
+  line-height: 1.3;
+  margin: 28px 0 10px;
+  font-weight: 700;
+}
+.page-content p {
+  margin: 0 0 16px;
+  font-size: 17px;
+}
+.page-content ul,
+.page-content ol {
+  margin: 0 0 20px;
+  padding-left: 24px;
+}
+.page-content li {
+  margin-bottom: 6px;
+}
+.page-content li > p {
+  margin-bottom: 8px;
+}
+.page-content strong {
+  font-weight: 700;
+}
+.page-content a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--orange);
+  text-underline-offset: 3px;
+}
+.page-content a:hover {
+  text-decoration-thickness: 2px;
+}
+.page-content hr {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 40px 0;
+}
+
+/* ---------- Blockquote (notes, call-outs du signal et methodologie) ---------- */
+.page-content blockquote {
+  margin: 20px 0;
+  padding: 14px 20px;
+  background: var(--card);
+  border-left: 3px solid var(--orange);
+  border-radius: 0 8px 8px 0;
+  color: var(--ink-soft);
+  font-size: 15.5px;
+}
+.page-content blockquote p {
+  margin: 0 0 8px;
+}
+.page-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- Code inline ---------- */
+.page-content code {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 14px;
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+}
+
+/* ---------- Blocs <pre> (tableaux ASCII historique annuel/mensuel) ---------- */
+.page-content pre {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 24px 0;
+  overflow-x: auto;
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink);
+  box-shadow: var(--shadow);
+}
+.page-content pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* ---------- Figures (méthodologie — PNG générés par methodology_figures.py) ---------- */
+.page-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 24px auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+}
+
+@media (max-width: 640px) {
+  .page-content { padding: 40px 0 56px; }
+  .page-content pre { font-size: 11.5px; padding: 14px 16px; }
+  .page-content h1 { margin-top: 32px; }
+  .page-content h2 { margin-top: 28px; }
+}
+
+/* =============================================================
+   Signal du mois — allocation card (Design 1) + signal table
+   ============================================================= */
+
+/* ---------- Allocation — 2 cartes BTC / USDC ---------- */
+.signal-alloc {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 28px 0 32px;
+}
+.signal-alloc .alloc-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: opacity .2s ease;
+}
+.signal-alloc .alloc-card.alloc-btc  { border-top: 4px solid var(--orange); }
+.signal-alloc .alloc-card.alloc-usdc { border-top: 4px solid #2775CA; }
+.signal-alloc .alloc-card.alloc-dim  { opacity: 0.35; }
+.signal-alloc .alloc-state {
+  font-size: 40px;
+  line-height: 1;
+  margin-bottom: 14px;
+}
+.signal-alloc .alloc-pct {
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  font-size: 48px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+.signal-alloc .alloc-label {
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ---------- Signal table — Tendance + Valorisation ---------- */
+.signal-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin: 0 0 12px;
+}
+.signal-table th {
+  background: var(--bg);
+  padding: 12px 18px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--line);
+}
+.signal-table th.num-col   { text-align: right; }
+.signal-table th.arrow-col { width: 40px; }
+.signal-table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--line);
+  font-size: 15px;
+  vertical-align: middle;
+}
+.signal-table tbody tr:last-child td { border-bottom: none; }
+.signal-table .signal-sub {
+  color: var(--muted);
+  font-size: 14px;
+}
+.signal-table .num {
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  font-weight: 500;
+  text-align: right;
+  white-space: nowrap;
+}
+.signal-table .num.positive { color: var(--green); }
+.signal-table .num.negative { color: var(--red); }
+.signal-table .arrow {
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  color: var(--muted);
+  text-align: center;
+}
+.signal-table .decision {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 12.5px;
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+.signal-table .decision.achat { background: #E7F5EE; color: var(--green); }
+.signal-table .decision.cash  { background: #FBE8E8; color: var(--red); }
+
+/* ---------- Responsive signal page ---------- */
+@media (max-width: 560px) {
+  .signal-alloc { grid-template-columns: 1fr; gap: 14px; }
+  .signal-alloc .alloc-pct { font-size: 40px; }
+  .signal-alloc .alloc-card { padding: 24px 20px; }
+
+  .signal-table th, .signal-table td { padding: 12px 12px; font-size: 14px; }
+  .signal-table .signal-sub { display: block; font-size: 12px; }
+  .signal-table .decision { padding: 4px 10px; font-size: 11.5px; }
+}
+
+/* =============================================================
+   Historique annuel + mensuel — history-table + history-summary
+   ============================================================= */
+
+/* ---------- Table commune ---------- */
+.history-table,
+.history-summary {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin: 28px 0 24px;
+}
+.history-table th,
+.history-summary th {
+  background: var(--bg);
+  padding: 12px 14px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--line);
+}
+.history-table td,
+.history-table tbody th,
+.history-summary td,
+.history-summary tbody th {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+  vertical-align: middle;
+}
+.history-table tbody tr:last-child td,
+.history-table tbody tr:last-child th,
+.history-summary tbody tr:last-child td,
+.history-summary tbody tr:last-child th { border-bottom: none; }
+
+/* Première colonne (année / mois / métrique) — libellé */
+.history-table tbody th[scope="row"],
+.history-summary tbody th[scope="row"] {
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  font-weight: 500;
+  font-size: 13.5px;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  background: var(--bg);
+  text-transform: none;
+  white-space: nowrap;
+}
+.history-summary tbody th[scope="row"] {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0;
+}
+
+/* Cellules num — mono, right-align, coloration par signe */
+.history-table .num,
+.history-summary .num {
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  font-weight: 500;
+  text-align: right;
+  white-space: nowrap;
+}
+.history-table .num.positive,
+.history-summary .num.positive { color: var(--green); }
+.history-table .num.negative,
+.history-summary .num.negative { color: var(--red); }
+.history-table .num.neutral,
+.history-summary .num.neutral { color: var(--muted); }
+.history-table .placeholder,
+.history-summary .placeholder { color: var(--muted); text-align: center; }
+
+/* Colonne ChillBTC — fond légèrement teinté (emphase) */
+.history-table .chill,
+.history-summary .chill { background: rgba(247, 147, 26, 0.04); }
+.history-table thead .chill,
+.history-summary thead .chill {
+  color: var(--orange);
+  background: var(--bg);
+}
+
+/* Hover row */
+.history-table tbody tr:hover,
+.history-summary tbody tr:hover { background: rgba(247, 147, 26, 0.06); }
+
+/* ---------- Annuel : en-tête 2 niveaux ---------- */
+.history-annual thead .group-header .group {
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+  padding: 12px 14px;
+}
+.history-annual thead .group-header .col-year {
+  vertical-align: middle;
+  border-bottom: 1px solid var(--line);
+}
+.history-annual thead .sub-header th {
+  font-size: 11px;
+  padding: 10px 14px;
+  text-align: right;
+}
+
+/* ---------- Mensuel : zebra + sticky header + colonnes ---------- */
+.history-monthly thead th {
+  position: sticky;
+  top: 60px; /* offset sous la topnav sticky */
+  z-index: 2;
+  background: var(--bg);
+}
+.history-monthly tbody tr:nth-child(even) td,
+.history-monthly tbody tr:nth-child(even) th[scope="row"] {
+  background: rgba(11, 11, 11, 0.015);
+}
+.history-monthly tbody tr:nth-child(even) .chill {
+  background: rgba(247, 147, 26, 0.055);
+}
+.history-monthly tbody tr:hover td,
+.history-monthly tbody tr:hover th[scope="row"] {
+  background: rgba(247, 147, 26, 0.08);
+}
+.history-monthly .col-month,
+.history-monthly .col-alloc { text-align: left; }
+.history-monthly .col-price { text-align: right; }
+.history-monthly .alloc-cell {
+  white-space: nowrap;
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  font-size: 13px;
+}
+.history-monthly .alloc-dot {
+  font-size: 15px;
+  margin-right: 4px;
+  vertical-align: -1px;
+}
+.history-monthly .num-price {
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  text-align: right;
+  white-space: nowrap;
+  color: var(--ink);
+}
+
+/* ---------- Mobile — stack en cards (Option A) ---------- */
+@media (max-width: 720px) {
+  .history-table,
+  .history-table thead,
+  .history-table tbody,
+  .history-table tr,
+  .history-table td,
+  .history-table tbody th {
+    display: block;
+    width: 100%;
+  }
+  .history-table thead { display: none; }
+  .history-table {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    overflow: visible;
+  }
+  .history-table tbody tr {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 14px 18px;
+    margin-bottom: 14px;
+  }
+  .history-table tbody tr:hover,
+  .history-table tbody tr:hover td,
+  .history-table tbody tr:hover th[scope="row"] { background: var(--card); }
+  .history-monthly tbody tr:nth-child(even) td,
+  .history-monthly tbody tr:nth-child(even) th[scope="row"],
+  .history-monthly tbody tr:nth-child(even) .chill { background: transparent; }
+
+  .history-table tbody th[scope="row"] {
+    padding: 4px 0 10px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+    background: transparent;
+  }
+  .history-table tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border: none;
+    font-size: 14px;
+    background: transparent !important;
+  }
+  .history-table tbody td::before {
+    content: attr(data-label);
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  }
+  .history-table tbody td.placeholder::before,
+  .history-table tbody td.alloc-cell::before,
+  .history-table tbody td.num-price::before { content: attr(data-label); }
+  .history-table .chill { background: transparent; }
+
+  /* Sticky header désactivé sur mobile (plus de thead) */
+  .history-monthly thead th { position: static; }
+
+  /* Summary : reste en tableau compact sur mobile (3 colonnes petites) */
+  .history-summary,
+  .history-summary thead,
+  .history-summary tbody,
+  .history-summary tr,
+  .history-summary td,
+  .history-summary th { display: revert; }
+  .history-summary thead { display: table-header-group; }
+  .history-summary { display: table; }
+  .history-summary th,
+  .history-summary td { padding: 10px 10px; font-size: 13px; }
+  .history-summary tbody th[scope="row"] { font-size: 13px; }
 }
