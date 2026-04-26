@@ -369,7 +369,7 @@ section {
   }
   .fit-table tbody td {
     border: none;
-    padding: 6px 20px 6px 40px;
+    padding: 6px 20px 6px 46px;
     position: relative;
   }
   .fit-table tbody td.fit-yes::before { content: "✅ "; position: absolute; left: 20px; }
