@@ -6,7 +6,25 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-*No changes yet.*
+### Changed
+
+- Monthly user-facing surface is now web-only: read the signal on
+  `https://investchill.github.io/chillbtc/signaux.html`, get notified by
+  email through WatchThatPage when the page changes. The previous
+  workflow (CSV → manual paste into a Google Sheet `btc-strat-live`)
+  is gone.
+- `07-process-mensuel.md` rewritten around the GitHub Pages +
+  WatchThatPage chain. Five-step monthly checklist, no CLI launch
+  required for the normal path.
+
+### Removed
+
+- All references to the Google Sheet `btc-strat-live` and to manual
+  Sheets-based dashboards from the methodology and process docs
+  (`02-donnees-source.md`, `04-optim-protocol.md`,
+  `07-process-mensuel.md`, `08-journal.md`, `CLAUDE.md`, `ROADMAP.md`).
+- The end-to-end Sheets dry-run that was pending for Phase E. With
+  Sheets removed, Phase E (Monthly + Process) is closed.
 
 ## [0.2.0] - 2026-04-24
 
