@@ -10,7 +10,7 @@ Cette page explique **pourquoi** la stratégie utilise exactement 2 signaux, un
 de **tendance** et un de **valorisation**, **comment** chacun est construit, et
 **quand** ils se sont avérés utiles ou coûteux sur l'historique BTC.
 
-> La stratégie est gelée depuis 2026-05-01 jusqu'à la revue annuelle du 1ᵉʳ
+> La stratégie est gelée depuis le 1ᵉʳ mai 2026 jusqu'à la revue annuelle du 1ᵉʳ
 > janvier suivant. Les paramètres décrits ici sont ceux appliqués
 > actuellement.
 
@@ -30,9 +30,11 @@ niveau absolu par rapport à une droite de référence (valorisation). Quand
 l'un des deux dit *CASH*, la position est allégée ou coupée, sans attendre
 que le second s'en rende compte.
 
-Ce choix de 2 signaux est aussi un choix **anti-overfit**. Un ensemble à 5 ou
-10 signaux optimisés simultanément sur ~180 observations mensuelles produirait
-un résultat simulé flatteur et une réalité décevante. Deux signaux, chacun à 1 ou 2
+Ce choix de 2 signaux est aussi un choix **anti-overfit**. L'*overfit*, c'est
+quand une stratégie est tellement réglée sur le passé qu'elle colle parfaitement
+à l'historique mais déçoit en réel. Un ensemble à 5 ou 10 signaux optimisés
+simultanément sur ~180 observations mensuelles produirait exactement ça : un
+résultat simulé flatteur et une réalité décevante. Deux signaux, chacun à 1 ou 2
 paramètres, restent auditables et robustes.
 
 ---
@@ -66,11 +68,11 @@ hors-échantillon qu'un pic étroit.
 
 Trois moments charnières où la tendance a pesé :
 
-- **2018-09** : la tendance bascule CASH après un retard de plusieurs mois
+- **Septembre 2018** : la tendance bascule CASH après un retard de plusieurs mois
   sur le sommet de janvier. La stratégie sort avant la chute de Q4 2018.
-- **2020-03** : la tendance reste CASH après le krach Covid. La stratégie
+- **Mars 2020** : la tendance reste CASH après le krach Covid. La stratégie
   rate le rebond en V. C'est le coût du lag TSMOM, assumé par construction.
-- **2022-04 à 2022-08** : la tendance reste CASH tout au long de la descente
+- **Avril à août 2022** : la tendance reste CASH tout au long de la descente
   Luna / 3AC / FTX. La stratégie traverse la baisse à 0 % ou 50 %.
 
 ![Signaux tendance et valorisation — historique 2015-2026](assets/methodology/signaux_history.png)
@@ -116,11 +118,11 @@ accélère brutalement, mais c'est le compromis assumé.
 
 ### Illustrations historiques
 
-- **2017-12** : `prix/juste-valeur` dépasse 4. La valorisation CASH au pic. La
+- **Décembre 2017** : `prix/juste-valeur` dépasse 4. La valorisation CASH au pic. La
   stratégie coupe juste avant le krach de 2018.
-- **2021-11** : la valorisation CASH dès l'été 2021, tenue jusqu'au creux
+- **Novembre 2021** : la valorisation CASH dès l'été 2021, tenue jusqu'au creux
   2022. La stratégie évite l'essentiel de la baisse.
-- **2023-01** : `prix/juste-valeur < 0.6` au creux à 17 000 USD. La valorisation
+- **Janvier 2023** : `prix/juste-valeur < 0.6` au creux à 17 000 USD. La valorisation
   repasse ACHAT tôt, captant une partie du rebond vers 23 000 USD en janvier.
 
 ![Valorisation — prix BTC contre la droite Power Law](assets/methodology/powerlaw_band.png)

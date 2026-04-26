@@ -41,7 +41,7 @@ Performance année par année depuis 2015 — stratégie ChillBTC vs **HODL**
 
 ### [📅 Historique mensuel →](docs/historique-mensuel.md)
 
-Toutes les positions mois par mois depuis 2015-10, avec perf cumulée
+Toutes les positions mois par mois depuis octobre 2015, avec perf cumulée
 stratégie vs HODL.
 
 ---
@@ -113,19 +113,19 @@ académiques avec DOI, illustrations historiques annotées sur 10 ans) : voir
 
 ---
 
-## 📊 Performance historique (simulation depuis 2015-10)
+## 📊 Performance historique (simulation depuis octobre 2015)
 
 Mis à jour automatiquement chaque 1ᵉʳ du mois — **table complète année
 par année et mois par mois sur les pages dédiées** :
 
 - **[📈 Historique annuel →](docs/historique-annuel.md)** — perf annuelle
-  stratégie vs HODL, 2015-10 → aujourd'hui.
+  stratégie vs HODL, octobre 2015 → aujourd'hui.
 - **[📅 Historique mensuel →](docs/historique-mensuel.md)** — toutes les
   positions et la perf cumulée mois par mois.
 
 **Lecture rapide** (chiffres globaux sur ~10 ans) :
 
-- **Performance annualisée ChillBTC ≈ +90 %/an** vs **HODL ≈ +75 %/an**.
+- **Performance annualisée ChillBTC ≈ +88 %/an** vs **HODL ≈ +67 %/an**.
 - **Pire baisse temporaire ChillBTC −40 %** (sur papier, perte
   non-réalisée) vs **HODL −75 %** — c'est ça, le vrai gain.
 - ChillBTC **gagne largement en marché baissier** (2018, 2022) et
