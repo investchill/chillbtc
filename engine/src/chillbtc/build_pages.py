@@ -332,6 +332,7 @@ def build_historique_annuel_md(table: pd.DataFrame) -> str:
     hodl_dd = _yearly_dd(hodl)
 
     start_str = f"{table.index[0].year}-{table.index[0].month:02d}"
+    start_str_prose = f"{MOIS_FR[table.index[0].month]} {table.index[0].year}"
 
     # Tableau annuel HTML (en-tête 2 niveaux : Performance | Baisse max)
     table_rows = []
@@ -424,7 +425,7 @@ def build_historique_annuel_md(table: pd.DataFrame) -> str:
         "**baisse max** = plus grosse baisse temporaire du portefeuille "
         "dans l'année, sur papier (perte non-réalisée, tu n'as pas vendu).",
         "",
-        f"Performances annuelles depuis {start_str}, à partir du cours BTC/USD "
+        f"Performances annuelles depuis {start_str_prose}, à partir du cours BTC/USD "
         f"historique de Bitstamp (avec {N_TSMOM} mois d'amorçage avant cette "
         "date pour le signal de tendance). Les années marquées `*` sont "
         "partielles (démarrage de la simulation, année en cours).",
@@ -465,6 +466,7 @@ def build_historique_mensuel_md(table: pd.DataFrame) -> str:
     hodl_monthly = hodl.pct_change()
 
     start_str = f"{table.index[0].year}-{table.index[0].month:02d}"
+    start_str_prose = f"{MOIS_FR[table.index[0].month]} {table.index[0].year}"
 
     # Tableau mensuel HTML — zebra + sticky header
     table_rows = []
@@ -520,7 +522,7 @@ def build_historique_mensuel_md(table: pd.DataFrame) -> str:
         "> **HODL** = acheter et garder, stratégie passive de référence "
         "(ne rien faire, conserver ses BTC en permanence).",
         "",
-        f"Une ligne par mois depuis {start_str}, à partir du cours BTC/USD "
+        f"Une ligne par mois depuis {start_str_prose}, à partir du cours BTC/USD "
         f"historique de Bitstamp (avec {N_TSMOM} mois d'amorçage avant cette "
         "date pour le signal de tendance).",
         "",
