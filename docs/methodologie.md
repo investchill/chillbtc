@@ -57,9 +57,12 @@ résultat au couple *value + momentum* sur 8 marchés globaux.
 
 ### Pourquoi n = 11 et pas 12
 
-La fenêtre n = 11 a été retenue par optimisation walk-forward sur l'axe
+La fenêtre n = 11 a été retenue par optimisation **walk-forward** sur l'axe
 minimisation de la **baisse max** (plus grosse baisse temporaire sur
-papier). Ce n'est pas un pic isolé : le plateau de stabilité couvre
+papier). Le *walk-forward*, c'est choisir le paramètre sur une période A,
+le tester sur la période B suivante (jamais vue), glisser, recommencer —
+pour vérifier qu'il tient sur du futur, pas juste sur le passé qui a
+servi à le calibrer. Ce n'est pas un pic isolé : le plateau de stabilité couvre
 n ∈ {9, 10, 11, 12, 13}, tous produisant une baisse max voisine. Un
 paramètre choisi dans un plateau large résiste mieux aux régimes
 hors-échantillon qu'un pic étroit.
