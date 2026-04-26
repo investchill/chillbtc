@@ -465,7 +465,6 @@ def build_historique_mensuel_md(table: pd.DataFrame) -> str:
     strat_monthly = eq.pct_change()
     hodl_monthly = hodl.pct_change()
 
-    start_str = f"{table.index[0].year}-{table.index[0].month:02d}"
     start_str_prose = f"{MOIS_FR[table.index[0].month]} {table.index[0].year}"
 
     # Tableau mensuel HTML — zebra + sticky header
