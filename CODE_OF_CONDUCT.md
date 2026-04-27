@@ -25,7 +25,7 @@ contribuer du code, de la doc, une idée ou une critique constructive.
 ## Signalement
 
 Si tu observes ou subis un comportement qui viole ce code, contacte
-`chillbtc@zaclys.net`. Les mails sont lus par le mainteneur du projet.
+`invest.chill.btc@gmail.com`. Les mails sont lus par le mainteneur du projet.
 Les signalements sont traités avec discrétion.
 
 ## Sanctions
@@ -37,7 +37,7 @@ dépôt.
 ## Périmètre
 
 Ce code s'applique à tous les espaces du projet (issues, pull requests,
-discussions GitHub, mails envoyés à `chillbtc@zaclys.net`, ainsi qu'à
+discussions GitHub, mails envoyés à `invest.chill.btc@gmail.com`, ainsi qu'à
 toute représentation publique du projet).
 
 Inspiré de [Contributor Covenant 2.1](https://www.contributor-covenant.org/).

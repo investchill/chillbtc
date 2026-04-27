@@ -252,7 +252,7 @@ non-commercial uniquement, partage à l'identique.
 - **Sécurité** — vulnérabilités traitées en privé, voir
   [`SECURITY.md`](SECURITY.md).
 - **Comportement** — voir [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md).
-- **Mail** — `chillbtc@zaclys.net` pour tout autre contact.
+- **Mail** — `invest.chill.btc@gmail.com` pour tout autre contact.
 
 Pas un conseil en investissement. Les performances passées ne préjugent
 pas des performances futures.

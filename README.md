@@ -12,7 +12,7 @@ la hausse sur le long terme. L'outil te donne **1 instruction simple
 par mois** : **100 %, 50 % ou 0 % de ton allocation BTC**. Tu appliques
 le dosage sur Binance, tu fermes, tu retournes à ta vie.
 
-> © 2026 ChillBTC — Contact : chillbtc@zaclys.net
+> © 2026 ChillBTC — Contact : invest.chill.btc@gmail.com
 > Usage non-commercial uniquement ([CC BY-NC-SA 4.0](LICENSE)).
 > Pas un conseil en investissement. Past performance does not guarantee future results.
 

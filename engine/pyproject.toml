@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "ChillBTC — long-term BTC monthly N-versioning strategy (3 rules x 3 optimisations = 9 strategies)"
 readme = "README.md"
 authors = [
-    { name = "ChillBTC", email = "chillbtc@zaclys.net" }
+    { name = "ChillBTC", email = "invest.chill.btc@gmail.com" }
 ]
 requires-python = ">=3.13"
 dependencies = [

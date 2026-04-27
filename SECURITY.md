@@ -21,7 +21,7 @@ Ce ne sont pas des vulnérabilités :
 
 ## Comment rapporter
 
-**Privé** : envoyez un mail à `chillbtc@zaclys.net`. Merci de ne pas
+**Privé** : envoyez un mail à `invest.chill.btc@gmail.com`. Merci de ne pas
 ouvrir d'issue publique avant la correction.
 
 Réponse attendue sous **7 jours**. Corrections sous **30 jours** quand
