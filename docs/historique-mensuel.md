@@ -8,7 +8,7 @@ description: Toutes les positions mois par mois depuis 2015.
 
 > **HODL** = acheter et garder, stratégie passive de référence (ne rien faire, conserver ses BTC en permanence).
 
-Une ligne par mois depuis 2015-10, à partir du cours BTC/USD historique de Bitstamp (avec 11 mois d'amorçage avant cette date pour le signal de tendance).
+Une ligne par mois depuis octobre 2015, à partir du cours BTC/USD historique de Bitstamp (avec 11 mois d'amorçage avant cette date pour le signal de tendance).
 
 **Comment lire** :
 
@@ -28,6 +28,13 @@ Une ligne par mois depuis 2015-10, à partir du cours BTC/USD historique de Bits
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <th scope="row">2026-04</th>
+      <td data-label="Allocation" class="alloc-cell"><span class="alloc-dot">🟡</span> 50 %</td>
+      <td data-label="BTC USD" class="num-price">76 310</td>
+      <td data-label="ChillBTC" class="num positive chill">+5.9 %</td>
+      <td data-label="HODL" class="num positive">+11.9 %</td>
+    </tr>
     <tr>
       <th scope="row">2026-03</th>
       <td data-label="Allocation" class="alloc-cell"><span class="alloc-dot">🟡</span> 50 %</td>
@@ -913,4 +920,4 @@ Une ligne par mois depuis 2015-10, à partir du cours BTC/USD historique de Bits
   </tbody>
 </table>
 
-_Dernière mise à jour : 2026-04-24 12:37 UTC (auto)._
+_Dernière mise à jour : 2026-05-01 06:27 UTC (auto)._

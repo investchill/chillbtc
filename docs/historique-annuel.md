@@ -8,7 +8,7 @@ description: Performance annuelle ChillBTC vs HODL depuis 2015.
 
 > **HODL** = acheter et garder, stratégie passive de référence (ne rien faire, conserver ses BTC en permanence). **baisse max** = plus grosse baisse temporaire du portefeuille dans l'année, sur papier (perte non-réalisée, tu n'as pas vendu).
 
-Performances annuelles depuis 2015-10, à partir du cours BTC/USD historique de Bitstamp (avec 11 mois d'amorçage avant cette date pour le signal de tendance). Les années marquées `*` sont partielles (démarrage de la simulation, année en cours).
+Performances annuelles depuis octobre 2015, à partir du cours BTC/USD historique de Bitstamp (avec 11 mois d'amorçage avant cette date pour le signal de tendance). Les années marquées `*` sont partielles (démarrage de la simulation, année en cours).
 
 <table class="history-table history-annual">
   <thead>
@@ -104,8 +104,8 @@ Performances annuelles depuis 2015-10, à partir du cours BTC/USD historique de 
     </tr>
     <tr>
       <th scope="row">2026 *</th>
-      <td data-label="perf ChillBTC" class="num negative chill">-11.3 %</td>
-      <td data-label="perf HODL" class="num negative">-22.0 %</td>
+      <td data-label="perf ChillBTC" class="num negative chill">-6.0 %</td>
+      <td data-label="perf HODL" class="num negative">-12.8 %</td>
       <td data-label="baisse max ChillBTC" class="num negative chill">-7.4 %</td>
       <td data-label="baisse max HODL" class="num negative">-14.8 %</td>
     </tr>
@@ -123,18 +123,18 @@ Performances annuelles depuis 2015-10, à partir du cours BTC/USD historique de 
   <tbody>
     <tr>
       <th scope="row">Perf annualisée 3 ans</th>
-      <td data-label="ChillBTC" class="num positive chill">+41.3 %</td>
-      <td data-label="HODL" class="num positive">+33.8 %</td>
+      <td data-label="ChillBTC" class="num positive chill">+43.4 %</td>
+      <td data-label="HODL" class="num positive">+37.7 %</td>
     </tr>
     <tr>
       <th scope="row">Perf annualisée 5 ans</th>
-      <td data-label="ChillBTC" class="num positive chill">+28.0 %</td>
-      <td data-label="HODL" class="num positive">+3.0 %</td>
+      <td data-label="ChillBTC" class="num positive chill">+29.5 %</td>
+      <td data-label="HODL" class="num positive">+5.7 %</td>
     </tr>
     <tr>
       <th scope="row">Perf annualisée depuis 2015-10</th>
-      <td data-label="ChillBTC" class="num positive chill">+88.6 %</td>
-      <td data-label="HODL" class="num positive">+67.1 %</td>
+      <td data-label="ChillBTC" class="num positive chill">+88.7 %</td>
+      <td data-label="HODL" class="num positive">+68.2 %</td>
     </tr>
     <tr>
       <th scope="row">Baisse max depuis 2015-10</th>
@@ -150,4 +150,4 @@ Performances annuelles depuis 2015-10, à partir du cours BTC/USD historique de 
 - **baisse max** : la plus grosse baisse temporaire du portefeuille pendant l'année, **sur papier** (c'est une perte non-réalisée, tu n'as pas vendu). Exemple : un portefeuille qui passe de 100 à 70 puis remonte à 90 a une baisse max de -30 %, même si le résultat final n'est que -10 %.
 - **Perf annualisée 3 / 5 ans** : moyenne géométrique des 36 / 60 derniers mois (rolling, pas calendaire).
 
-_Dernière mise à jour : 2026-04-24 12:37 UTC (auto)._
+_Dernière mise à jour : 2026-05-01 06:27 UTC (auto)._
