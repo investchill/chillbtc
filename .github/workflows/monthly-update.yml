@@ -2,7 +2,10 @@ name: Monthly auto-update — pages publiques
 
 on:
   schedule:
-    - cron: '0 6 1 * *'
+    # Cron à 06:17 UTC le 1er du mois (minute non-ronde) pour réduire le risque
+    # de skip GitHub Actions sur les horaires chargés. Le cron '0 6 1 * *' a été
+    # skipé en mai 2026 (cf. doc GitHub Actions sur high-load schedule delays).
+    - cron: '17 6 1 * *'
   workflow_dispatch: {}
 
 permissions:
