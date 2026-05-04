@@ -304,8 +304,18 @@ def _annualized_n_years(values: pd.Series, n_years: int) -> float | None:
 
 
 def _annualized_total(values: pd.Series) -> float:
-    """CAGR depuis le 1ᵉʳ point de la série."""
-    n_years = len(values) / 12
+    """CAGR sur la fenêtre complète d'une wealth curve mensuelle.
+
+    Convention : ``values`` est l'equity rebasée à 1,0 au mois `t=0`.
+    Le ratio ``values[-1] / values[0]`` couvre alors les
+    `len(values) - 1` croissances mensuelles entre `t=0` et `t=-1`,
+    soit ``(len-1)/12`` années — pas ``len/12``. Sans le ``-1``, le
+    CAGR est sous-estimé d'environ 1/12 ans (~0,3-1,0 pp sur l'horizon
+    ChillBTC ~10 ans, plus visible sur des fenêtres courtes).
+    """
+    if len(values) < 2:
+        return float("nan")
+    n_years = (len(values) - 1) / 12
     return (values.iloc[-1] / values.iloc[0]) ** (1 / n_years) - 1
 
 
