@@ -133,8 +133,8 @@ Performances annuelles depuis octobre 2015, à partir du cours BTC/USD historiqu
     </tr>
     <tr>
       <th scope="row">Perf annualisée depuis 2015-10</th>
-      <td data-label="ChillBTC" class="num positive chill">+88.7 %</td>
-      <td data-label="HODL" class="num positive">+68.2 %</td>
+      <td data-label="ChillBTC" class="num positive chill">+89.7 %</td>
+      <td data-label="HODL" class="num positive">+68.9 %</td>
     </tr>
     <tr>
       <th scope="row">Baisse max depuis 2015-10</th>
@@ -150,4 +150,4 @@ Performances annuelles depuis octobre 2015, à partir du cours BTC/USD historiqu
 - **baisse max** : la plus grosse baisse temporaire du portefeuille pendant l'année, **sur papier** (c'est une perte non-réalisée, tu n'as pas vendu). Exemple : un portefeuille qui passe de 100 à 70 puis remonte à 90 a une baisse max de -30 %, même si le résultat final n'est que -10 %.
 - **Perf annualisée 3 / 5 ans** : moyenne géométrique des 36 / 60 derniers mois (rolling, pas calendaire).
 
-_Dernière mise à jour : 2026-05-01 06:27 UTC (auto)._
+_Dernière mise à jour : 2026-05-04 06:55 UTC (auto)._

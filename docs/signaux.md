@@ -58,4 +58,4 @@ description: L'allocation BTC à appliquer ce mois-ci, et les 2 signaux sous-jac
 - **2026-04** : 🟡 50 % — tendance CASH, valorisation ACHAT
 - **2026-03** : 🟡 50 % — tendance CASH, valorisation ACHAT
 
-_Dernière mise à jour : 2026-05-01 06:27 UTC (auto)._
+_Dernière mise à jour : 2026-05-04 06:55 UTC (auto)._
