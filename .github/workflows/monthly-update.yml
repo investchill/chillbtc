@@ -2,10 +2,24 @@ name: Monthly auto-update — pages publiques
 
 on:
   schedule:
-    # Cron à 06:17 UTC le 1er du mois (minute non-ronde) pour réduire le risque
-    # de skip GitHub Actions sur les horaires chargés. Le cron '0 6 1 * *' a été
-    # skipé en mai 2026 (cf. doc GitHub Actions sur high-load schedule delays).
-    - cron: '17 6 1 * *'
+    # GitHub Actions DROP (pas seulement retarde) les crons schedule pendant
+    # les pics de charge. Le 1er du mois entre 06:00 et 07:00 UTC est le créneau
+    # le plus saturé : le cron '0 6 1 * *' a été skipé en mai 2026, et le
+    # palliatif '17 6 1 * *' (minute non-ronde mais toujours dans la fenêtre
+    # chargée) a de nouveau été skipé en juin 2026. Cf. doc GitHub Actions :
+    # "The schedule event can be delayed during periods of high loads ... High
+    # load times include the start of every hour."
+    #
+    # Mitigation robuste : plusieurs tentatives réparties sur des minutes
+    # non-rondes ET des heures hors-pointe, plus un filet de sécurité les jours
+    # 2 et 3 du mois. Le job est idempotent (commit/push UNIQUEMENT si les pages
+    # ont changé, cf. `git diff --cached --quiet`), donc les exécutions
+    # surnuméraires sont inoffensives : la première qui passe publie, les
+    # suivantes ne trouvent aucun diff et ne committent rien.
+    - cron: '23 9 1 * *'    # 1er du mois, 09:23 UTC — créneau principal hors-pointe
+    - cron: '37 13 1 * *'   # 1er du mois, 13:37 UTC — 2e tentative même jour
+    - cron: '23 9 2 * *'    # 2 du mois, 09:23 UTC — filet de sécurité J+1
+    - cron: '23 9 3 * *'    # 3 du mois, 09:23 UTC — filet de sécurité J+2
   workflow_dispatch: {}
 
 permissions:
@@ -44,8 +58,10 @@ jobs:
           git add docs/signaux.md docs/historique-annuel.md docs/historique-mensuel.md \
                   engine/output/live_journal.csv \
                   engine/data/btc_daily.csv engine/data/btc_monthly.csv
+          # Idempotence : si aucune des tentatives cron précédentes n'a déjà
+          # publié le signal du mois, il y a un diff → on commit. Sinon, no-op.
           if git diff --cached --quiet; then
-            echo "Aucun changement, rien à commit."
+            echo "Aucun changement, rien à commit (mois déjà publié ou données inchangées)."
           else
             git commit -m "chore(auto): pages mensuelles — $(date -u +%Y-%m-%d)"
             git push
