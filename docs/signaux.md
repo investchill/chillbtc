@@ -35,13 +35,13 @@ description: L'allocation BTC à appliquer ce mois-ci, et les 2 signaux sous-jac
   <tbody>
     <tr>
       <td>Tendance <span class="signal-sub">(TSMOM 11 m)</span></td>
-      <td class="num negative">-27.1%</td>
+      <td class="num negative">-31.4%</td>
       <td class="arrow">→</td>
       <td><span class="decision cash">❌ CASH</span></td>
     </tr>
     <tr>
       <td>Valorisation <span class="signal-sub">(Power Law)</span></td>
-      <td class="num">0.57</td>
+      <td class="num">0.53</td>
       <td class="arrow">→</td>
       <td><span class="decision achat">✅ ACHAT</span></td>
     </tr>
@@ -50,12 +50,13 @@ description: L'allocation BTC à appliquer ce mois-ci, et les 2 signaux sous-jac
 
 ## Contexte
 
-- Prix BTC à la clôture du **30 avril 2026** : **76 310 USD**
+- Prix BTC à la clôture du **31 mai 2026** : **73 568 USD**
 - Constante A Power Law : -16.917 (figée jusqu'à la prochaine revue annuelle)
 
-## 2 derniers mois
+## 3 derniers mois
 
+- **2026-05** : 🟡 50 % — tendance CASH, valorisation ACHAT
 - **2026-04** : 🟡 50 % — tendance CASH, valorisation ACHAT
 - **2026-03** : 🟡 50 % — tendance CASH, valorisation ACHAT
 
-_Dernière mise à jour : 2026-05-04 06:55 UTC (auto)._
+_Dernière mise à jour : 2026-06-01 08:04 UTC (auto)._
