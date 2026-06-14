@@ -2,7 +2,7 @@
 
 Runs the frozen Mode C cascade at both cadences (monthly via ``cascade.run_cascade``,
 weekly via ``cascade_weekly.run_cascade_weekly``) under two fee assumptions:
-0.2 % (realistic Binance) and 0.5 % (conservative backtest).
+0.2 % (realistic exchange) and 0.5 % (conservative backtest).
 
 Never modifies the monthly frozen outputs: the monthly cascade is re-run with
 ``save_outputs=False``.

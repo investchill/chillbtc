@@ -20,7 +20,7 @@ tracé dans le diagnostic.
 Friction : frais proportionnels à `abs(Δposition)`. Passer de 1.00 à 0.50 paie
 0.5 × 0.5 % = 0.25 % de friction (seule la fraction tradée est facturée),
 pas le fee binaire plein comme dans `equity_from_signals`. Plus fidèle à la
-réalité Binance.
+réalité d'une plateforme d'échange.
 
 Sorties :
 

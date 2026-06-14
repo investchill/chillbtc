@@ -10,7 +10,7 @@ fixes**, que tu **appliques une fois par mois puis oublies**. Elle est
 conçue pour limiter les grosses baisses en marché baissier sans rater
 la hausse sur le long terme. L'outil te donne **1 instruction simple
 par mois** : **100 %, 50 % ou 0 % de ton allocation BTC**. Tu appliques
-le dosage sur Binance, tu fermes, tu retournes à ta vie.
+le dosage sur ta plateforme d'échange, tu fermes, tu retournes à ta vie.
 
 > © 2026 ChillBTC — Contact : invest.chill.btc@gmail.com
 > Usage non-commercial uniquement ([CC BY-NC-SA 4.0](LICENSE)).
@@ -55,8 +55,8 @@ stratégie vs HODL.
 - Tu veux une **règle fixe**, pas "je ressens que…" ou "mon pote a dit".
 - Tu es **résident fiscal français** (la règle `CASH = USDC` annule la friction
   fiscale sur les switches mensuels — art. 150 VH bis CGI).
-- Tu utilises **Binance** (adaptable à d'autres plateformes mais la
-  simulation historique suppose Binance).
+- Tu utilises une **plateforme d'échange crypto** proposant la paire BTC/USDC
+  (la simulation suppose des frais de 0,5 %/switch, marge large vs frais réels).
 - Tu acceptes qu'une **baisse temporaire jusqu'à −50 %** de ton portefeuille
   reste possible. La simulation 2016-2026 montre −40 % max (baisse temporaire
   sur papier), mais le futur n'est pas garanti.
@@ -143,8 +143,8 @@ Chaque 1ᵉʳ du mois (tolérance jusqu'au 3 si tu es pris) :
      ou `🔴 0 % BTC (100 % USDC)`.
    - Les 6 derniers mois sont rappelés en bas de page pour le contexte.
 
-2. **Compare avec ta position actuelle sur Binance** (10 s)
-   - Ouvre l'app/site Binance → onglet "Portfolio" ou "Wallet overview".
+2. **Compare avec ta position actuelle sur ta plateforme d'échange** (10 s)
+   - Ouvre l'app/site de ta plateforme → onglet "Portfolio" ou "Wallet overview".
    - Regarde la proportion BTC / USDC dans ton solde de trading.
 
 3. **Si le dosage cible diffère de ta position** (2 min, ~1 fois par an
@@ -163,8 +163,8 @@ Chaque 1ᵉʳ du mois (tolérance jusqu'au 3 si tu es pris) :
 
 **Cas particuliers** :
 
-- Le 1ᵉʳ du mois tombe un weekend ou férié → fais-le quand même, Binance
-  est ouvert 24/7.
+- Le 1ᵉʳ du mois tombe un weekend ou férié → fais-le quand même, les
+  plateformes d'échange crypto sont ouvertes 24/7.
 - Tu es en voyage sans connexion → fais-le à ton retour, tolérance J+2.
 - La page n'est pas mise à jour le matin du 1ᵉʳ → vérifie en fin de journée
   (le bot tourne le 1ᵉʳ à 06:00 UTC, parfois retardé).

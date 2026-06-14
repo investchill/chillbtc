@@ -12,7 +12,7 @@ Décris l'événement précis et sa date. Joins un lien vers la source
 
 ## Catégorie
 
-- [ ] Faillite de plateforme (Binance ou similaire).
+- [ ] Faillite de plateforme d'échange (ou équivalent).
 - [ ] Dépegging stablecoin > 5 % sur plus de 7 jours consécutifs (USDC,
       contagion UST-like, etc.).
 - [ ] Changement réglementaire majeur impactant la règle `CASH = USDC`
@@ -21,8 +21,8 @@ Décris l'événement précis et sa date. Joins un lien vers la source
 
 ## Impact sur la stratégie
 
-En quoi la règle live actuelle (100 / 50 / 0 BTC / USDC sur Binance, A
-figé à -16.917, cascade `strict_r1_def`) est-elle affectée ?
+En quoi la règle live actuelle (100 / 50 / 0 BTC / USDC sur ta plateforme
+d'échange, A figé à -16.917, cascade `strict_r1_def`) est-elle affectée ?
 
 ## Proposition
 

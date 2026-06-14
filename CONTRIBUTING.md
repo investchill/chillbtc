@@ -196,7 +196,8 @@ contrainte pour limiter la surface d'overfit. Ne proposez pas :
 - **Plateau de stabilité exigé** : si seul le pic exact du grid search
   fonctionne, c'est de l'overfit, la règle est jetée.
 - **Frais inclus** : tout backtest doit intégrer des frais, hypothèse
-  conservatrice 0,5 % par switch (vs ~0,15-0,20 % réel Binance).
+  conservatrice 0,5 % par switch (marge large au-dessus des frais réels
+  des plateformes d'échange grand public, ~0,1-0,4 % par côté).
 
 ### Stratégie gelée
 

@@ -3,7 +3,7 @@
 Re-runs the 9-cell Latin square at two fee levels and reports the per-cell delta:
 
 - fee=0.005  (0.5 %, Phase C pessimistic baseline)
-- fee=0.0015 (0.15 %, realistic Binance + BNB)
+- fee=0.0015 (0.15 %, realistic low-fee exchange tier)
 
 Each rule is *re-optimised* at each fee level (grid search + O1/O2/O3), so the
 chosen parameters can differ between the two runs. A ``params_changed`` flag
