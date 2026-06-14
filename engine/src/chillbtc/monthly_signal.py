@@ -20,7 +20,7 @@ Comportement :
 2. Drop le mois en cours s'il est partiel.
 3. Calcule R1, R3, puis la cascade → position 0 / 0.5 / 1.
 4. Affiche un rapport FR à l'écran, avec l'action à faire sur la plateforme d'échange.
-5. Affiche la ligne CSV à copier-coller dans le Google Sheet live.
+5. Affiche la ligne CSV du signal du mois (pour référence).
 6. Append cette ligne à ``engine/output/live_journal.csv``.
 """
 
