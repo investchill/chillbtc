@@ -104,10 +104,10 @@ Performances annuelles depuis octobre 2015, à partir du cours BTC/USD historiqu
     </tr>
     <tr>
       <th scope="row">2026 *</th>
-      <td data-label="perf ChillBTC" class="num negative chill">-7.7 %</td>
-      <td data-label="perf HODL" class="num negative">-15.9 %</td>
-      <td data-label="baisse max ChillBTC" class="num negative chill">-7.4 %</td>
-      <td data-label="baisse max HODL" class="num negative">-14.8 %</td>
+      <td data-label="perf ChillBTC" class="num negative chill">-17.1 %</td>
+      <td data-label="perf HODL" class="num negative">-33.1 %</td>
+      <td data-label="baisse max ChillBTC" class="num negative chill">-12.7 %</td>
+      <td data-label="baisse max HODL" class="num negative">-25.6 %</td>
     </tr>
   </tbody>
 </table>
@@ -123,18 +123,18 @@ Performances annuelles depuis octobre 2015, à partir du cours BTC/USD historiqu
   <tbody>
     <tr>
       <th scope="row">Perf annualisée 3 ans</th>
-      <td data-label="ChillBTC" class="num positive chill">+44.2 %</td>
-      <td data-label="HODL" class="num positive">+39.3 %</td>
+      <td data-label="ChillBTC" class="num positive chill">+34.1 %</td>
+      <td data-label="HODL" class="num positive">+24.3 %</td>
     </tr>
     <tr>
       <th scope="row">Perf annualisée 5 ans</th>
-      <td data-label="ChillBTC" class="num positive chill">+29.0 %</td>
-      <td data-label="HODL" class="num positive">+14.5 %</td>
+      <td data-label="ChillBTC" class="num positive chill">+26.3 %</td>
+      <td data-label="HODL" class="num positive">+10.8 %</td>
     </tr>
     <tr>
       <th scope="row">Perf annualisée depuis 2015-10</th>
-      <td data-label="ChillBTC" class="num positive chill">+88.4 %</td>
-      <td data-label="HODL" class="num positive">+67.7 %</td>
+      <td data-label="ChillBTC" class="num positive chill">+85.6 %</td>
+      <td data-label="HODL" class="num positive">+63.4 %</td>
     </tr>
     <tr>
       <th scope="row">Baisse max depuis 2015-10</th>
@@ -150,4 +150,4 @@ Performances annuelles depuis octobre 2015, à partir du cours BTC/USD historiqu
 - **baisse max** : la plus grosse baisse temporaire du portefeuille pendant l'année, **sur papier** (c'est une perte non-réalisée, tu n'as pas vendu). Exemple : un portefeuille qui passe de 100 à 70 puis remonte à 90 a une baisse max de -30 %, même si le résultat final n'est que -10 %.
 - **Perf annualisée 3 / 5 ans** : moyenne géométrique des 36 / 60 derniers mois (rolling, pas calendaire).
 
-_Dernière mise à jour : 2026-06-03 14:11 UTC (auto)._
+_Dernière mise à jour : 2026-07-01 12:18 UTC (auto)._
