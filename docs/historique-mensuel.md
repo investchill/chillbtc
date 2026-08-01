@@ -29,6 +29,13 @@ Une ligne par mois depuis octobre 2015, à partir du cours BTC/USD historique de
   </thead>
   <tbody>
     <tr>
+      <th scope="row">2026-07</th>
+      <td data-label="Allocation" class="alloc-cell"><span class="alloc-dot">🟡</span> 50 %</td>
+      <td data-label="BTC USD" class="num-price">62 818</td>
+      <td data-label="ChillBTC" class="num positive chill">+3.7 %</td>
+      <td data-label="HODL" class="num positive">+7.3 %</td>
+    </tr>
+    <tr>
       <th scope="row">2026-06</th>
       <td data-label="Allocation" class="alloc-cell"><span class="alloc-dot">🟡</span> 50 %</td>
       <td data-label="BTC USD" class="num-price">58 526</td>
@@ -934,4 +941,4 @@ Une ligne par mois depuis octobre 2015, à partir du cours BTC/USD historique de
   </tbody>
 </table>
 
-_Dernière mise à jour : 2026-07-03 11:42 UTC (auto)._
+_Dernière mise à jour : 2026-08-01 10:52 UTC (auto)._

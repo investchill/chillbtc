@@ -3,3 +3,4 @@ date,close_btc_usd,return_11m,signal_r1,ratio_price_fair_pl,a_constant,signal_r3
 2026-04-30,76310.00,-0.270780,0,0.566281,-16.917000,1,50,R1 CASH (rendement 11m = -27.1%) & R3 BUY (prix/fair_PL = 0.57) → 50 % BTC,live
 2026-05-31,73567.99,-0.313597,0,0.530672,-16.917000,1,50,R1 CASH (rendement 11m = -31.4%) & R3 BUY (prix/fair_PL = 0.53) → 50 % BTC,live
 2026-06-30,58526.17,-0.494374,0,0.410798,-16.917000,1,50,R1 CASH (rendement 11m = -49.4%) & R3 BUY (prix/fair_PL = 0.41) → 50 % BTC,live
+2026-07-31,62817.96,-0.419797,0,0.428712,-16.917000,1,50,R1 CASH (rendement 11m = -42.0%) & R3 BUY (prix/fair_PL = 0.43) → 50 % BTC,live
