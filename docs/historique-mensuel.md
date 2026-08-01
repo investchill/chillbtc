@@ -941,4 +941,4 @@ Une ligne par mois depuis octobre 2015, à partir du cours BTC/USD historique de
   </tbody>
 </table>
 
-_Dernière mise à jour : 2026-08-01 10:52 UTC (auto)._
+_Dernière mise à jour : 2026-08-01 14:46 UTC (auto)._
