@@ -150,4 +150,4 @@ Performances annuelles depuis octobre 2015, à partir du cours BTC/USD historiqu
 - **baisse max** : la plus grosse baisse temporaire du portefeuille pendant l'année, **sur papier** (c'est une perte non-réalisée, tu n'as pas vendu). Exemple : un portefeuille qui passe de 100 à 70 puis remonte à 90 a une baisse max de -30 %, même si le résultat final n'est que -10 %.
 - **Perf annualisée 3 / 5 ans** : moyenne géométrique des 36 / 60 derniers mois (rolling, pas calendaire).
 
-_Dernière mise à jour : 2026-08-01 14:46 UTC (auto)._
+_Dernière mise à jour : 2026-08-02 10:53 UTC (auto)._
