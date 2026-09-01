@@ -35,13 +35,13 @@ description: L'allocation BTC à appliquer ce mois-ci, et les 2 signaux sous-jac
   <tbody>
     <tr>
       <td>Tendance <span class="signal-sub">(TSMOM 11 m)</span></td>
-      <td class="num negative">-42.0%</td>
+      <td class="num negative">-31.1%</td>
       <td class="arrow">→</td>
       <td><span class="decision cash">❌ CASH</span></td>
     </tr>
     <tr>
       <td>Valorisation <span class="signal-sub">(Power Law)</span></td>
-      <td class="num">0.43</td>
+      <td class="num">0.52</td>
       <td class="arrow">→</td>
       <td><span class="decision achat">✅ ACHAT</span></td>
     </tr>
@@ -50,15 +50,16 @@ description: L'allocation BTC à appliquer ce mois-ci, et les 2 signaux sous-jac
 
 ## Contexte
 
-- Prix BTC à la clôture du **31 juillet 2026** : **62 818 USD**
+- Prix BTC à la clôture du **31 août 2026** : **78 571 USD**
 - Constante A Power Law : -16.917 (figée jusqu'à la prochaine revue annuelle)
 
-## 5 derniers mois
+## 6 derniers mois
 
+- **2026-08** : 🟡 50 % — tendance CASH, valorisation ACHAT
 - **2026-07** : 🟡 50 % — tendance CASH, valorisation ACHAT
 - **2026-06** : 🟡 50 % — tendance CASH, valorisation ACHAT
 - **2026-05** : 🟡 50 % — tendance CASH, valorisation ACHAT
 - **2026-04** : 🟡 50 % — tendance CASH, valorisation ACHAT
 - **2026-03** : 🟡 50 % — tendance CASH, valorisation ACHAT
 
-_Dernière mise à jour : 2026-08-03 12:38 UTC (auto)._
+_Dernière mise à jour : 2026-09-01 07:08 UTC (auto)._

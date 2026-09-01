@@ -104,8 +104,8 @@ Performances annuelles depuis octobre 2015, à partir du cours BTC/USD historiqu
     </tr>
     <tr>
       <th scope="row">2026 *</th>
-      <td data-label="perf ChillBTC" class="num negative chill">-14.1 %</td>
-      <td data-label="perf HODL" class="num negative">-28.2 %</td>
+      <td data-label="perf ChillBTC" class="num negative chill">-3.3 %</td>
+      <td data-label="perf HODL" class="num negative">-10.2 %</td>
       <td data-label="baisse max ChillBTC" class="num negative chill">-12.7 %</td>
       <td data-label="baisse max HODL" class="num negative">-25.6 %</td>
     </tr>
@@ -123,18 +123,18 @@ Performances annuelles depuis octobre 2015, à partir du cours BTC/USD historiqu
   <tbody>
     <tr>
       <th scope="row">Perf annualisée 3 ans</th>
-      <td data-label="ChillBTC" class="num positive chill">+37.6 %</td>
-      <td data-label="HODL" class="num positive">+29.0 %</td>
+      <td data-label="ChillBTC" class="num positive chill">+49.0 %</td>
+      <td data-label="HODL" class="num positive">+44.7 %</td>
     </tr>
     <tr>
       <th scope="row">Perf annualisée 5 ans</th>
-      <td data-label="ChillBTC" class="num positive chill">+27.2 %</td>
-      <td data-label="HODL" class="num positive">+8.6 %</td>
+      <td data-label="ChillBTC" class="num positive chill">+30.2 %</td>
+      <td data-label="HODL" class="num positive">+10.8 %</td>
     </tr>
     <tr>
       <th scope="row">Perf annualisée depuis 2015-10</th>
-      <td data-label="ChillBTC" class="num positive chill">+85.3 %</td>
-      <td data-label="HODL" class="num positive">+63.9 %</td>
+      <td data-label="ChillBTC" class="num positive chill">+86.4 %</td>
+      <td data-label="HODL" class="num positive">+66.7 %</td>
     </tr>
     <tr>
       <th scope="row">Baisse max depuis 2015-10</th>
@@ -150,4 +150,4 @@ Performances annuelles depuis octobre 2015, à partir du cours BTC/USD historiqu
 - **baisse max** : la plus grosse baisse temporaire du portefeuille pendant l'année, **sur papier** (c'est une perte non-réalisée, tu n'as pas vendu). Exemple : un portefeuille qui passe de 100 à 70 puis remonte à 90 a une baisse max de -30 %, même si le résultat final n'est que -10 %.
 - **Perf annualisée 3 / 5 ans** : moyenne géométrique des 36 / 60 derniers mois (rolling, pas calendaire).
 
-_Dernière mise à jour : 2026-08-03 12:38 UTC (auto)._
+_Dernière mise à jour : 2026-09-01 07:08 UTC (auto)._
